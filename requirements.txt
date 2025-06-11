@@ -35,3 +35,6 @@ markdown>=3.4.0
 
 # タイプヒント
 typing-extensions>=4.5.0
+
+# システムモニタリング
+psutil>=5.9.0

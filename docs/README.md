@@ -25,6 +25,13 @@
 - サンプルコード
 - テスト戦略
 
+### 4. [TOPIX500全銘柄バックテスト仕様書](topix500_backtest_specification.md)
+TOPIX500構成銘柄を対象とした大規模バックテストの詳細仕様です。
+- 対象銘柄一覧
+- システム要件
+- 実行時間の目安
+- メモリ使用量
+
 ## ドキュメントの読み方
 
 ### 初めての方
@@ -42,6 +49,8 @@
 - [バックテスト計画書（元文書）](../README.md)
 - [yfinance検証コード](../yfinance_topix500_verification.py)
 - [検証結果](../yfinance_check_results.json)
+- [TOPIX500全銘柄設定](../config/topix500_full_config.yaml)
+- [TOPIX500バックテスト実行スクリプト](../run_topix500_backtest.py)
 
 ## 更新履歴
 
@@ -49,6 +58,7 @@
   - プロジェクトサマリー
   - 詳細仕様書
   - 実装計画書
+  - TOPIX500全銘柄バックテスト仕様書
 
 ## 注意事項
 
