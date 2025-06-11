@@ -22,20 +22,20 @@ build/
 .DS_Store
 
 # Logs
-logs/
-*.log
+# logs/
+# *.log
 
 # Data
 data/cache/
-data/results/
-*.csv
-*.json
-*.html
-*.png
-*.jpg
+# data/results/
+# *.csv
+# *.json
+# *.html
+# *.png
+# *.jpg
 
 # Config
-config/*_config.yaml
+# config/*_config.yaml
 !config/config.yaml
 
 # Testing

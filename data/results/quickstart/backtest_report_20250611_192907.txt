@@ -1,0 +1,29 @@
+============================================================
+BACKTEST SUMMARY REPORT
+============================================================
+
+[Returns]
+Total Return: 58.22%
+Annualized Return: 92187133771642.56%
+
+[Risk]
+Annual Volatility: 360.50%
+Max Drawdown: 0.00%
+
+[Risk-Adjusted Returns]
+Sharpe Ratio: 255722489220.87
+Sortino Ratio: 0.00
+
+[Trading Statistics]
+Total Trades: 7
+Win Rate: 66.67%
+Profit Factor: 7.70
+
+[Dividends]
+Total Dividend: ¥0
+
+[Final Results]
+Final Portfolio Value: ¥15,821,514
+Total Commission Paid: ¥10,616
+
+============================================================
