@@ -1,0 +1,57 @@
+# 配当取り戦略バックテスト設定ファイル
+
+backtest:
+  start_date: "2019-01-01"  # MVP版では短期間から開始
+  end_date: "2023-12-31"
+  initial_capital: 10_000_000  # 初期資本1000万円
+  
+data_source:
+  primary: "yfinance"  # 初期実装ではyfinanceのみ
+  cache_dir: "./data/cache"
+  cache_expire_hours: 24  # キャッシュ有効期限（時間）
+  
+strategy:
+  entry:
+    days_before_record: 3  # 権利確定日の3営業日前にエントリー
+    position_size: 1_000_000  # 1銘柄あたりの投資額
+    max_positions: 10  # 最大同時保有銘柄数
+  
+  addition:
+    enabled: true  # 買い増し機能を有効化
+    add_ratio: 0.5  # 初期投資額の50%まで買い増し
+    add_on_drop: true  # 権利落ち日の下落時に買い増し
+  
+  exit:
+    max_holding_days: 20  # 最大保有期間（営業日）
+    stop_loss_pct: 0.1  # 損切りライン（-10%）
+    take_profit_on_window_fill: true  # 窓埋め達成で利益確定
+  
+execution:
+  slippage: 0.001  # スリッページ0.1%
+  commission: 0.0005  # 手数料0.05%
+  min_commission: 100  # 最低手数料100円
+  
+universe:
+  # MVP版では主要10銘柄から開始
+  tickers:
+    - "7203"  # トヨタ自動車
+    - "6758"  # ソニーグループ
+    - "9432"  # 日本電信電話
+    - "6861"  # キーエンス
+    - "8306"  # 三菱UFJフィナンシャル
+    - "9433"  # KDDI
+    - "4063"  # 信越化学工業
+    - "9984"  # ソフトバンクグループ
+    - "6098"  # リクルートホールディングス
+    - "7974"  # 任天堂
+  
+logging:
+  level: "INFO"
+  file: "./logs/backtest.log"
+  format: "{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}"
+  
+output:
+  results_dir: "./data/results"
+  report_format: ["json", "csv", "html"]
+  save_trades: true
+  save_portfolio_history: true
