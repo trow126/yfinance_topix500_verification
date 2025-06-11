@@ -1,0 +1,533 @@
+{
+  "dividend_data": {
+    "7203": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "6758": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "9432": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "6861": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "8306": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "9433": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "4063": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "9984": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "6098": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "7974": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "8058": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "8001": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "7267": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "6501": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "4502": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "6902": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "8035": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "4503": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "7741": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "9020": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "3382": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "6367": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "8031": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "9022": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "8802": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "4661": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "7011": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "6857": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "2914": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    },
+    "6273": {
+      "success": false,
+      "has_data": false,
+      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
+      "error_type": "TypeError"
+    }
+  },
+  "price_data": {
+    "7203": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 2657.5,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "6758": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 3800.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "9432": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 157.10000610351562,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "6861": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 60050.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "8306": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 1964.5,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "9433": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 2431.5,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "4063": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 4594.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "9984": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 7909.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "6098": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 8302.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "7974": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 12105.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "8058": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 2853.5,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "8001": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 7434.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "7267": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 1400.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "6501": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 4089.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "4502": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 4365.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "6902": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 1949.5,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "8035": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 23740.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "4503": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 1417.5,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "7741": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 17025.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "9020": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 3014.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "3382": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 2219.5,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "6367": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 16570.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "8031": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 2924.5,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "9022": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 3097.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "8802": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 2696.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "4661": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 3261.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "7011": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 3403.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "6857": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 8304.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "2914": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 4401.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    },
+    "6273": {
+      "success": true,
+      "has_data": true,
+      "total_days": 596,
+      "null_values": 0,
+      "coverage_rate": 93.42,
+      "latest_close": 53670.0,
+      "latest_date": "2025-06-10",
+      "date_range": "2023-01-04 to 2025-06-10"
+    }
+  },
+  "summary": {
+    "total_stocks": 30,
+    "dividend_data": {
+      "success_count": 0,
+      "success_rate": 0.0,
+      "failed_stocks": [
+        "7203",
+        "6758",
+        "9432",
+        "6861",
+        "8306",
+        "9433",
+        "4063",
+        "9984",
+        "6098",
+        "7974",
+        "8058",
+        "8001",
+        "7267",
+        "6501",
+        "4502",
+        "6902",
+        "8035",
+        "4503",
+        "7741",
+        "9020",
+        "3382",
+        "6367",
+        "8031",
+        "9022",
+        "8802",
+        "4661",
+        "7011",
+        "6857",
+        "2914",
+        "6273"
+      ]
+    },
+    "price_data": {
+      "success_count": 30,
+      "success_rate": 100.0,
+      "avg_coverage_rate": 93.42,
+      "min_coverage_rate": 93.42,
+      "failed_stocks": []
+    },
+    "timestamp": "2025-06-11 17:17:59"
+  }
+}
