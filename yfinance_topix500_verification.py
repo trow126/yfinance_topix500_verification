@@ -121,12 +121,13 @@ class YFinanceDataChecker:
             latest_ex_date = dividends.index[-1].date()
 
             # 権利確定日を計算
-            record_date = DividendDateCalculator.calculate_record_date(
-                pd.Timestamp(latest_ex_date).to_pydatetime()
-            )
+            # タイムゾーンを除去してnaiveなdatetimeに変換
+            ex_date_naive = pd.Timestamp(latest_ex_date).to_pydatetime().replace(tzinfo=None)
+            record_date = DividendDateCalculator.calculate_record_date(ex_date_naive)
 
             # 過去2年間の配当回数
-            two_years_ago = datetime.now() - timedelta(days=730)
+            # タイムゾーンを考慮したpandasのTimestampを使用
+            two_years_ago = pd.Timestamp.now(tz='Asia/Tokyo') - pd.Timedelta(days=730)
             recent_dividends = dividends[dividends.index >= two_years_ago]
 
             return {

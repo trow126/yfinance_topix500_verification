@@ -1,184 +1,484 @@
 {
   "dividend_data": {
     "7203": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 50.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 52,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "6758": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 10.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 30,
+      "recent_dividends_2y": 2,
+      "dividend_dates": [
+        "2022-03-30",
+        "2022-09-29",
+        "2023-03-30",
+        "2023-09-28",
+        "2025-03-28"
+      ]
     },
     "9432": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 2.6,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 51,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "6861": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 150.0,
+      "latest_ex_date": "2024-03-18",
+      "estimated_record_date": "2024-03-21",
+      "total_dividends": 47,
+      "recent_dividends_2y": 2,
+      "dividend_dates": [
+        "2022-03-17",
+        "2022-09-16",
+        "2023-03-17",
+        "2023-09-19",
+        "2024-03-18"
+      ]
     },
     "8306": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 39.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 39,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "9433": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 37.5,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 31,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "4063": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 53.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 50,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2022-09-29",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "9984": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 22.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 39,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "6098": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 12.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 19,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "7974": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 85.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 44,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "8058": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 50.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 51,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "8001": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 100.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 46,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "7267": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 34.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 81,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "6501": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 22.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 48,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "4502": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 98.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 51,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "6902": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 32.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 51,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "8035": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 327.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 53,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "4503": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 37.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 51,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "7741": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 115.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 49,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "9020": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 34.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 51,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "3382": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 20.0,
+      "latest_ex_date": "2025-02-27",
+      "estimated_record_date": "2025-03-03",
+      "total_dividends": 39,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-02-27",
+        "2023-08-30",
+        "2024-02-28",
+        "2024-08-29",
+        "2025-02-27"
+      ]
     },
     "6367": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 145.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 51,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "8031": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 50.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 51,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "9022": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 16.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 49,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "8802": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 22.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 51,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "4661": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 7.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 49,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "7011": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 12.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 47,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "6857": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 20.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 50,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     },
     "2914": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 97.0,
+      "latest_ex_date": "2024-12-27",
+      "estimated_record_date": "2024-12-31",
+      "total_dividends": 51,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2022-12-29",
+        "2023-06-29",
+        "2023-12-28",
+        "2024-06-27",
+        "2024-12-27"
+      ]
     },
     "6273": {
-      "success": false,
-      "has_data": false,
-      "message": "エラー: Invalid comparison between dtype=datetime64[ns, Asia/Tokyo] and datetime",
-      "error_type": "TypeError"
+      "success": true,
+      "has_data": true,
+      "latest_dividend_amount": 500.0,
+      "latest_ex_date": "2025-03-28",
+      "estimated_record_date": "2025-04-01",
+      "total_dividends": 49,
+      "recent_dividends_2y": 4,
+      "dividend_dates": [
+        "2023-03-30",
+        "2023-09-28",
+        "2024-03-28",
+        "2024-09-27",
+        "2025-03-28"
+      ]
     }
   },
   "price_data": {
@@ -486,40 +786,9 @@
   "summary": {
     "total_stocks": 30,
     "dividend_data": {
-      "success_count": 0,
-      "success_rate": 0.0,
-      "failed_stocks": [
-        "7203",
-        "6758",
-        "9432",
-        "6861",
-        "8306",
-        "9433",
-        "4063",
-        "9984",
-        "6098",
-        "7974",
-        "8058",
-        "8001",
-        "7267",
-        "6501",
-        "4502",
-        "6902",
-        "8035",
-        "4503",
-        "7741",
-        "9020",
-        "3382",
-        "6367",
-        "8031",
-        "9022",
-        "8802",
-        "4661",
-        "7011",
-        "6857",
-        "2914",
-        "6273"
-      ]
+      "success_count": 30,
+      "success_rate": 100.0,
+      "failed_stocks": []
     },
     "price_data": {
       "success_count": 30,
@@ -528,6 +797,6 @@
       "min_coverage_rate": 93.42,
       "failed_stocks": []
     },
-    "timestamp": "2025-06-11 17:17:59"
+    "timestamp": "2025-06-11 17:24:27"
   }
 }
