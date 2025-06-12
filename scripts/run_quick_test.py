@@ -25,7 +25,7 @@ def create_test_config():
     # テスト用に変更
     base_config.backtest.start_date = "2023-01-01"
     base_config.backtest.end_date = "2023-12-31"
-    base_config.universe.tickers = ["7203", "6758", "9432"]  # 3銘柄のみ
+    base_config.universe.tickers = ["7203", "6758", "9433"]  # 3銘柄のみ
 
     return base_config
 

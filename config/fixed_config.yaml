@@ -1,0 +1,56 @@
+# 修正版設定ファイル - 異常値対策済み
+# 現実的なバックテスト結果を得るための設定
+
+backtest:
+  start_date: "2023-01-01"
+  end_date: "2023-12-31"
+  initial_capital: 10_000_000
+
+data_source:
+  primary: "yfinance"
+  cache_dir: "./data/cache"
+  cache_expire_hours: 1  # キャッシュを短くして最新データを取得
+
+strategy:
+  entry:
+    days_before_record: 3
+    position_size: 1_000_000
+    max_positions: 5  # ポジション数を減らして管理しやすく
+  
+  addition:
+    enabled: true
+    add_ratio: 0.3  # 買い増し比率を下げる
+    add_on_drop: true
+  
+  exit:
+    max_holding_days: 20
+    stop_loss_pct: 0.08  # 損切りを8%に
+    take_profit_on_window_fill: true
+
+execution:
+  slippage: 0.003  # スリッページを0.3%に増加
+  slippage_ex_date: 0.008  # 権利落ち日は0.8%
+  commission: 0.001  # 手数料を0.1%に
+  min_commission: 550
+  max_commission: 1100
+  tax_rate: 0.20315
+
+# テスト用に確実に配当がある銘柄を選定
+universe:
+  tickers:
+    - "7203"  # トヨタ自動車
+    - "6758"  # ソニーグループ
+    - "8306"  # 三菱UFJフィナンシャル
+    - "9432"  # 日本電信電話（NTT）
+    - "8058"  # 三菱商事
+
+logging:
+  level: "DEBUG"  # デバッグレベルで詳細ログ
+  file: "./logs/backtest_fixed.log"
+  format: "{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}"
+
+output:
+  results_dir: "./data/results/fixed"
+  report_format: ["json", "csv", "html"]
+  save_trades: true
+  save_portfolio_history: true

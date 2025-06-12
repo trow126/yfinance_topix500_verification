@@ -1,0 +1,49 @@
+# 最小限テスト - トヨタ1銘柄のみ
+backtest:
+  start_date: "2023-03-20"
+  end_date: "2023-04-30"
+  initial_capital: 10_000_000
+
+data_source:
+  primary: "yfinance"
+  cache_dir: "./data/cache_minimal"
+  cache_expire_hours: 1
+
+strategy:
+  entry:
+    days_before_record: 3
+    position_size: 1_000_000
+    max_positions: 1
+  
+  addition:
+    enabled: false
+    add_ratio: 0.0
+    add_on_drop: false
+  
+  exit:
+    max_holding_days: 20
+    stop_loss_pct: 0.15  # 15%に緩和
+    take_profit_on_window_fill: false
+
+execution:
+  slippage: 0.0  # スリッページを0に
+  slippage_ex_date: 0.0
+  commission: 0.0  # 手数料も0に
+  min_commission: 0
+  max_commission: 0
+  tax_rate: 0.0  # 税金も0に
+
+universe:
+  tickers:
+    - "7203"  # トヨタのみ
+
+logging:
+  level: "DEBUG"
+  file: "./logs/minimal_debug.log"
+  format: "{time:YYYY-MM-DD HH:mm:ss} | {level} | {function} | {message}"
+
+output:
+  results_dir: "./data/results/minimal_debug"
+  report_format: ["json", "csv"]
+  save_trades: true
+  save_portfolio_history: true

@@ -1,0 +1,51 @@
+# 買い増し有効版設定
+# 本来の配当取り戦略コンセプトに沿った設定
+
+backtest:
+  start_date: "2023-03-01"
+  end_date: "2023-05-31"  # 3ヶ月のみ
+  initial_capital: 10_000_000
+
+data_source:
+  primary: "yfinance"
+  cache_dir: "./data/cache"
+  cache_expire_hours: 24
+
+strategy:
+  entry:
+    days_before_record: 3
+    position_size: 1_000_000
+    max_positions: 1  # 1銘柄のみでテスト
+  
+  addition:
+    enabled: true  # 買い増しを有効化
+    add_ratio: 1.0  # 同額まで買い増し可能（合計2倍）
+    add_on_drop: true  # 下落時に買い増し
+  
+  exit:
+    max_holding_days: 20
+    stop_loss_pct: 0.15
+    take_profit_on_window_fill: false  # 窓埋めは無効
+
+execution:
+  slippage: 0.002
+  slippage_ex_date: 0.005
+  commission: 0.001
+  min_commission: 550
+  max_commission: 1100
+  tax_rate: 0.20315
+
+universe:
+  tickers:
+    - "7203"  # トヨタのみ
+
+logging:
+  level: "DEBUG"
+  file: "./logs/addition_test.log"
+  format: "{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}"
+
+output:
+  results_dir: "./data/results/addition_test"
+  report_format: ["json", "csv"]
+  save_trades: true
+  save_portfolio_history: true

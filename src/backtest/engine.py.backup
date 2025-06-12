@@ -313,13 +313,6 @@ class BacktestEngine:
         # 権利落ち日前後かチェック（ポジション情報から取得）
         is_around_ex_date = False
         position = self.portfolio.position_manager.get_position(signal.ticker)
-        # デバッグ: 売却前の株数を確認
-        position = self.portfolio.position_manager.get_position(signal.ticker)
-        if position:
-            log.warning(f"[DEBUG] {signal.ticker}: 売却前 - position.total_shares={position.total_shares}, signal.shares={signal.shares}")
-            if position.total_shares != signal.shares:
-                log.error(f"[DEBUG] 株数不一致！ position={position.total_shares}, signal={signal.shares}")
-        
         if position and position.ex_dividend_date:
             days_to_ex = abs((position.ex_dividend_date - signal.date).days)
             is_around_ex_date = days_to_ex <= 1
