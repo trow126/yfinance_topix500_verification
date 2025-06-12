@@ -68,8 +68,8 @@ class YFinanceClient:
             yf_ticker = f"{ticker}.T"  # 東証の銘柄コード
             stock = yf.Ticker(yf_ticker)
             
-            # 日足データを取得
-            hist = stock.history(start=start_date, end=end_date)
+            # 日足データを取得（重要: auto_adjust=Falseで未調整価格を取得）
+            hist = stock.history(start=start_date, end=end_date, auto_adjust=False)
             
             if hist.empty:
                 log.warning(f"No price data found for {ticker}")
@@ -78,8 +78,14 @@ class YFinanceClient:
             # インデックスをタイムゾーンなしに変換
             hist.index = pd.to_datetime(hist.index).tz_localize(None)
             
-            # 必要なカラムのみ保持
+            # 必要なカラムのみ保持（未調整価格を使用）
             price_data = hist[['Open', 'High', 'Low', 'Close', 'Volume']].copy()
+            
+            # 配当・分割情報も保持（デバッグ用）
+            if 'Dividends' in hist.columns:
+                price_data['Dividends'] = hist['Dividends']
+            if 'Stock Splits' in hist.columns:
+                price_data['Stock Splits'] = hist['Stock Splits']
             
             # キャッシュに保存
             if use_cache:

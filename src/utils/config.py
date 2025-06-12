@@ -67,6 +67,9 @@ class ExecutionConfig:
     slippage: float
     commission: float
     min_commission: float = 100
+    slippage_ex_date: float = 0.005  # 権利落ち日前後のスリッページ
+    max_commission: float = 1100  # 上限手数料
+    tax_rate: float = 0.20315  # 配当課税率
 
 
 @dataclass

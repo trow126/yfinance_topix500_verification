@@ -224,30 +224,65 @@ class BacktestEngine:
         positions = self.portfolio.position_manager.get_open_positions()
         
         for position in positions:
-            # 権利確定日の翌日に配当を受け取る（簡略化）
+            # 配当支払日を計算（権利確定日から2-3ヶ月後）
             if position.record_date:
-                payment_date = BusinessDayCalculator.add_business_days(position.record_date, 1)
+                payment_date = self._calculate_dividend_payment_date(position.record_date)
                 
                 if current_date.date() == payment_date.date() and position.dividend_amount:
+                    # 税引後配当金を計算
+                    gross_dividend = position.dividend_amount * position.total_shares
+                    tax = gross_dividend * self.execution_config.tax_rate
+                    net_dividend_per_share = position.dividend_amount * (1 - self.execution_config.tax_rate)
+                    
                     self.portfolio.update_dividend(
                         ticker=position.ticker,
-                        dividend_per_share=position.dividend_amount,
+                        dividend_per_share=net_dividend_per_share,
                         date=current_date
                     )
+    
+    def _calculate_dividend_payment_date(self, record_date: datetime) -> datetime:
+        """
+        実際の配当支払日を計算（権利確定から2-3ヶ月後）
+        
+        Args:
+            record_date: 権利確定日
+            
+        Returns:
+            配当支払日
+        """
+        # 日本企業の一般的な支払いサイクル
+        if record_date.month == 3:  # 3月決算
+            return datetime(record_date.year, 6, 25)  # 6月下旬支払い
+        elif record_date.month == 9:  # 中間配当
+            return datetime(record_date.year, 12, 10)  # 12月上旬支払い
+        else:
+            # その他は2.5ヶ月後
+            return record_date + timedelta(days=75)
     
     def _execute_entry(self,
                       signal,
                       execution_price: float,
                       dividend_info: Optional[Dict] = None) -> None:
         """エントリー（買い）を実行"""
-        # 執行価格（スリッページ考慮）
-        final_price = execution_price * (1 + self.execution_config.slippage)
+        # 権利落ち日前後かチェック
+        is_around_ex_date = False
+        if dividend_info and 'ex_dividend_date' in dividend_info:
+            ex_date = dividend_info['ex_dividend_date']
+            days_to_ex = abs((ex_date - signal.date).days)
+            is_around_ex_date = days_to_ex <= 1  # 権利落ち日前後1日
         
-        # 手数料計算
+        # 執行価格（スリッページ考慮）
+        slippage = self.execution_config.slippage_ex_date if is_around_ex_date else self.execution_config.slippage
+        final_price = execution_price * (1 + slippage)
+        
+        # 手数料計算（最低手数料と上限手数料を考慮）
         trade_amount = final_price * signal.shares
-        commission = max(
-            trade_amount * self.execution_config.commission,
-            self.execution_config.min_commission
+        commission = min(
+            max(
+                trade_amount * self.execution_config.commission,
+                self.execution_config.min_commission
+            ),
+            self.execution_config.max_commission
         )
         
         # 買い注文実行
@@ -275,14 +310,25 @@ class BacktestEngine:
     
     def _execute_exit(self, signal, execution_price: float) -> None:
         """決済（売り）を実行"""
-        # 執行価格（スリッページ考慮）
-        final_price = execution_price * (1 - self.execution_config.slippage)
+        # 権利落ち日前後かチェック（ポジション情報から取得）
+        is_around_ex_date = False
+        position = self.portfolio.position_manager.get_position(signal.ticker)
+        if position and position.ex_dividend_date:
+            days_to_ex = abs((position.ex_dividend_date - signal.date).days)
+            is_around_ex_date = days_to_ex <= 1
         
-        # 手数料計算
+        # 執行価格（スリッページ考慮）
+        slippage = self.execution_config.slippage_ex_date if is_around_ex_date else self.execution_config.slippage
+        final_price = execution_price * (1 - slippage)
+        
+        # 手数料計算（最低手数料と上限手数料を考慮）
         trade_amount = final_price * signal.shares
-        commission = max(
-            trade_amount * self.execution_config.commission,
-            self.execution_config.min_commission
+        commission = min(
+            max(
+                trade_amount * self.execution_config.commission,
+                self.execution_config.min_commission
+            ),
+            self.execution_config.max_commission
         )
         
         # 売り注文実行

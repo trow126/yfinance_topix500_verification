@@ -27,9 +27,12 @@ strategy:
     take_profit_on_window_fill: true  # 窓埋め達成で利益確定
   
 execution:
-  slippage: 0.001  # スリッページ0.1%
-  commission: 0.0005  # 手数料0.05%
-  min_commission: 100  # 最低手数料100円
+  slippage: 0.002  # スリッページ0.2%（通常時）
+  slippage_ex_date: 0.005  # スリッページ0.5%（権利落ち日前後）
+  commission: 0.00055  # 手数料0.055%（税込）
+  min_commission: 550  # 最低手数料550円
+  max_commission: 1100  # 上限手数料1100円（100万円まで）
+  tax_rate: 0.20315  # 配当課税率20.315%
   
 universe:
   # MVP版では主要10銘柄から開始
