@@ -421,6 +421,13 @@ class BacktestEngine:
                 portfolio_file = output_dir / f"portfolio_{timestamp}.csv"
                 results['portfolio_history'].to_csv(portfolio_file)
                 log.info(f"Portfolio history saved to {portfolio_file}")
+        
+        # ポジションサマリーをCSV形式で保存（重要！）
+        if 'csv' in self.config.output.report_format:
+            if not results['positions'].empty:
+                positions_file = output_dir / f"positions_{timestamp}.csv"
+                results['positions'].to_csv(positions_file, index=False)
+                log.info(f"Positions summary saved to {positions_file}")
     
     def _config_to_dict(self) -> Dict:
         """設定を辞書形式に変換"""
