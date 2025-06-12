@@ -1,81 +1,87 @@
-# 実行手順の記載場所一覧
+# ドキュメント一覧
 
-## 📍 実行手順が記載されているドキュメント
+このディレクトリには、配当取り戦略バックテストシステムに関する各種ドキュメントが整理されています。
 
-### 1. **[実行ガイド](execution_guide.md)** 【最も詳細】
-- **場所**: `docs/execution_guide.md`
-- **内容**: 
-  - 初回セットアップから実行まで完全ガイド
-  - 段階的な実行手順（Step 1～4）
-  - 実行コマンド一覧表
-  - トラブルシューティング
-  - 推奨実行フロー
+## ディレクトリ構成
 
-### 2. **[README.md](../README.md)** 【基本的な使い方】
-- **場所**: プロジェクトルート
-- **内容**:
-  - クイックスタート（3銘柄テスト）
-  - 基本的な実行方法
-  - TOPIX500バックテスト
-  - Windows用バッチファイル
+```
+docs/
+├── guides/         # 各種ガイド
+├── specifications/ # 仕様書・計画書
+├── issues/         # 問題と解決策
+└── README.md       # このファイル
+```
 
-### 3. **[セットアップガイド](setup_guide.md)** 【環境構築中心】
-- **場所**: `docs/setup_guide.md`
-- **内容**:
-  - Python環境のセットアップ
+## 各カテゴリの説明
+
+### guides/ - ガイドドキュメント
+
+システムの使い方やセットアップ方法を説明するガイド：
+
+- **[setup_guide.md](guides/setup_guide.md)** - セットアップガイド
+  - Python環境の準備
   - 依存パッケージのインストール
-  - 初回実行の手順
+  - 初期設定
 
-### 4. **[バックテスト検証ガイド](documentation.md)** 【概要】
-- **場所**: `docs/documentation.md`
-- **内容**:
-  - システムの使用方法概要
-  - アーキテクチャ説明
+- **[execution_guide.md](guides/execution_guide.md)** - 実行ガイド
+  - バックテストの実行方法
+  - パラメータの調整
+  - 結果の確認方法
 
-## 🚀 クイック実行コマンド
+### specifications/ - 仕様書・計画書
 
-### 最速で試したい場合
-```bash
-# 1. キャッシュクリア（必須）
-del /s /q data\cache\*
+システムの詳細な仕様や実装計画：
 
-# 2. クイックテスト実行
-python scripts/run_quick_test.py
-```
+- **[detailed_specification.md](specifications/detailed_specification.md)** - 詳細仕様書
+  - システムアーキテクチャ
+  - コンポーネントの詳細
+  - データフロー
 
-### 通常の実行
-```bash
-python main.py
-```
+- **[topix500_backtest_specification.md](specifications/topix500_backtest_specification.md)** - TOPIX500バックテスト仕様
+  - 大規模バックテストの要件
+  - パフォーマンス考慮事項
+  - 実行手順
 
-### 大規模バックテスト
-```bash
-python run_topix500_backtest.py
-```
+- **[implementation_plan.md](specifications/implementation_plan.md)** - 実装計画
+  - 開発フェーズ
+  - マイルストーン
+  - 今後の拡張計画
 
-## 📋 推奨される参照順序
+### issues/ - 問題と解決策
 
-1. **初めての方**
-   - [セットアップガイド](setup_guide.md) → 環境構築
-   - [実行ガイド](execution_guide.md) → 実行方法
+開発中に発生した問題とその解決策：
 
-2. **環境構築済みの方**
-   - [実行ガイド](execution_guide.md) → 直接参照
+- **[hidden_addition_issue.md](issues/hidden_addition_issue.md)** - 隠れた買い増し問題
+  - 設定を無視して買い増しが実行される問題
+  - 原因と修正方法
 
-3. **トラブルシューティング**
-   - [実行ガイド](execution_guide.md#トラブルシューティング)
-   - [README.md](../README.md#トラブルシューティング)
+- **[dividend_payment_issue.md](issues/dividend_payment_issue.md)** - 配当支払い問題
+  - 配当収入が0円になる問題
+  - 原因と解決策
 
-## 📌 重要な注意事項
+- **[window_fill_issue.md](issues/window_fill_issue.md)** - 窓埋め判定問題
+  - 権利落ち日にすぐ窓埋めと判定される問題
+  - 原因と部分的な解決策
 
-**キャッシュのクリアを忘れずに！**
+## その他の重要ドキュメント
 
-修正前の調整済み価格データが残っていると、非現実的に良い結果が出ます：
+- **[documentation.md](documentation.md)** - システム全体のドキュメント
+- **[project_summary.md](project_summary.md)** - プロジェクトサマリー
+- **[api_reference.md](api_reference.md)** - APIリファレンス
 
-```bash
-# Windows
-del /s /q data\cache\*
+## クイックリンク
 
-# Mac/Linux
-rm -rf data/cache/*
-```
+### 初めての方へ
+1. [セットアップガイド](guides/setup_guide.md)
+2. [実行ガイド](guides/execution_guide.md)
+3. [プロジェクトサマリー](project_summary.md)
+
+### 開発者向け
+1. [詳細仕様書](specifications/detailed_specification.md)
+2. [APIリファレンス](api_reference.md)
+3. [問題と解決策](issues/)
+
+### トラブルシューティング
+1. [配当支払い問題](issues/dividend_payment_issue.md)
+2. [隠れた買い増し問題](issues/hidden_addition_issue.md)
+3. [窓埋め判定問題](issues/window_fill_issue.md)

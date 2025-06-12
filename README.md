@@ -184,7 +184,7 @@ execution:
 
 ```
 yfinance_topix500_verification/
-├── src/
+├── src/                    # ソースコード
 │   ├── data/               # データ取得・管理
 │   ├── strategy/           # 戦略実装
 │   ├── backtest/           # バックテストエンジン
@@ -195,19 +195,22 @@ yfinance_topix500_verification/
 │   ├── cache/              # データキャッシュ
 │   └── results/            # バックテスト結果
 ├── docs/                   # ドキュメント
-│   ├── execution_guide.md  # 実行ガイド
-│   ├── setup_guide.md      # セットアップガイド
-│   ├── documentation.md    # システム詳細
-│   └── api_reference.md    # APIリファレンス
+│   ├── guides/             # 各種ガイド
+│   ├── specifications/     # 仕様書
+│   └── issues/             # 問題と解決策
 ├── scripts/                # 実行スクリプト
-│   ├── run_quick_test.py   # クイックテスト
-│   ├── verify_adjustments.py # 修正検証
-│   └── ...                 # その他のスクリプト
+│   ├── debug/              # デバッグ・分析用
+│   ├── fix/                # バグ修正・パッチ
+│   ├── run/                # バックテスト実行
+│   ├── test/               # テスト・検証
+│   └── utils/              # ユーティリティ
 ├── tests/                  # テストコード
 ├── main.py                 # メインエントリーポイント
 ├── requirements.txt        # 依存パッケージ
 └── README.md              # このファイル
 ```
+
+ドキュメントの詳細は[docs/README.md](docs/README.md)を参照してください。
 
 ## テストの実行
 

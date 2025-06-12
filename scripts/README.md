@@ -10,7 +10,8 @@ scripts/
 ├── fix/           # バグ修正・パッチ適用スクリプト
 ├── run/           # バックテスト実行スクリプト
 ├── test/          # テスト・検証スクリプト
-└── （その他）      # ユーティリティスクリプト
+├── utils/         # ユーティリティスクリプト
+└── README.md      # このファイル
 ```
 
 ## 各ディレクトリの説明
@@ -19,21 +20,34 @@ scripts/
 
 問題の調査や分析に使用するスクリプト群：
 
+- `analyze_problems.py` - 問題の総合分析
 - `analyze_share_issue.py` - 株数計算の問題を分析
+- `analyze_trading_pairs.py` - 取引ペアの分析
+- `check_csv_structure.py` - CSVファイル構造の確認
+- `check_dividend_setup.py` - 配当情報の設定状況確認
+- `check_outputs.py` - 出力結果の確認
+- `check_project.py` - プロジェクト全体の確認
 - `debug_code_state.py` - コードの状態をデバッグ
 - `debug_dividend_issue.py` - 配当関連の問題をデバッグ
+- `debug_dividend_payment.py` - 配当支払い処理のデバッグ
 - `debug_double_shares.py` - 売却株数2倍問題の調査
 - `debug_hidden_addition.py` - 隠れた買い増し問題の調査
 - `debug_patch.py` - パッチ適用のデバッグ
 - `debug_trading_flow.py` - 取引フローの追跡
+- `debug_window_fill.py` - 窓埋め判定ロジックのデバッグ
 - `detect_hidden_addition.py` - 隠れた買い増しの検出
+- `diagnose_issues.py` - 問題の診断
+- `find_real_results.py` - 実際の結果ファイルの検索
 - `identify_double_buy_issue.py` - 二重買い問題の特定
+- `trace_dividend_payment.py` - 配当支払い処理の追跡
 - `trace_share_changes.py` - 株数変更の追跡
 
 ### fix/ - 修正・パッチスクリプト
 
 バグ修正やコードの自動修正を行うスクリプト群：
 
+- `fix_dividend_immediate.py` - 配当を権利落ち日に即座に計上する修正
+- `fix_dividend_strategy.py` - 配当取り戦略の主要な問題を修正
 - `fix_hidden_addition.py` - 隠れた買い増し問題の修正
 - `fix_issues_now.py` - 緊急修正の適用
 - `fix_portfolio_duplicate_buy.py` - ポートフォリオの重複購入修正
@@ -53,22 +67,16 @@ scripts/
 機能のテストや動作検証を行うスクリプト群：
 
 - `minimal_debug_test.py` - 最小限のデバッグテスト
+- `run_quick_test.py` - クイックテストの実行
 - `test_addition_behavior.py` - 買い増し機能の動作テスト
+- `verify_adjustments.py` - 調整値の検証
+- `yfinance_verification.py` - yfinanceデータの検証
 
-### その他のスクリプト
+### utils/ - ユーティリティスクリプト
 
 汎用的なユーティリティスクリプト：
 
-- `analyze_problems.py` - 問題の総合分析
-- `analyze_trading_pairs.py` - 取引ペアの分析
-- `check_csv_structure.py` - CSVファイル構造の確認
-- `check_outputs.py` - 出力結果の確認
-- `check_project.py` - プロジェクト全体の確認
-- `diagnose_issues.py` - 問題の診断
-- `find_real_results.py` - 実際の結果ファイルの検索
-- `run_quick_test.py` - クイックテストの実行
-- `verify_adjustments.py` - 調整値の検証
-- `yfinance_verification.py` - yfinanceデータの検証
+- `fix_script_paths.py` - スクリプトのインポートパスを修正
 
 ## 使用方法
 
