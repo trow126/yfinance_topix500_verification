@@ -14,23 +14,26 @@ data_source:
 strategy:
   entry:
     days_before_record: 3  # 権利確定日の3営業日前にエントリー
-    position_size: 2_000_000  # 1銘柄あたり200万円（分散投資）
-    max_positions: 50  # 最大50銘柄まで同時保有
-
+    position_size: 1_000_000  # 1銘柄あたりの投資額
+    max_positions: 10  # 最大同時保有銘柄数
+  
   addition:
     enabled: true  # 買い増し機能を有効化
-    add_ratio: 0.3  # 初期投資額の30%まで買い増し（リスク管理）
+    add_ratio: 0.5  # 初期投資額の50%まで買い増し
     add_on_drop: true  # 権利落ち日の下落時に買い増し
-
+  
   exit:
     max_holding_days: 20  # 最大保有期間（営業日）
-    stop_loss_pct: 0.08  # 損切りライン（-8%）より厳格に
+    stop_loss_pct: 0.1  # 損切りライン（-10%）
     take_profit_on_window_fill: true  # 窓埋め達成で利益確定
-
+  
 execution:
-  slippage: 0.0015  # スリッページ0.15%（流動性を考慮）
-  commission: 0.00025  # 手数料0.025%（機関投資家レート）
-  min_commission: 100  # 最低手数料100円
+  slippage: 0.002  # スリッページ0.2%（通常時）
+  slippage_ex_date: 0.005  # スリッページ0.5%（権利落ち日前後）
+  commission: 0.00055  # 手数料0.055%（税込）
+  min_commission: 550  # 最低手数料550円
+  max_commission: 1100  # 上限手数料1100円（100万円まで）
+  tax_rate: 0.20315  # 配当課税率20.315%
 
 universe:
   # TOPIX500構成銘柄（業種別に主要銘柄を網羅）

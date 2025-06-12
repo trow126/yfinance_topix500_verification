@@ -1,0 +1,15 @@
+{
+  "total_return": 7.5734539443136395,
+  "annualized_return": 0.3873508901475826,
+  "annualized_volatility": 0.09667767237699487,
+  "sharpe_ratio": 3.903185511915323,
+  "max_drawdown": 0.0,
+  "win_rate": 0.47928994082840237,
+  "profit_factor": 0.43153626458250316,
+  "total_trades": 2081,
+  "winning_trades": 405,
+  "losing_trades": 440,
+  "total_commission": 1565888.5861737584,
+  "total_dividend": 0.0,
+  "final_value": 857345394.4313639
+}
