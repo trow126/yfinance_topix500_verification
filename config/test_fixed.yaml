@@ -1,0 +1,53 @@
+# 修正版テスト用設定ファイル
+
+backtest:
+  start_date: "2023-01-01"  # 1年間でテスト
+  end_date: "2023-12-31"
+  initial_capital: 10_000_000
+  
+data_source:
+  primary: "yfinance"
+  cache_dir: "./data/cache"
+  cache_expire_hours: 24
+  
+strategy:
+  entry:
+    days_before_record: 3
+    position_size: 1_000_000
+    max_positions: 5  # 少なめに設定
+  
+  addition:
+    enabled: false  # 買い増しを無効化してテスト
+    add_ratio: 0.5
+    add_on_drop: true
+  
+  exit:
+    max_holding_days: 20
+    stop_loss_pct: 0.1
+    take_profit_on_window_fill: true
+  
+execution:
+  slippage: 0.002
+  slippage_ex_date: 0.005
+  commission: 0.00055
+  min_commission: 550
+  max_commission: 1100
+  tax_rate: 0.20315
+  
+universe:
+  # テスト用に3銘柄のみ
+  tickers:
+    - "7203"  # トヨタ自動車
+    - "6758"  # ソニーグループ
+    - "8306"  # 三菱UFJフィナンシャル
+  
+logging:
+  level: "DEBUG"  # デバッグレベル
+  file: "./logs/test_backtest.log"
+  format: "{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}"
+  
+output:
+  results_dir: "./data/results/test_fixed"
+  report_format: ["json", "csv", "html"]
+  save_trades: true
+  save_portfolio_history: true

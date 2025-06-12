@@ -161,21 +161,7 @@ class BacktestEngine:
             if self.config.strategy.addition.enabled and position.ex_dividend_date and current_date.date() == position.ex_dividend_date.date():
                 # 権利落ち前日の価格を設定
                 pre_ex_date = BusinessDayCalculator.add_business_days(current_date, -1)
-                # 実際の価格データから前営業日を取得
-                price_data = self.data_manager.get_price_data(ticker)
-                if price_data is not None and not price_data.empty:
-                    dates = price_data.index.tolist()
-                    try:
-                        current_idx = next(i for i, d in enumerate(dates) if d.date() == current_date.date())
-                        if current_idx > 0:
-                            pre_ex_date = dates[current_idx - 1]
-                            pre_ex_price = price_data.iloc[current_idx - 1]["Close"]
-                        else:
-                            pre_ex_price = self.data_manager.get_price_on_date(ticker, pre_ex_date)
-                    except StopIteration:
-                        pre_ex_price = self.data_manager.get_price_on_date(ticker, pre_ex_date)
-                else:
-                    pre_ex_price = self.data_manager.get_price_on_date(ticker, pre_ex_date)
+                pre_ex_price = self.data_manager.get_price_on_date(ticker, pre_ex_date)
                 
                 if pre_ex_price:
                     self.portfolio.position_manager.update_pre_ex_price(ticker, pre_ex_price)
@@ -238,13 +224,15 @@ class BacktestEngine:
         positions = self.portfolio.position_manager.get_open_positions()
         
         for position in positions:
-            # 権利落ち日に配当を即座に計上（簡略化版）
-            if position.ex_dividend_date and current_date.date() == position.ex_dividend_date.date():
-                if position.dividend_amount and position.dividend_amount > 0:
+            # 配当支払日を計算（権利確定日から2-3ヶ月後）
+            if position.record_date:
+                payment_date = self._calculate_dividend_payment_date(position.record_date)
+                
+                if current_date.date() == payment_date.date() and position.dividend_amount:
                     # 税引後配当金を計算
+                    gross_dividend = position.dividend_amount * position.total_shares
+                    tax = gross_dividend * self.execution_config.tax_rate
                     net_dividend_per_share = position.dividend_amount * (1 - self.execution_config.tax_rate)
-                    
-                    log.info(f"Dividend payment: {position.ticker} - {position.dividend_amount:.2f} x {position.total_shares} shares")
                     
                     self.portfolio.update_dividend(
                         ticker=position.ticker,
@@ -263,9 +251,9 @@ class BacktestEngine:
             配当支払日
         """
         # 日本企業の一般的な支払いサイクル
-        if record_date.month in [3, 4]:  # 3月決算
+        if record_date.month == 3:  # 3月決算
             return datetime(record_date.year, 6, 25)  # 6月下旬支払い
-        elif record_date.month in [9, 10]:  # 中間配当
+        elif record_date.month == 9:  # 中間配当
             return datetime(record_date.year, 12, 10)  # 12月上旬支払い
         else:
             # その他は2.5ヶ月後

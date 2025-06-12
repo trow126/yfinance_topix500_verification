@@ -8,6 +8,7 @@
 import sys
 import os
 
+# プロジェクトルートをパスに追加（1つ上のディレクトリ）
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import pandas as pd

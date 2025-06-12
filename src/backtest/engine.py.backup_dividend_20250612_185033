@@ -238,13 +238,15 @@ class BacktestEngine:
         positions = self.portfolio.position_manager.get_open_positions()
         
         for position in positions:
-            # 権利落ち日に配当を即座に計上（簡略化版）
-            if position.ex_dividend_date and current_date.date() == position.ex_dividend_date.date():
-                if position.dividend_amount and position.dividend_amount > 0:
+            # 配当支払日を計算（権利確定日から2-3ヶ月後）
+            if position.record_date:
+                payment_date = self._calculate_dividend_payment_date(position.record_date)
+                
+                if current_date.date() == payment_date.date() and position.dividend_amount:
                     # 税引後配当金を計算
+                    gross_dividend = position.dividend_amount * position.total_shares
+                    tax = gross_dividend * self.execution_config.tax_rate
                     net_dividend_per_share = position.dividend_amount * (1 - self.execution_config.tax_rate)
-                    
-                    log.info(f"Dividend payment: {position.ticker} - {position.dividend_amount:.2f} x {position.total_shares} shares")
                     
                     self.portfolio.update_dividend(
                         ticker=position.ticker,

@@ -197,9 +197,7 @@ class DividendStrategy:
         reason_text = ""
         
         # 1. 窓埋め達成
-        # 最低保有期間（3営業日）を追加
-        min_holding_days = 3
-        if self.exit_config.take_profit_on_window_fill and current_price >= pre_ex_price and holding_days >= min_holding_days:
+        if self.exit_config.take_profit_on_window_fill and current_price >= pre_ex_price:
             exit_reason = ExitReason.WINDOW_FILLED
             reason_text = f"Window filled (reached pre-ex price {pre_ex_price:.0f})"
         
