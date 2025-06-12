@@ -27,9 +27,11 @@ def verify_price_adjustment():
     
     # 調整済み価格（修正前の実装）
     adjusted_data = stock.history(start=start_date, end=end_date, auto_adjust=True)
+    adjusted_data.index = adjusted_data.index.tz_localize(None)
     
     # 未調整価格（修正後の実装）
     unadjusted_data = stock.history(start=start_date, end=end_date, auto_adjust=False)
+    unadjusted_data.index = unadjusted_data.index.tz_localize(None)
     
     print("【調整済み価格（修正前）】")
     print(adjusted_data[['Close']].head())
@@ -38,6 +40,8 @@ def verify_price_adjustment():
     
     # 配当情報
     dividends = stock.dividends
+    # タイムゾーンを除去して比較
+    dividends.index = dividends.index.tz_localize(None)
     ex_dates = dividends.index[
         (dividends.index >= pd.to_datetime(start_date)) & 
         (dividends.index <= pd.to_datetime(end_date))
