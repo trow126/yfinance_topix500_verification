@@ -28,12 +28,12 @@ build/
 
 # Data
 data/cache/
-# data/results/
-# *.csv
-# *.json
-# *.html
-# *.png
-# *.jpg
+data/results/
+*.csv
+*.json
+*.html
+*.png
+*.jpg
 
 # Config
 # config/*_config.yaml
