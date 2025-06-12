@@ -41,6 +41,8 @@ TOPIX500採用銘柄を対象とした配当取り戦略のバックテストシ
 
 ## インストール
 
+詳細なセットアップ手順は[セットアップガイド](docs/setup_guide.md)を参照してください。
+
 ### 1. リポジトリのクローン
 
 ```bash
@@ -70,6 +72,8 @@ pip install -r requirements.txt
 ```
 
 ## 使い方
+
+詳細な実行手順は[実行ガイド](docs/execution_guide.md)を参照してください。
 
 ### クイックスタート（推奨）
 
@@ -186,11 +190,20 @@ yfinance_topix500_verification/
 │   ├── backtest/           # バックテストエンジン
 │   └── utils/              # ユーティリティ
 ├── config/                 # 設定ファイル
+│   └── config.yaml         # メイン設定
 ├── data/
 │   ├── cache/              # データキャッシュ
 │   └── results/            # バックテスト結果
-├── tests/                  # テストコード
 ├── docs/                   # ドキュメント
+│   ├── execution_guide.md  # 実行ガイド
+│   ├── setup_guide.md      # セットアップガイド
+│   ├── documentation.md    # システム詳細
+│   └── api_reference.md    # APIリファレンス
+├── scripts/                # 実行スクリプト
+│   ├── run_quick_test.py   # クイックテスト
+│   ├── verify_adjustments.py # 修正検証
+│   └── ...                 # その他のスクリプト
+├── tests/                  # テストコード
 ├── main.py                 # メインエントリーポイント
 ├── requirements.txt        # 依存パッケージ
 └── README.md              # このファイル
