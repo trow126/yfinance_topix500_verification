@@ -61,3 +61,96 @@
 2025-06-12 16:24:46 | INFO | run | Backtest completed
 2025-06-12 16:24:46 | INFO | __exit__ | Completed Backtest execution
 2025-06-12 16:24:46 | INFO | generate_report | Text report saved to: data\results\minimal_debug\backtest_report_20250612_162446.txt
+2025-06-12 16:38:59 | INFO | run_backtest | Loading configuration from: config/minimal_debug.yaml
+2025-06-12 16:38:59 | INFO | run_backtest | Initializing backtest engine...
+2025-06-12 16:38:59 | INFO | __init__ | YFinanceClient initialized with cache_dir=./data/cache_minimal
+2025-06-12 16:38:59 | INFO | __init__ | DataManager initialized with yfinance
+2025-06-12 16:38:59 | INFO | __init__ | DividendStrategy initialized
+2025-06-12 16:38:59 | INFO | __init__ | PositionManager initialized
+2025-06-12 16:38:59 | INFO | __init__ | Portfolio initialized with capital: 10,000,000
+2025-06-12 16:38:59 | INFO | __init__ | BacktestEngine initialized
+2025-06-12 16:38:59 | INFO | __init__ | Backtest period: 2023-03-20 to 2023-04-30
+2025-06-12 16:38:59 | INFO | __init__ | Initial capital: 10,000,000
+2025-06-12 16:38:59 | INFO | __enter__ | Starting Backtest execution
+2025-06-12 16:38:59 | INFO | _load_data | Loading data for 1 tickers
+2025-06-12 16:38:59 | INFO | load_data | Loading data for 1 tickers from 2023-03-20 to 2023-04-30
+2025-06-12 16:38:59 | INFO | get_multiple_tickers_data | Fetching data for 7203 (1/1)
+2025-06-12 16:38:59 | DEBUG | get_price_data | Price data loaded from cache for 7203
+2025-06-12 16:38:59 | DEBUG | get_dividend_data | Dividend data loaded from cache for 7203
+2025-06-12 16:38:59 | INFO | load_data | Data loading completed
+2025-06-12 16:38:59 | INFO | run | Progress: 0.0% (2023-03-20)
+2025-06-12 16:38:59 | INFO | open_position | Opened position: 7203, shares=500, price=1852.0
+2025-06-12 16:38:59 | INFO | execute_buy | Buy executed: 7203 500@1852, cash remaining: 9,074,000
+2025-06-12 16:38:59 | INFO | run | Progress: 69.0% (2023-04-18)
+2025-06-12 16:38:59 | WARNING | _execute_exit | [DEBUG] 7203: 売却前 - position.total_shares=1000, signal.shares=1000
+2025-06-12 16:38:59 | INFO | close_position | Closed position: 7203, PnL=-48500
+2025-06-12 16:38:59 | INFO | execute_sell | Sell executed: 7203 1000@1804, PnL: -48,500
+2025-06-12 16:38:59 | INFO | _save_results | Metrics saved to data\results\minimal_debug\metrics_20250612_163859.json
+2025-06-12 16:38:59 | INFO | _save_results | Trades saved to data\results\minimal_debug\trades_20250612_163859.csv
+2025-06-12 16:38:59 | INFO | _save_results | Portfolio history saved to data\results\minimal_debug\portfolio_20250612_163859.csv
+2025-06-12 16:38:59 | INFO | _save_results | Positions summary saved to data\results\minimal_debug\positions_20250612_163859.csv
+2025-06-12 16:38:59 | INFO | run | Backtest completed
+2025-06-12 16:38:59 | INFO | __exit__ | Completed Backtest execution
+2025-06-12 16:38:59 | INFO | generate_report | Text report saved to: data\results\minimal_debug\backtest_report_20250612_163859.txt
+2025-06-12 16:46:30 | INFO | run_backtest | Loading configuration from: config/minimal_debug.yaml
+2025-06-12 16:46:30 | INFO | run_backtest | Initializing backtest engine...
+2025-06-12 16:46:30 | INFO | __init__ | YFinanceClient initialized with cache_dir=./data/cache_minimal
+2025-06-12 16:46:30 | INFO | __init__ | DataManager initialized with yfinance
+2025-06-12 16:46:30 | INFO | __init__ | DividendStrategy initialized
+2025-06-12 16:46:30 | INFO | __init__ | PositionManager initialized
+2025-06-12 16:46:30 | INFO | __init__ | Portfolio initialized with capital: 10,000,000
+2025-06-12 16:46:30 | INFO | __init__ | BacktestEngine initialized
+2025-06-12 16:46:30 | INFO | __init__ | Backtest period: 2023-03-20 to 2023-04-30
+2025-06-12 16:46:30 | INFO | __init__ | Initial capital: 10,000,000
+2025-06-12 16:46:30 | INFO | __enter__ | Starting Backtest execution
+2025-06-12 16:46:30 | INFO | _load_data | Loading data for 1 tickers
+2025-06-12 16:46:30 | INFO | load_data | Loading data for 1 tickers from 2023-03-20 to 2023-04-30
+2025-06-12 16:46:30 | INFO | get_multiple_tickers_data | Fetching data for 7203 (1/1)
+2025-06-12 16:46:30 | DEBUG | get_price_data | Price data loaded from cache for 7203
+2025-06-12 16:46:30 | DEBUG | get_dividend_data | Dividend data loaded from cache for 7203
+2025-06-12 16:46:30 | INFO | load_data | Data loading completed
+2025-06-12 16:46:30 | INFO | run | Progress: 0.0% (2023-03-20)
+2025-06-12 16:46:30 | INFO | open_position | Opened position: 7203, shares=500, price=1852.0
+2025-06-12 16:46:30 | INFO | execute_buy | Buy executed: 7203 500@1852, cash remaining: 9,074,000
+2025-06-12 16:46:30 | INFO | run | Progress: 69.0% (2023-04-18)
+2025-06-12 16:46:30 | WARNING | _execute_exit | [DEBUG] 7203: 売却前 - position.total_shares=1000, signal.shares=1000
+2025-06-12 16:46:30 | INFO | close_position | Closed position: 7203, PnL=-48500
+2025-06-12 16:46:30 | INFO | execute_sell | Sell executed: 7203 1000@1804, PnL: -48,500
+2025-06-12 16:46:30 | INFO | _save_results | Metrics saved to data\results\minimal_debug\metrics_20250612_164630.json
+2025-06-12 16:46:30 | INFO | _save_results | Trades saved to data\results\minimal_debug\trades_20250612_164630.csv
+2025-06-12 16:46:30 | INFO | _save_results | Portfolio history saved to data\results\minimal_debug\portfolio_20250612_164630.csv
+2025-06-12 16:46:30 | INFO | _save_results | Positions summary saved to data\results\minimal_debug\positions_20250612_164630.csv
+2025-06-12 16:46:30 | INFO | run | Backtest completed
+2025-06-12 16:46:30 | INFO | __exit__ | Completed Backtest execution
+2025-06-12 16:46:31 | INFO | generate_report | Text report saved to: data\results\minimal_debug\backtest_report_20250612_164631.txt
+2025-06-12 16:47:07 | INFO | run_backtest | Loading configuration from: config/minimal_debug.yaml
+2025-06-12 16:47:07 | INFO | run_backtest | Initializing backtest engine...
+2025-06-12 16:47:07 | INFO | __init__ | YFinanceClient initialized with cache_dir=./data/cache_minimal
+2025-06-12 16:47:07 | INFO | __init__ | DataManager initialized with yfinance
+2025-06-12 16:47:07 | INFO | __init__ | DividendStrategy initialized
+2025-06-12 16:47:07 | INFO | __init__ | PositionManager initialized
+2025-06-12 16:47:07 | INFO | __init__ | Portfolio initialized with capital: 10,000,000
+2025-06-12 16:47:07 | INFO | __init__ | BacktestEngine initialized
+2025-06-12 16:47:07 | INFO | __init__ | Backtest period: 2023-03-20 to 2023-04-30
+2025-06-12 16:47:07 | INFO | __init__ | Initial capital: 10,000,000
+2025-06-12 16:47:07 | INFO | __enter__ | Starting Backtest execution
+2025-06-12 16:47:07 | INFO | _load_data | Loading data for 1 tickers
+2025-06-12 16:47:07 | INFO | load_data | Loading data for 1 tickers from 2023-03-20 to 2023-04-30
+2025-06-12 16:47:07 | INFO | get_multiple_tickers_data | Fetching data for 7203 (1/1)
+2025-06-12 16:47:08 | INFO | get_price_data | Price data fetched for 7203: 29 records
+2025-06-12 16:47:08 | INFO | get_dividend_data | Dividend data fetched for 7203: 52 records
+2025-06-12 16:47:08 | INFO | load_data | Data loading completed
+2025-06-12 16:47:08 | INFO | run | Progress: 0.0% (2023-03-20)
+2025-06-12 16:47:08 | INFO | open_position | Opened position: 7203, shares=500, price=1852.0
+2025-06-12 16:47:08 | INFO | execute_buy | Buy executed: 7203 500@1852, cash remaining: 9,074,000
+2025-06-12 16:47:08 | INFO | run | Progress: 69.0% (2023-04-18)
+2025-06-12 16:47:08 | WARNING | _execute_exit | [DEBUG] 7203: 売却前 - position.total_shares=1000, signal.shares=1000
+2025-06-12 16:47:08 | INFO | close_position | Closed position: 7203, PnL=-48500
+2025-06-12 16:47:08 | INFO | execute_sell | Sell executed: 7203 1000@1804, PnL: -48,500
+2025-06-12 16:47:08 | INFO | _save_results | Metrics saved to data\results\minimal_debug\metrics_20250612_164708.json
+2025-06-12 16:47:08 | INFO | _save_results | Trades saved to data\results\minimal_debug\trades_20250612_164708.csv
+2025-06-12 16:47:08 | INFO | _save_results | Portfolio history saved to data\results\minimal_debug\portfolio_20250612_164708.csv
+2025-06-12 16:47:08 | INFO | _save_results | Positions summary saved to data\results\minimal_debug\positions_20250612_164708.csv
+2025-06-12 16:47:08 | INFO | run | Backtest completed
+2025-06-12 16:47:08 | INFO | __exit__ | Completed Backtest execution
+2025-06-12 16:47:09 | INFO | generate_report | Text report saved to: data\results\minimal_debug\backtest_report_20250612_164709.txt

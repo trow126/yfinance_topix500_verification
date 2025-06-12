@@ -158,7 +158,7 @@ class BacktestEngine:
                 continue
             
             # 買い増しシグナルをチェック（権利落ち日のみ）
-            if self.config.strategy.addition.enabled and position.ex_dividend_date and current_date.date() == position.ex_dividend_date.date():
+            if position.ex_dividend_date and current_date.date() == position.ex_dividend_date.date():
                 # 権利落ち前日の価格を設定
                 pre_ex_date = BusinessDayCalculator.add_business_days(current_date, -1)
                 pre_ex_price = self.data_manager.get_price_on_date(ticker, pre_ex_date)

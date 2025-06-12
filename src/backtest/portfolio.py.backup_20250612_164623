@@ -74,21 +74,15 @@ class Portfolio:
         
         # ポジションの有無をチェック
         if self.position_manager.get_position(ticker):
-            # 買い増し理由を明示的にチェック
-            if reason and ("Add" in reason or "add" in reason):
-                # 買い増しの場合のみ追加
-                self.position_manager.add_to_position(
-                    ticker=ticker,
-                    date=date,
-                    price=price,
-                    shares=shares,
-                    commission=commission,
-                    reason=reason
-                )
-            else:
-                # 既存ポジションがある場合はスキップ
-                log.warning(f"Position already exists for {ticker}, skipping duplicate buy. Reason: {reason}")
-                return False
+            # 既存ポジションに追加
+            self.position_manager.add_to_position(
+                ticker=ticker,
+                date=date,
+                price=price,
+                shares=shares,
+                commission=commission,
+                reason=reason
+            )
         else:
             # 新規ポジション
             self.position_manager.open_position(
