@@ -76,7 +76,7 @@ echo バックテストを開始します...
 echo ========================================
 echo.
 
-python run_topix500_backtest.py
+python scripts\run\run_topix500_backtest.py
 
 REM 実行結果の確認
 if errorlevel 1 (
