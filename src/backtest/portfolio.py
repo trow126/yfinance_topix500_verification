@@ -264,9 +264,8 @@ class Portfolio:
             
             # 最大ドローダウン
             portfolio_values = pd.Series([h['total_value'] for h in self.portfolio_history])
-            cumulative_returns = (portfolio_values / self.initial_capital).cumprod()
-            running_max = cumulative_returns.expanding().max()
-            drawdown = (cumulative_returns - running_max) / running_max
+            running_max = portfolio_values.expanding().max()
+            drawdown = (portfolio_values - running_max) / running_max
             max_drawdown = drawdown.min()
         else:
             annualized_return = 0
