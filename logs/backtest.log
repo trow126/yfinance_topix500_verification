@@ -1,1089 +1,613 @@
-2025-06-11 19:31:28 | INFO | Loading configuration from: config/config.yaml
-2025-06-11 19:31:28 | INFO | Initializing backtest engine...
-2025-06-11 19:31:28 | INFO | YFinanceClient initialized with cache_dir=./data/cache
-2025-06-11 19:31:28 | INFO | DataManager initialized with yfinance
-2025-06-11 19:31:28 | INFO | DividendStrategy initialized
-2025-06-11 19:31:28 | INFO | PositionManager initialized
-2025-06-11 19:31:28 | INFO | Portfolio initialized with capital: 10,000,000
-2025-06-11 19:31:28 | INFO | BacktestEngine initialized
-2025-06-11 19:31:28 | INFO | Backtest period: 2019-01-01 to 2023-12-31
-2025-06-11 19:31:28 | INFO | Initial capital: 10,000,000
-2025-06-11 19:31:28 | INFO | Starting Backtest execution
-2025-06-11 19:31:28 | INFO | Loading data for 10 tickers
-2025-06-11 19:31:28 | INFO | Loading data for 10 tickers from 2019-01-01 to 2023-12-31
-2025-06-11 19:31:28 | INFO | Fetching data for 7203 (1/10)
-2025-06-11 19:31:28 | INFO | Price data fetched for 7203: 1218 records
-2025-06-11 19:31:28 | INFO | Fetching data for 6758 (2/10)
-2025-06-11 19:31:28 | INFO | Price data fetched for 6758: 1218 records
-2025-06-11 19:31:29 | INFO | Fetching data for 9432 (3/10)
-2025-06-11 19:31:29 | INFO | Price data fetched for 9432: 1218 records
-2025-06-11 19:31:29 | INFO | Fetching data for 6861 (4/10)
-2025-06-11 19:31:29 | INFO | Price data fetched for 6861: 1218 records
-2025-06-11 19:31:29 | INFO | Dividend data fetched for 6861: 47 records
-2025-06-11 19:31:29 | INFO | Fetching data for 8306 (5/10)
-2025-06-11 19:31:30 | INFO | Price data fetched for 8306: 1218 records
-2025-06-11 19:31:30 | INFO | Dividend data fetched for 8306: 39 records
-2025-06-11 19:31:30 | INFO | Fetching data for 9433 (6/10)
-2025-06-11 19:31:30 | INFO | Price data fetched for 9433: 1218 records
-2025-06-11 19:31:31 | INFO | Dividend data fetched for 9433: 31 records
-2025-06-11 19:31:31 | INFO | Fetching data for 4063 (7/10)
-2025-06-11 19:31:31 | INFO | Price data fetched for 4063: 1218 records
-2025-06-11 19:31:31 | INFO | Dividend data fetched for 4063: 50 records
-2025-06-11 19:31:31 | INFO | Fetching data for 9984 (8/10)
-2025-06-11 19:31:32 | INFO | Price data fetched for 9984: 1218 records
-2025-06-11 19:31:32 | INFO | Dividend data fetched for 9984: 39 records
-2025-06-11 19:31:32 | INFO | Fetching data for 6098 (9/10)
-2025-06-11 19:31:32 | INFO | Price data fetched for 6098: 1218 records
-2025-06-11 19:31:32 | INFO | Dividend data fetched for 6098: 19 records
-2025-06-11 19:31:32 | INFO | Fetching data for 7974 (10/10)
-2025-06-11 19:31:33 | INFO | Price data fetched for 7974: 1218 records
-2025-06-11 19:31:33 | INFO | Dividend data fetched for 7974: 44 records
-2025-06-11 19:31:33 | INFO | Data loading completed
-2025-06-11 19:31:33 | INFO | Progress: 0.0% (2019-01-04)
-2025-06-11 19:31:33 | INFO | Progress: 1.6% (2019-02-04)
-2025-06-11 19:31:33 | INFO | Progress: 3.3% (2019-03-05)
-2025-06-11 19:31:33 | INFO | Opened position: 7203, shares=800, price=1130.4011224365233
-2025-06-11 19:31:33 | INFO | Buy executed: 7203 800@1130, cash remaining: 9,095,227
-2025-06-11 19:31:33 | INFO | Opened position: 6758, shares=1000, price=922.9574357910155
-2025-06-11 19:31:33 | INFO | Buy executed: 6758 1000@923, cash remaining: 8,171,808
-2025-06-11 19:31:33 | INFO | Opened position: 9432, shares=12800, price=78.04185396575927
-2025-06-11 19:31:33 | INFO | Buy executed: 9432 12800@78, cash remaining: 7,172,373
-2025-06-11 19:31:33 | INFO | Opened position: 8306, shares=2300, price=430.4300916442871
-2025-06-11 19:31:33 | INFO | Buy executed: 8306 2300@430, cash remaining: 6,181,889
-2025-06-11 19:31:33 | INFO | Opened position: 4063, shares=600, price=1645.9105015869138
-2025-06-11 19:31:33 | INFO | Buy executed: 4063 600@1646, cash remaining: 5,193,849
-2025-06-11 19:31:33 | INFO | Opened position: 9984, shares=100, price=5075.595916015624
-2025-06-11 19:31:33 | INFO | Buy executed: 9984 100@5076, cash remaining: 4,686,035
-2025-06-11 19:31:33 | INFO | Opened position: 6098, shares=300, price=3003.275421630859
-2025-06-11 19:31:33 | INFO | Buy executed: 6098 300@3003, cash remaining: 3,784,602
-2025-06-11 19:31:33 | INFO | Opened position: 7974, shares=300, price=2641.999711914062
-2025-06-11 19:31:33 | INFO | Buy executed: 7974 300@2642, cash remaining: 2,991,606
-2025-06-11 19:31:33 | INFO | Closed position: 6758, PnL=9123
-2025-06-11 19:31:33 | INFO | Sell executed: 6758 2000@929, PnL: 9,123
-2025-06-11 19:31:33 | INFO | Closed position: 9432, PnL=-4061
-2025-06-11 19:31:33 | INFO | Sell executed: 9432 25600@78, PnL: -4,061
-2025-06-11 19:31:33 | INFO | Closed position: 8306, PnL=5663
-2025-06-11 19:31:33 | INFO | Sell executed: 8306 4600@432, PnL: 5,663
-2025-06-11 19:31:33 | INFO | Closed position: 4063, PnL=17337
-2025-06-11 19:31:33 | INFO | Sell executed: 4063 1200@1663, PnL: 17,337
-2025-06-11 19:31:33 | INFO | Closed position: 6098, PnL=10849
-2025-06-11 19:31:33 | INFO | Sell executed: 6098 600@3026, PnL: 10,849
-2025-06-11 19:31:33 | INFO | Closed position: 7974, PnL=514
-2025-06-11 19:31:33 | INFO | Sell executed: 7974 600@2647, PnL: 514
-2025-06-11 19:31:33 | INFO | Closed position: 9984, PnL=10974
-2025-06-11 19:31:33 | INFO | Sell executed: 9984 200@5138, PnL: 10,974
-2025-06-11 19:31:33 | INFO | Closed position: 7203, PnL=-1964
-2025-06-11 19:31:33 | INFO | Sell executed: 7203 1600@1131, PnL: -1,964
-2025-06-11 19:31:33 | INFO | Progress: 4.9% (2019-04-03)
-2025-06-11 19:31:33 | INFO | Progress: 6.6% (2019-05-09)
-2025-06-11 19:31:33 | INFO | Progress: 8.2% (2019-06-06)
-2025-06-11 19:31:33 | INFO | Progress: 9.8% (2019-07-04)
-2025-06-11 19:31:33 | INFO | Progress: 11.5% (2019-08-02)
-2025-06-11 19:31:33 | INFO | Progress: 13.1% (2019-09-02)
-2025-06-11 19:31:33 | INFO | Opened position: 7203, shares=700, price=1268.2216666259765
-2025-06-11 19:31:33 | INFO | Buy executed: 7203 700@1268, cash remaining: 16,175,670
-2025-06-11 19:31:33 | INFO | Opened position: 9432, shares=11300, price=88.15504543304442
-2025-06-11 19:31:33 | INFO | Buy executed: 9432 11300@88, cash remaining: 15,179,019
-2025-06-11 19:31:33 | INFO | Opened position: 8306, shares=2200, price=444.620873474121
-2025-06-11 19:31:33 | INFO | Buy executed: 8306 2200@445, cash remaining: 14,200,364
-2025-06-11 19:31:33 | INFO | Opened position: 9433, shares=800, price=1209.41438293457
-2025-06-11 19:31:33 | INFO | Buy executed: 9433 800@1209, cash remaining: 13,232,349
-2025-06-11 19:31:33 | INFO | Opened position: 4063, shares=400, price=2119.4747792968747
-2025-06-11 19:31:33 | INFO | Buy executed: 4063 400@2119, cash remaining: 12,384,135
-2025-06-11 19:31:33 | INFO | Opened position: 9984, shares=200, price=4255.777404785155
-2025-06-11 19:31:33 | INFO | Buy executed: 9984 200@4256, cash remaining: 11,532,554
-2025-06-11 19:31:33 | INFO | Opened position: 6098, shares=300, price=3179.6532834472655
-2025-06-11 19:31:33 | INFO | Buy executed: 6098 300@3180, cash remaining: 10,578,181
-2025-06-11 19:31:33 | INFO | Opened position: 7974, shares=200, price=3429.8751791992186
-2025-06-11 19:31:33 | INFO | Buy executed: 7974 200@3430, cash remaining: 9,891,863
-2025-06-11 19:31:33 | INFO | Closed position: 7203, PnL=4183
-2025-06-11 19:31:33 | INFO | Sell executed: 7203 1400@1273, PnL: 4,183
-2025-06-11 19:31:33 | INFO | Added to position: 9432, shares=11400, price=87.15555756378173
-2025-06-11 19:31:33 | INFO | Buy executed: 9432 11400@87, cash remaining: 10,679,265
-2025-06-11 19:31:33 | INFO | Added to position: 8306, shares=2200, price=444.22005191040034
-2025-06-11 19:31:33 | INFO | Buy executed: 8306 2200@444, cash remaining: 9,701,493
-2025-06-11 19:31:33 | INFO | Closed position: 4063, PnL=4178
-2025-06-11 19:31:33 | INFO | Sell executed: 4063 800@2128, PnL: 4,178
-2025-06-11 19:31:34 | INFO | Added to position: 9984, shares=200, price=4193.178735839843
-2025-06-11 19:31:34 | INFO | Buy executed: 9984 200@4193, cash remaining: 10,563,894
-2025-06-11 19:31:34 | INFO | Added to position: 6098, shares=300, price=3164.032942382812
-2025-06-11 19:31:34 | INFO | Buy executed: 6098 300@3164, cash remaining: 9,614,210
-2025-06-11 19:31:34 | INFO | Added to position: 7974, shares=200, price=3429.026186523437
-2025-06-11 19:31:34 | INFO | Buy executed: 7974 200@3429, cash remaining: 8,928,061
-2025-06-11 19:31:34 | INFO | Closed position: 6098, PnL=19613
-2025-06-11 19:31:34 | INFO | Sell executed: 6098 900@3202, PnL: 19,613
-2025-06-11 19:31:34 | INFO | Closed position: 7974, PnL=19556
-2025-06-11 19:31:34 | INFO | Sell executed: 7974 600@3468, PnL: 19,556
-2025-06-11 19:31:34 | INFO | Progress: 14.8% (2019-10-02)
-2025-06-11 19:31:34 | INFO | Closed position: 9433, PnL=44362
-2025-06-11 19:31:34 | INFO | Sell executed: 9433 1600@1239, PnL: 44,362
-2025-06-11 19:31:34 | INFO | Dividend received: 9432, amount=64600
-2025-06-11 19:31:34 | INFO | Dividend received: 9432 64,600
-2025-06-11 19:31:34 | INFO | Dividend received: 8306, amount=82500
-2025-06-11 19:31:34 | INFO | Dividend received: 8306 82,500
-2025-06-11 19:31:34 | INFO | Dividend received: 9984, amount=13200
-2025-06-11 19:31:34 | INFO | Dividend received: 9984 13,200
-2025-06-11 19:31:34 | INFO | Closed position: 9432, PnL=136175
-2025-06-11 19:31:34 | INFO | Sell executed: 9432 34000@90, PnL: 136,175
-2025-06-11 19:31:34 | INFO | Closed position: 8306, PnL=76327
-2025-06-11 19:31:34 | INFO | Sell executed: 8306 6600@444, PnL: 76,327
-2025-06-11 19:31:34 | INFO | Closed position: 9984, PnL=-227314
-2025-06-11 19:31:34 | INFO | Sell executed: 9984 600@3841, PnL: -227,314
-2025-06-11 19:31:34 | INFO | Progress: 16.4% (2019-11-01)
-2025-06-11 19:31:34 | INFO | Progress: 18.0% (2019-12-02)
-2025-06-11 19:31:34 | INFO | Progress: 19.7% (2019-12-30)
-2025-06-11 19:31:34 | INFO | Progress: 21.3% (2020-02-03)
-2025-06-11 19:31:34 | INFO | Progress: 23.0% (2020-03-04)
-2025-06-11 19:31:34 | INFO | Opened position: 7203, shares=800, price=1216.8071442871092
-2025-06-11 19:31:34 | INFO | Buy executed: 7203 800@1217, cash remaining: 23,350,609
-2025-06-11 19:31:34 | INFO | Opened position: 6758, shares=700, price=1306.1234221191405
-2025-06-11 19:31:34 | INFO | Buy executed: 6758 700@1306, cash remaining: 22,435,865
-2025-06-11 19:31:34 | INFO | Opened position: 9432, shares=11100, price=89.95412970733642
-2025-06-11 19:31:34 | INFO | Buy executed: 9432 11100@90, cash remaining: 21,436,875
-2025-06-11 19:31:34 | INFO | Opened position: 8306, shares=2700, price=360.76344869995114
-2025-06-11 19:31:34 | INFO | Buy executed: 8306 2700@361, cash remaining: 20,462,327
-2025-06-11 19:31:34 | INFO | Opened position: 9433, shares=700, price=1416.5727503662108
-2025-06-11 19:31:34 | INFO | Buy executed: 9433 700@1417, cash remaining: 19,470,230
-2025-06-11 19:31:34 | INFO | Opened position: 4063, shares=500, price=1964.7225253906247
-2025-06-11 19:31:34 | INFO | Buy executed: 4063 500@1965, cash remaining: 18,487,377
-2025-06-11 19:31:34 | INFO | Opened position: 9984, shares=200, price=3743.427676269531
-2025-06-11 19:31:34 | INFO | Buy executed: 9984 200@3743, cash remaining: 17,738,318
-2025-06-11 19:31:34 | INFO | Opened position: 6098, shares=300, price=2989.2843937988278
-2025-06-11 19:31:34 | INFO | Buy executed: 6098 300@2989, cash remaining: 16,841,084
-2025-06-11 19:31:34 | INFO | Opened position: 7974, shares=200, price=3430.724660644531
-2025-06-11 19:31:34 | INFO | Buy executed: 7974 200@3431, cash remaining: 16,154,596
-2025-06-11 19:31:34 | INFO | Added to position: 7203, shares=800, price=1197.0817501220702
-2025-06-11 19:31:34 | INFO | Buy executed: 7203 800@1197, cash remaining: 15,196,452
-2025-06-11 19:31:34 | INFO | Added to position: 6758, shares=700, price=1261.2333620605468
-2025-06-11 19:31:34 | INFO | Buy executed: 6758 700@1261, cash remaining: 14,313,147
-2025-06-11 19:31:34 | INFO | Closed position: 9432, PnL=39932
-2025-06-11 19:31:34 | INFO | Sell executed: 9432 22200@92, PnL: 39,932
-2025-06-11 19:31:34 | INFO | Added to position: 8306, shares=2700, price=351.3629443054199
-2025-06-11 19:31:34 | INFO | Buy executed: 8306 2700@351, cash remaining: 15,402,924
-2025-06-11 19:31:34 | INFO | Added to position: 9433, shares=700, price=1388.0425396728515
-2025-06-11 19:31:34 | INFO | Buy executed: 9433 700@1388, cash remaining: 14,430,809
-2025-06-11 19:31:34 | INFO | Added to position: 4063, shares=500, price=1962.8941607666013
-2025-06-11 19:31:34 | INFO | Buy executed: 4063 500@1963, cash remaining: 13,448,871
-2025-06-11 19:31:34 | INFO | Added to position: 9984, shares=200, price=3576.8374243164058
-2025-06-11 19:31:34 | INFO | Buy executed: 9984 200@3577, cash remaining: 12,733,146
-2025-06-11 19:31:34 | INFO | Added to position: 6098, shares=300, price=2887.744478759765
-2025-06-11 19:31:34 | INFO | Buy executed: 6098 300@2888, cash remaining: 11,866,389
-2025-06-11 19:31:34 | INFO | Closed position: 7974, PnL=41869
-2025-06-11 19:31:34 | INFO | Sell executed: 7974 400@3541, PnL: 41,869
-2025-06-11 19:31:34 | INFO | Closed position: 6098, PnL=-411153
-2025-06-11 19:31:34 | INFO | Sell executed: 6098 900@2503, PnL: -411,153
-2025-06-11 19:31:34 | INFO | Progress: 24.6% (2020-04-02)
-2025-06-11 19:31:34 | INFO | Dividend received: 7203, amount=57600
-2025-06-11 19:31:34 | INFO | Dividend received: 7203 57,600
-2025-06-11 19:31:34 | INFO | Dividend received: 6758, amount=10500
-2025-06-11 19:31:34 | INFO | Dividend received: 6758 10,500
-2025-06-11 19:31:34 | INFO | Dividend received: 8306, amount=101250
-2025-06-11 19:31:34 | INFO | Dividend received: 8306 101,250
-2025-06-11 19:31:34 | INFO | Dividend received: 9433, amount=63000
-2025-06-11 19:31:34 | INFO | Dividend received: 9433 63,000
-2025-06-11 19:31:34 | INFO | Dividend received: 4063, amount=33000
-2025-06-11 19:31:34 | INFO | Dividend received: 4063 33,000
-2025-06-11 19:31:34 | INFO | Dividend received: 9984, amount=13200
-2025-06-11 19:31:34 | INFO | Dividend received: 9984 13,200
-2025-06-11 19:31:34 | INFO | Closed position: 8306, PnL=-221671
-2025-06-11 19:31:34 | INFO | Sell executed: 8306 8100@318, PnL: -221,671
-2025-06-11 19:31:34 | INFO | Closed position: 9433, PnL=73001
-2025-06-11 19:31:34 | INFO | Sell executed: 9433 2100@1414, PnL: 73,001
-2025-06-11 19:31:34 | INFO | Closed position: 9984, PnL=125812
-2025-06-11 19:31:34 | INFO | Sell executed: 9984 600@3882, PnL: 125,812
-2025-06-11 19:31:34 | INFO | Closed position: 6758, PnL=42990
-2025-06-11 19:31:34 | INFO | Sell executed: 6758 2100@1309, PnL: 42,990
-2025-06-11 19:31:34 | INFO | Closed position: 4063, PnL=137971
-2025-06-11 19:31:34 | INFO | Sell executed: 4063 1500@2037, PnL: 137,971
-2025-06-11 19:31:34 | INFO | Closed position: 7203, PnL=-91540
-2025-06-11 19:31:34 | INFO | Sell executed: 7203 2400@1150, PnL: -91,540
-2025-06-11 19:31:34 | INFO | Progress: 26.3% (2020-05-01)
-2025-06-11 19:31:34 | INFO | Progress: 27.9% (2020-06-03)
-2025-06-11 19:31:34 | INFO | Progress: 29.5% (2020-07-01)
-2025-06-11 19:31:34 | INFO | Progress: 31.2% (2020-07-31)
-2025-06-11 19:31:34 | INFO | Progress: 32.8% (2020-08-31)
-2025-06-11 19:31:34 | INFO | Opened position: 7203, shares=700, price=1264.3594097900389
-2025-06-11 19:31:34 | INFO | Buy executed: 7203 700@1264, cash remaining: 31,360,440
-2025-06-11 19:31:34 | INFO | Opened position: 6758, shares=600, price=1603.2994516601561
-2025-06-11 19:31:34 | INFO | Buy executed: 6758 600@1603, cash remaining: 30,397,979
-2025-06-11 19:31:34 | INFO | Opened position: 9432, shares=12800, price=77.86416333007811
-2025-06-11 19:31:34 | INFO | Buy executed: 9432 12800@78, cash remaining: 29,400,820
-2025-06-11 19:31:34 | INFO | Opened position: 8306, shares=2700, price=367.36024887084955
-2025-06-11 19:31:34 | INFO | Buy executed: 8306 2700@367, cash remaining: 28,408,451
-2025-06-11 19:31:34 | INFO | Opened position: 9433, shares=800, price=1201.7306815185545
-2025-06-11 19:31:34 | INFO | Buy executed: 9433 800@1202, cash remaining: 27,446,586
-2025-06-11 19:31:34 | INFO | Opened position: 4063, shares=300, price=2554.4134338378904
-2025-06-11 19:31:34 | INFO | Buy executed: 4063 300@2554, cash remaining: 26,679,879
-2025-06-11 19:31:34 | INFO | Opened position: 9984, shares=100, price=6141.545566406249
-2025-06-11 19:31:34 | INFO | Buy executed: 9984 100@6142, cash remaining: 26,065,417
-2025-06-11 19:31:34 | INFO | Opened position: 6098, shares=200, price=4162.630151367187
-2025-06-11 19:31:34 | INFO | Buy executed: 6098 200@4163, cash remaining: 25,232,475
-2025-06-11 19:31:34 | INFO | Opened position: 7974, shares=100, price=5209.363338867187
-2025-06-11 19:31:34 | INFO | Buy executed: 7974 100@5209, cash remaining: 24,711,278
-2025-06-11 19:31:34 | INFO | Added to position: 7203, shares=700, price=1253.6085573730468
-2025-06-11 19:31:34 | INFO | Buy executed: 7203 700@1254, cash remaining: 23,833,313
-2025-06-11 19:31:34 | INFO | Closed position: 6758, PnL=4095
-2025-06-11 19:31:34 | INFO | Sell executed: 6758 1200@1609, PnL: 4,095
-2025-06-11 19:31:34 | INFO | Added to position: 9432, shares=12900, price=77.3268070526123
-2025-06-11 19:31:34 | INFO | Buy executed: 9432 12900@77, cash remaining: 24,765,280
-2025-06-11 19:31:34 | INFO | Closed position: 8306, PnL=7224
-2025-06-11 19:31:34 | INFO | Sell executed: 8306 5400@369, PnL: 7,224
-2025-06-11 19:31:34 | INFO | Added to position: 9433, shares=800, price=1177.4312598876952
-2025-06-11 19:31:34 | INFO | Buy executed: 9433 800@1177, cash remaining: 25,815,823
-2025-06-11 19:31:34 | INFO | Closed position: 4063, PnL=2359
-2025-06-11 19:31:34 | INFO | Sell executed: 4063 600@2562, PnL: 2,359
-2025-06-11 19:31:34 | INFO | Closed position: 9984, PnL=18574
-2025-06-11 19:31:34 | INFO | Sell executed: 9984 200@6244, PnL: 18,574
-2025-06-11 19:31:34 | INFO | Closed position: 6098, PnL=649
-2025-06-11 19:31:34 | INFO | Sell executed: 6098 400@4171, PnL: 649
-2025-06-11 19:31:34 | INFO | Closed position: 7974, PnL=24915
-2025-06-11 19:31:34 | INFO | Sell executed: 7974 200@5342, PnL: 24,915
-2025-06-11 19:31:34 | INFO | Progress: 34.5% (2020-09-30)
-2025-06-11 19:31:34 | INFO | Dividend received: 7203, amount=2100
-2025-06-11 19:31:34 | INFO | Dividend received: 7203 2,100
-2025-06-11 19:31:34 | INFO | Dividend received: 9432, amount=77000
-2025-06-11 19:31:34 | INFO | Dividend received: 9432 77,000
-2025-06-11 19:31:34 | INFO | Dividend received: 9433, amount=72000
-2025-06-11 19:31:34 | INFO | Dividend received: 9433 72,000
-2025-06-11 19:31:34 | INFO | Closed position: 9432, PnL=138827
-2025-06-11 19:31:34 | INFO | Sell executed: 9432 38500@79, PnL: 138,827
-2025-06-11 19:31:34 | INFO | Closed position: 9433, PnL=100454
-2025-06-11 19:31:34 | INFO | Sell executed: 9433 2400@1207, PnL: 100,454
-2025-06-11 19:31:34 | INFO | Closed position: 7203, PnL=-67988
-2025-06-11 19:31:34 | INFO | Sell executed: 7203 2100@1229, PnL: -67,988
-2025-06-11 19:31:34 | INFO | Progress: 36.1% (2020-10-28)
-2025-06-11 19:31:34 | INFO | Progress: 37.7% (2020-11-27)
-2025-06-11 19:31:34 | INFO | Progress: 39.4% (2020-12-25)
-2025-06-11 19:31:34 | INFO | Progress: 41.0% (2021-01-27)
-2025-06-11 19:31:34 | INFO | Progress: 42.7% (2021-02-26)
-2025-06-11 19:31:35 | INFO | Progress: 44.3% (2021-03-26)
-2025-06-11 19:31:35 | INFO | Opened position: 7203, shares=600, price=1491.8876140136717
-2025-06-11 19:31:35 | INFO | Buy executed: 7203 600@1492, cash remaining: 39,124,520
-2025-06-11 19:31:35 | INFO | Opened position: 9432, shares=9600, price=103.83044944000243
-2025-06-11 19:31:35 | INFO | Buy executed: 9432 9600@104, cash remaining: 38,127,249
-2025-06-11 19:31:35 | INFO | Opened position: 8306, shares=1900, price=524.7397306518554
-2025-06-11 19:31:35 | INFO | Buy executed: 8306 1900@525, cash remaining: 37,129,745
-2025-06-11 19:31:35 | INFO | Opened position: 4063, shares=200, price=3512.779289550781
-2025-06-11 19:31:35 | INFO | Buy executed: 4063 200@3513, cash remaining: 36,426,838
-2025-06-11 19:31:35 | INFO | Opened position: 9984, shares=100, price=8825.009552734375
-2025-06-11 19:31:35 | INFO | Buy executed: 9984 100@8825, cash remaining: 35,543,896
-2025-06-11 19:31:35 | INFO | Opened position: 6098, shares=100, price=5242.740432617187
-2025-06-11 19:31:35 | INFO | Buy executed: 6098 100@5243, cash remaining: 35,019,360
-2025-06-11 19:31:35 | INFO | Opened position: 7974, shares=100, price=5680.305001464843
-2025-06-11 19:31:35 | INFO | Buy executed: 7974 100@5680, cash remaining: 34,451,045
-2025-06-11 19:31:35 | INFO | Closed position: 7203, PnL=598
-2025-06-11 19:31:35 | INFO | Sell executed: 7203 1200@1495, PnL: 598
-2025-06-11 19:31:35 | INFO | Closed position: 9432, PnL=-221
-2025-06-11 19:31:35 | INFO | Sell executed: 9432 19200@104, PnL: -221
-2025-06-11 19:31:35 | INFO | Closed position: 8306, PnL=24194
-2025-06-11 19:31:35 | INFO | Sell executed: 8306 3800@532, PnL: 24,194
-2025-06-11 19:31:35 | INFO | Closed position: 4063, PnL=-3432
-2025-06-11 19:31:35 | INFO | Sell executed: 4063 400@3509, PnL: -3,432
-2025-06-11 19:31:35 | INFO | Closed position: 9984, PnL=15976
-2025-06-11 19:31:35 | INFO | Sell executed: 9984 200@8918, PnL: 15,976
-2025-06-11 19:31:35 | INFO | Closed position: 6098, PnL=2915
-2025-06-11 19:31:35 | INFO | Sell executed: 6098 200@5265, PnL: 2,915
-2025-06-11 19:31:35 | INFO | Closed position: 7974, PnL=1581
-2025-06-11 19:31:35 | INFO | Sell executed: 7974 200@5697, PnL: 1,581
-2025-06-11 19:31:35 | INFO | Progress: 45.9% (2021-04-23)
-2025-06-11 19:31:35 | INFO | Progress: 47.6% (2021-05-27)
-2025-06-11 19:31:35 | INFO | Progress: 49.2% (2021-06-24)
-2025-06-11 19:31:35 | INFO | Progress: 50.9% (2021-07-26)
-2025-06-11 19:31:35 | INFO | Progress: 52.5% (2021-08-24)
-2025-06-11 19:31:35 | INFO | Progress: 54.1% (2021-09-22)
-2025-06-11 19:31:35 | INFO | Opened position: 7203, shares=500, price=1859.9342480468747
-2025-06-11 19:31:35 | INFO | Buy executed: 7203 500@1860, cash remaining: 44,705,931
-2025-06-11 19:31:35 | INFO | Opened position: 6758, shares=300, price=2540.425094238281
-2025-06-11 19:31:35 | INFO | Buy executed: 6758 300@2540, cash remaining: 43,943,422
-2025-06-11 19:31:35 | INFO | Opened position: 9432, shares=8800, price=113.10291149139402
-2025-06-11 19:31:35 | INFO | Buy executed: 9432 8800@113, cash remaining: 42,947,619
-2025-06-11 19:31:35 | INFO | Opened position: 8306, shares=1600, price=596.3503322143554
-2025-06-11 19:31:35 | INFO | Buy executed: 8306 1600@596, cash remaining: 41,992,981
-2025-06-11 19:31:35 | INFO | Opened position: 9433, shares=500, price=1681.539723144531
-2025-06-11 19:31:35 | INFO | Buy executed: 9433 500@1682, cash remaining: 41,151,791
-2025-06-11 19:31:35 | INFO | Opened position: 4063, shares=200, price=3721.652504882812
-2025-06-11 19:31:35 | INFO | Buy executed: 4063 200@3722, cash remaining: 40,407,088
-2025-06-11 19:31:35 | INFO | Opened position: 9984, shares=100, price=6607.553100585937
-2025-06-11 19:31:35 | INFO | Buy executed: 9984 100@6608, cash remaining: 39,746,003
-2025-06-11 19:31:35 | INFO | Opened position: 6098, shares=100, price=6969.30267236328
-2025-06-11 19:31:35 | INFO | Buy executed: 6098 100@6969, cash remaining: 39,048,724
-2025-06-11 19:31:35 | INFO | Opened position: 7974, shares=200, price=4799.157155761718
-2025-06-11 19:31:35 | INFO | Buy executed: 7974 200@4799, cash remaining: 38,088,413
-2025-06-11 19:31:35 | INFO | Closed position: 7203, PnL=11563
-2025-06-11 19:31:35 | INFO | Sell executed: 7203 1000@1874, PnL: 11,563
-2025-06-11 19:31:35 | INFO | Added to position: 6758, shares=300, price=2451.7366408691405
-2025-06-11 19:31:35 | INFO | Buy executed: 6758 300@2452, cash remaining: 39,225,888
-2025-06-11 19:31:35 | INFO | Added to position: 9432, shares=8900, price=111.91914987182616
-2025-06-11 19:31:35 | INFO | Buy executed: 9432 8900@112, cash remaining: 38,229,309
-2025-06-11 19:31:35 | INFO | Added to position: 8306, shares=1600, price=592.9940740356444
-2025-06-11 19:31:35 | INFO | Buy executed: 8306 1600@593, cash remaining: 37,280,044
-2025-06-11 19:31:35 | INFO | Closed position: 9433, PnL=-3641
-2025-06-11 19:31:35 | INFO | Sell executed: 9433 1000@1680, PnL: -3,641
-2025-06-11 19:31:35 | INFO | Added to position: 4063, shares=200, price=3625.314075195312
-2025-06-11 19:31:35 | INFO | Buy executed: 4063 200@3625, cash remaining: 38,234,199
-2025-06-11 19:31:35 | INFO | Added to position: 9984, shares=100, price=6532.288946777343
-2025-06-11 19:31:35 | INFO | Buy executed: 9984 100@6532, cash remaining: 37,580,643
-2025-06-11 19:31:35 | INFO | Added to position: 6098, shares=100, price=6711.290523437499
-2025-06-11 19:31:35 | INFO | Buy executed: 6098 100@6711, cash remaining: 36,909,179
-2025-06-11 19:31:35 | INFO | Closed position: 7974, PnL=8510
-2025-06-11 19:31:35 | INFO | Sell executed: 7974 400@4828, PnL: 8,510
-2025-06-11 19:31:35 | INFO | Dividend received: 6758, amount=5400
-2025-06-11 19:31:35 | INFO | Dividend received: 6758 5,400
-2025-06-11 19:31:35 | INFO | Dividend received: 9432, amount=58300
-2025-06-11 19:31:35 | INFO | Dividend received: 9432 58,300
-2025-06-11 19:31:35 | INFO | Dividend received: 8306, amount=64800
-2025-06-11 19:31:35 | INFO | Dividend received: 8306 64,800
-2025-06-11 19:31:35 | INFO | Dividend received: 4063, amount=18000
-2025-06-11 19:31:35 | INFO | Dividend received: 4063 18,000
-2025-06-11 19:31:35 | INFO | Dividend received: 9984, amount=6600
-2025-06-11 19:31:35 | INFO | Dividend received: 9984 6,600
-2025-06-11 19:31:35 | INFO | Dividend received: 6098, amount=3150
-2025-06-11 19:31:35 | INFO | Dividend received: 6098 3,150
-2025-06-11 19:31:35 | INFO | Closed position: 9984, PnL=-207424
-2025-06-11 19:31:35 | INFO | Sell executed: 9984 300@5879, PnL: -207,424
-2025-06-11 19:31:35 | INFO | Closed position: 6098, PnL=49208
-2025-06-11 19:31:35 | INFO | Sell executed: 6098 300@7048, PnL: 49,208
-2025-06-11 19:31:35 | INFO | Closed position: 6758, PnL=23659
-2025-06-11 19:31:35 | INFO | Sell executed: 6758 900@2535, PnL: 23,659
-2025-06-11 19:31:35 | INFO | Progress: 55.8% (2021-10-21)
-2025-06-11 19:31:35 | INFO | Closed position: 9432, PnL=165907
-2025-06-11 19:31:35 | INFO | Sell executed: 9432 26500@117, PnL: 165,907
-2025-06-11 19:31:35 | INFO | Closed position: 8306, PnL=-88246
-2025-06-11 19:31:35 | INFO | Sell executed: 8306 4800@564, PnL: -88,246
-2025-06-11 19:31:35 | INFO | Closed position: 4063, PnL=-17331
-2025-06-11 19:31:35 | INFO | Sell executed: 4063 600@3637, PnL: -17,331
-2025-06-11 19:31:35 | INFO | Progress: 57.4% (2021-11-19)
-2025-06-11 19:31:35 | INFO | Progress: 59.1% (2021-12-20)
-2025-06-11 19:31:35 | INFO | Progress: 60.7% (2022-01-20)
-2025-06-11 19:31:35 | INFO | Progress: 62.3% (2022-02-18)
-2025-06-11 19:31:35 | INFO | Progress: 64.0% (2022-03-22)
-2025-06-11 19:31:35 | INFO | Opened position: 7203, shares=400, price=2048.3738421630856
-2025-06-11 19:31:35 | INFO | Buy executed: 7203 400@2048, cash remaining: 52,318,942
-2025-06-11 19:31:35 | INFO | Opened position: 6758, shares=300, price=2552.2503842773435
-2025-06-11 19:31:35 | INFO | Buy executed: 6758 300@2552, cash remaining: 51,552,884
-2025-06-11 19:31:35 | INFO | Opened position: 9432, shares=7600, price=131.6126060028076
-2025-06-11 19:31:35 | INFO | Buy executed: 9432 7600@132, cash remaining: 50,552,128
-2025-06-11 19:31:35 | INFO | Opened position: 8306, shares=1400, price=702.8665931396483
-2025-06-11 19:31:35 | INFO | Buy executed: 8306 1400@703, cash remaining: 49,567,622
-2025-06-11 19:31:35 | INFO | Opened position: 9433, shares=500, price=1863.3399941406249
-2025-06-11 19:31:35 | INFO | Buy executed: 9433 500@1863, cash remaining: 48,635,487
-2025-06-11 19:31:35 | INFO | Opened position: 4063, shares=200, price=3553.294373535156
-2025-06-11 19:31:35 | INFO | Buy executed: 4063 200@3553, cash remaining: 47,924,472
-2025-06-11 19:31:35 | INFO | Opened position: 9984, shares=100, price=5379.876943847656
-2025-06-11 19:31:35 | INFO | Buy executed: 9984 100@5380, cash remaining: 47,386,216
-2025-06-11 19:31:35 | INFO | Opened position: 6098, shares=100, price=5460.199373535155
-2025-06-11 19:31:35 | INFO | Buy executed: 6098 100@5460, cash remaining: 46,839,923
-2025-06-11 19:31:35 | INFO | Opened position: 7974, shares=100, price=6087.7770078124995
-2025-06-11 19:31:35 | INFO | Buy executed: 7974 100@6088, cash remaining: 46,230,841
-2025-06-11 19:31:35 | INFO | Added to position: 7203, shares=400, price=2035.072590332031
-2025-06-11 19:31:35 | INFO | Buy executed: 7203 400@2035, cash remaining: 45,416,405
-2025-06-11 19:31:35 | INFO | Closed position: 6758, PnL=-2989
-2025-06-11 19:31:35 | INFO | Sell executed: 6758 600@2551, PnL: -2,989
-2025-06-11 19:31:35 | INFO | Added to position: 9432, shares=7600, price=130.4820973510742
-2025-06-11 19:31:35 | INFO | Buy executed: 9432 7600@130, cash remaining: 45,954,137
-2025-06-11 19:31:35 | INFO | Added to position: 8306, shares=1400, price=697.9187791748046
-2025-06-11 19:31:35 | INFO | Buy executed: 8306 1400@698, cash remaining: 44,976,562
-2025-06-11 19:31:35 | INFO | Added to position: 9433, shares=500, price=1815.0006875
-2025-06-11 19:31:35 | INFO | Buy executed: 9433 500@1815, cash remaining: 44,068,608
-2025-06-11 19:31:35 | INFO | Closed position: 4063, PnL=-433
-2025-06-11 19:31:35 | INFO | Sell executed: 4063 400@3558, PnL: -433
-2025-06-11 19:31:35 | INFO | Closed position: 9984, PnL=25591
-2025-06-11 19:31:35 | INFO | Sell executed: 9984 200@5516, PnL: 25,591
-2025-06-11 19:31:35 | INFO | Closed position: 6098, PnL=16190
-2025-06-11 19:31:35 | INFO | Sell executed: 6098 200@5549, PnL: 16,190
-2025-06-11 19:31:35 | INFO | Added to position: 7974, shares=100, price=5861.272409179687
-2025-06-11 19:31:35 | INFO | Buy executed: 7974 100@5861, cash remaining: 47,116,481
-2025-06-11 19:31:35 | INFO | Closed position: 9432, PnL=-732
-2025-06-11 19:31:35 | INFO | Sell executed: 9432 22800@131, PnL: -732
-2025-06-11 19:31:35 | INFO | Closed position: 9433, PnL=16002
-2025-06-11 19:31:35 | INFO | Sell executed: 9433 1500@1861, PnL: 16,002
-2025-06-11 19:31:35 | INFO | Dividend received: 7203, amount=33600
-2025-06-11 19:31:35 | INFO | Dividend received: 7203 33,600
-2025-06-11 19:31:35 | INFO | Dividend received: 8306, amount=60900
-2025-06-11 19:31:35 | INFO | Dividend received: 8306 60,900
-2025-06-11 19:31:35 | INFO | Dividend received: 7974, amount=42300
-2025-06-11 19:31:35 | INFO | Dividend received: 7974 42,300
-2025-06-11 19:31:35 | INFO | Progress: 65.6% (2022-04-19)
-2025-06-11 19:31:35 | INFO | Closed position: 7203, PnL=57908
-2025-06-11 19:31:35 | INFO | Sell executed: 7203 1200@2068, PnL: 57,908
-2025-06-11 19:31:35 | INFO | Closed position: 8306, PnL=-82736
-2025-06-11 19:31:35 | INFO | Sell executed: 8306 4200@668, PnL: -82,736
-2025-06-11 19:31:35 | INFO | Closed position: 7974, PnL=-57776
-2025-06-11 19:31:35 | INFO | Sell executed: 7974 300@5688, PnL: -57,776
-2025-06-11 19:31:35 | INFO | Progress: 67.3% (2022-05-23)
-2025-06-11 19:31:35 | INFO | Progress: 68.9% (2022-06-20)
-2025-06-11 19:31:35 | INFO | Progress: 70.5% (2022-07-19)
-2025-06-11 19:31:36 | INFO | Progress: 72.2% (2022-08-17)
-2025-06-11 19:31:36 | INFO | Progress: 73.8% (2022-09-14)
-2025-06-11 19:31:36 | INFO | Opened position: 7203, shares=500, price=1791.9831861572263
-2025-06-11 19:31:36 | INFO | Buy executed: 7203 500@1792, cash remaining: 59,132,259
-2025-06-11 19:31:36 | INFO | Opened position: 6758, shares=500, price=1889.4357659912107
-2025-06-11 19:31:36 | INFO | Buy executed: 6758 500@1889, cash remaining: 58,187,069
-2025-06-11 19:31:36 | INFO | Opened position: 9432, shares=7100, price=140.29199205017088
-2025-06-11 19:31:36 | INFO | Buy executed: 9432 7100@140, cash remaining: 57,190,498
-2025-06-11 19:31:36 | INFO | Opened position: 8306, shares=1600, price=614.6147331542968
-2025-06-11 19:31:36 | INFO | Buy executed: 8306 1600@615, cash remaining: 56,206,622
-2025-06-11 19:31:36 | INFO | Opened position: 9433, shares=500, price=1919.8874519042968
-2025-06-11 19:31:36 | INFO | Buy executed: 9433 500@1920, cash remaining: 55,246,199
-2025-06-11 19:31:36 | INFO | Opened position: 4063, shares=300, price=2785.5774724121093
-2025-06-11 19:31:36 | INFO | Buy executed: 4063 300@2786, cash remaining: 54,410,107
-2025-06-11 19:31:36 | INFO | Opened position: 9984, shares=200, price=4846.011091796874
-2025-06-11 19:31:36 | INFO | Buy executed: 9984 200@4846, cash remaining: 53,440,421
-2025-06-11 19:31:36 | INFO | Opened position: 6098, shares=200, price=4107.383064941406
-2025-06-11 19:31:36 | INFO | Buy executed: 6098 200@4107, cash remaining: 52,618,533
-2025-06-11 19:31:36 | INFO | Opened position: 7974, shares=100, price=5541.937768554687
-2025-06-11 19:31:36 | INFO | Buy executed: 7974 100@5542, cash remaining: 52,064,062
-2025-06-11 19:31:36 | INFO | Closed position: 7203, PnL=21528
-2025-06-11 19:31:36 | INFO | Sell executed: 7203 1000@1816, PnL: 21,528
-2025-06-11 19:31:36 | INFO | Closed position: 6758, PnL=5853
-2025-06-11 19:31:36 | INFO | Sell executed: 6758 1000@1898, PnL: 5,853
-2025-06-11 19:31:36 | INFO | Closed position: 9432, PnL=64888
-2025-06-11 19:31:36 | INFO | Sell executed: 9432 14200@145, PnL: 64,888
-2025-06-11 19:31:36 | INFO | Closed position: 8306, PnL=-704
-2025-06-11 19:31:36 | INFO | Sell executed: 8306 3200@615, PnL: -704
-2025-06-11 19:31:36 | INFO | Closed position: 9433, PnL=33003
-2025-06-11 19:31:36 | INFO | Sell executed: 9433 1000@1956, PnL: 33,003
-2025-06-11 19:31:36 | INFO | Closed position: 4063, PnL=8552
-2025-06-11 19:31:36 | INFO | Sell executed: 4063 600@2804, PnL: 8,552
-2025-06-11 19:31:36 | INFO | Closed position: 9984, PnL=38433
-2025-06-11 19:31:36 | INFO | Sell executed: 9984 400@4949, PnL: 38,433
-2025-06-11 19:31:36 | INFO | Closed position: 6098, PnL=18763
-2025-06-11 19:31:36 | INFO | Sell executed: 6098 400@4161, PnL: 18,763
-2025-06-11 19:31:36 | INFO | Closed position: 7974, PnL=21568
-2025-06-11 19:31:36 | INFO | Sell executed: 7974 200@5658, PnL: 21,568
-2025-06-11 19:31:36 | INFO | Progress: 75.5% (2022-10-17)
-2025-06-11 19:31:36 | INFO | Progress: 77.1% (2022-11-15)
-2025-06-11 19:31:36 | INFO | Progress: 78.8% (2022-12-14)
-2025-06-11 19:31:36 | INFO | Progress: 80.4% (2023-01-16)
-2025-06-11 19:31:36 | INFO | Progress: 82.0% (2023-02-13)
-2025-06-11 19:31:36 | INFO | Progress: 83.7% (2023-03-14)
-2025-06-11 19:31:36 | INFO | Opened position: 7203, shares=500, price=1720.8982562255858
-2025-06-11 19:31:36 | INFO | Buy executed: 7203 500@1721, cash remaining: 67,352,417
-2025-06-11 19:31:36 | INFO | Opened position: 6758, shares=400, price=2279.977406738281
-2025-06-11 19:31:36 | INFO | Buy executed: 6758 400@2280, cash remaining: 66,439,970
-2025-06-11 19:31:36 | INFO | Opened position: 9432, shares=6600, price=149.9238677215576
-2025-06-11 19:31:36 | INFO | Buy executed: 9432 6600@150, cash remaining: 65,449,977
-2025-06-11 19:31:36 | INFO | Opened position: 8306, shares=1200, price=777.4801947021483
-2025-06-11 19:31:36 | INFO | Buy executed: 8306 1200@777, cash remaining: 64,516,535
-2025-06-11 19:31:36 | INFO | Opened position: 9433, shares=500, price=1930.0775634765623
-2025-06-11 19:31:36 | INFO | Buy executed: 9433 500@1930, cash remaining: 63,551,013
-2025-06-11 19:31:36 | INFO | Opened position: 9984, shares=100, price=5116.110511230469
-2025-06-11 19:31:36 | INFO | Buy executed: 9984 100@5116, cash remaining: 63,039,147
-2025-06-11 19:31:36 | INFO | Opened position: 6098, shares=200, price=3657.394463378906
-2025-06-11 19:31:36 | INFO | Buy executed: 6098 200@3657, cash remaining: 62,307,302
-2025-06-11 19:31:36 | INFO | Opened position: 7974, shares=200, price=4858.929270507812
-2025-06-11 19:31:36 | INFO | Buy executed: 7974 200@4859, cash remaining: 61,335,030
-2025-06-11 19:31:36 | INFO | Closed position: 7203, PnL=17591
-2025-06-11 19:31:36 | INFO | Sell executed: 7203 1000@1741, PnL: 17,591
-2025-06-11 19:31:36 | INFO | Closed position: 6758, PnL=38074
-2025-06-11 19:31:36 | INFO | Sell executed: 6758 800@2331, PnL: 38,074
-2025-06-11 19:31:36 | INFO | Added to position: 9432, shares=6600, price=149.51020068359372
-2025-06-11 19:31:36 | INFO | Buy executed: 9432 6600@150, cash remaining: 63,951,890
-2025-06-11 19:31:36 | INFO | Added to position: 8306, shares=1200, price=777.0107926635741
-2025-06-11 19:31:36 | INFO | Buy executed: 8306 1200@777, cash remaining: 63,019,011
-2025-06-11 19:31:36 | INFO | Added to position: 9433, shares=500, price=1921.1268492431639
-2025-06-11 19:31:36 | INFO | Buy executed: 9433 500@1921, cash remaining: 62,057,967
-2025-06-11 19:31:36 | INFO | Added to position: 9984, shares=100, price=5032.95419580078
-2025-06-11 19:31:36 | INFO | Buy executed: 9984 100@5033, cash remaining: 61,554,420
-2025-06-11 19:31:36 | INFO | Added to position: 6098, shares=200, price=3590.7878842773434
-2025-06-11 19:31:36 | INFO | Buy executed: 6098 200@3591, cash remaining: 60,835,903
-2025-06-11 19:31:36 | INFO | Closed position: 7974, PnL=2020
-2025-06-11 19:31:36 | INFO | Sell executed: 7974 400@4871, PnL: 2,020
-2025-06-11 19:31:36 | INFO | Closed position: 8306, PnL=57380
-2025-06-11 19:31:36 | INFO | Sell executed: 8306 3600@795, PnL: 57,380
-2025-06-11 19:31:36 | INFO | Closed position: 9984, PnL=6848
-2025-06-11 19:31:36 | INFO | Sell executed: 9984 300@5120, PnL: 6,848
-2025-06-11 19:31:36 | INFO | Closed position: 9433, PnL=1626
-2025-06-11 19:31:36 | INFO | Sell executed: 9433 1500@1931, PnL: 1,626
-2025-06-11 19:31:36 | INFO | Closed position: 6098, PnL=37410
-2025-06-11 19:31:36 | INFO | Sell executed: 6098 600@3704, PnL: 37,410
-2025-06-11 19:31:36 | INFO | Closed position: 9432, PnL=-7398
-2025-06-11 19:31:36 | INFO | Sell executed: 9432 19800@150, PnL: -7,398
-2025-06-11 19:31:36 | INFO | Progress: 85.3% (2023-04-12)
-2025-06-11 19:31:36 | INFO | Progress: 87.0% (2023-05-15)
-2025-06-11 19:31:36 | INFO | Progress: 88.6% (2023-06-12)
-2025-06-11 19:31:36 | INFO | Progress: 90.2% (2023-07-10)
-2025-06-11 19:31:36 | INFO | Progress: 91.9% (2023-08-08)
-2025-06-11 19:31:36 | INFO | Progress: 93.5% (2023-09-06)
-2025-06-11 19:31:36 | INFO | Opened position: 7203, shares=300, price=2602.6574304199216
-2025-06-11 19:31:36 | INFO | Buy executed: 7203 300@2603, cash remaining: 74,474,993
-2025-06-11 19:31:36 | INFO | Opened position: 6758, shares=400, price=2469.0630319824218
-2025-06-11 19:31:36 | INFO | Buy executed: 6758 400@2469, cash remaining: 73,486,874
-2025-06-11 19:31:36 | INFO | Opened position: 9432, shares=5800, price=172.22252655029294
-2025-06-11 19:31:36 | INFO | Buy executed: 9432 5800@172, cash remaining: 72,487,484
-2025-06-11 19:31:36 | INFO | Opened position: 8306, shares=800, price=1232.8883950195311
-2025-06-11 19:31:36 | INFO | Buy executed: 8306 800@1233, cash remaining: 71,500,680
-2025-06-11 19:31:36 | INFO | Opened position: 9433, shares=400, price=2214.6189006347654
-2025-06-11 19:31:36 | INFO | Buy executed: 9433 400@2215, cash remaining: 70,614,390
-2025-06-11 19:31:36 | INFO | Opened position: 4063, shares=200, price=4303.496462890625
-2025-06-11 19:31:36 | INFO | Buy executed: 4063 200@4303, cash remaining: 69,753,260
-2025-06-11 19:31:36 | INFO | Opened position: 9984, shares=100, price=6354.549373046874
-2025-06-11 19:31:36 | INFO | Buy executed: 9984 100@6355, cash remaining: 69,117,487
-2025-06-11 19:31:36 | INFO | Opened position: 6098, shares=200, price=4695.263815429687
-2025-06-11 19:31:36 | INFO | Buy executed: 6098 200@4695, cash remaining: 68,177,965
-2025-06-11 19:31:36 | INFO | Opened position: 7974, shares=100, price=5982.365060546875
-2025-06-11 19:31:36 | INFO | Buy executed: 7974 100@5982, cash remaining: 67,579,429
-2025-06-11 19:31:36 | INFO | Added to position: 7203, shares=300, price=2591.166703125
-2025-06-11 19:31:36 | INFO | Buy executed: 7203 300@2591, cash remaining: 66,801,691
-2025-06-11 19:31:36 | INFO | Added to position: 6758, shares=400, price=2441.107614257812
-2025-06-11 19:31:36 | INFO | Buy executed: 6758 400@2441, cash remaining: 65,824,759
-2025-06-11 19:31:36 | INFO | Added to position: 9432, shares=5800, price=170.6976114349365
-2025-06-11 19:31:36 | INFO | Buy executed: 9432 5800@171, cash remaining: 64,834,218
-2025-06-11 19:31:36 | INFO | Closed position: 8306, PnL=712
-2025-06-11 19:31:36 | INFO | Sell executed: 8306 1600@1235, PnL: 712
-2025-06-11 19:31:36 | INFO | Added to position: 9433, shares=400, price=2188.7954956054687
-2025-06-11 19:31:36 | INFO | Buy executed: 9433 400@2189, cash remaining: 65,933,570
-2025-06-11 19:31:36 | INFO | Added to position: 4063, shares=200, price=4204.207820312499
-2025-06-11 19:31:36 | INFO | Buy executed: 4063 200@4204, cash remaining: 65,092,308
-2025-06-11 19:31:36 | INFO | Added to position: 9984, shares=100, price=6256.206499511718
-2025-06-11 19:31:36 | INFO | Buy executed: 9984 100@6256, cash remaining: 64,466,375
-2025-06-11 19:31:36 | INFO | Added to position: 6098, shares=200, price=4577.171720214843
-2025-06-11 19:31:36 | INFO | Buy executed: 6098 200@4577, cash remaining: 63,550,483
-2025-06-11 19:31:36 | INFO | Closed position: 7974, PnL=-2824
-2025-06-11 19:31:36 | INFO | Sell executed: 7974 200@5977, PnL: -2,824
-2025-06-11 19:31:36 | INFO | Dividend received: 7203, amount=27000
-2025-06-11 19:31:36 | INFO | Dividend received: 7203 27,000
-2025-06-11 19:31:36 | INFO | Dividend received: 6758, amount=9600
-2025-06-11 19:31:36 | INFO | Dividend received: 6758 9,600
-2025-06-11 19:31:36 | INFO | Dividend received: 9432, amount=43500
-2025-06-11 19:31:36 | INFO | Dividend received: 9432 43,500
-2025-06-11 19:31:36 | INFO | Dividend received: 9433, amount=42000
-2025-06-11 19:31:36 | INFO | Dividend received: 9433 42,000
-2025-06-11 19:31:36 | INFO | Dividend received: 4063, amount=30000
-2025-06-11 19:31:36 | INFO | Dividend received: 4063 30,000
-2025-06-11 19:31:36 | INFO | Dividend received: 9984, amount=6600
-2025-06-11 19:31:36 | INFO | Dividend received: 9984 6,600
-2025-06-11 19:31:36 | INFO | Dividend received: 6098, amount=6900
-2025-06-11 19:31:36 | INFO | Dividend received: 6098 6,900
-2025-06-11 19:31:36 | INFO | Progress: 95.2% (2023-10-05)
-2025-06-11 19:31:36 | INFO | Closed position: 6758, PnL=67277
-2025-06-11 19:31:36 | INFO | Sell executed: 6758 1200@2512, PnL: 67,277
-2025-06-11 19:31:36 | INFO | Closed position: 9984, PnL=26992
-2025-06-11 19:31:36 | INFO | Sell executed: 9984 300@6400, PnL: 26,992
-2025-06-11 19:31:36 | INFO | Closed position: 7203, PnL=40774
-2025-06-11 19:31:36 | INFO | Sell executed: 7203 900@2618, PnL: 40,774
-2025-06-11 19:31:36 | INFO | Closed position: 4063, PnL=91081
-2025-06-11 19:31:36 | INFO | Sell executed: 4063 600@4379, PnL: 91,081
-2025-06-11 19:31:36 | INFO | Closed position: 6098, PnL=40194
-2025-06-11 19:31:36 | INFO | Sell executed: 6098 600@4719, PnL: 40,194
-2025-06-11 19:31:36 | INFO | Closed position: 9432, PnL=-77667
-2025-06-11 19:31:36 | INFO | Sell executed: 9432 17400@165, PnL: -77,667
-2025-06-11 19:31:36 | INFO | Closed position: 9433, PnL=-57518
-2025-06-11 19:31:36 | INFO | Sell executed: 9433 1200@2127, PnL: -57,518
-2025-06-11 19:31:36 | INFO | Progress: 96.8% (2023-11-06)
-2025-06-11 19:31:36 | INFO | Progress: 98.4% (2023-12-05)
-2025-06-11 19:31:36 | INFO | Metrics saved to data\results\metrics_20250611_193136.json
-2025-06-11 19:31:36 | INFO | Trades saved to data\results\trades_20250611_193136.csv
-2025-06-11 19:31:36 | INFO | Portfolio history saved to data\results\portfolio_20250611_193136.csv
-2025-06-11 19:31:36 | INFO | Backtest completed
-2025-06-11 19:31:36 | INFO | Completed Backtest execution
-2025-06-11 19:31:37 | INFO | Text report saved to: data\results\backtest_report_20250611_193137.txt
-2025-06-11 19:31:37 | INFO | HTML report saved to: data\results\backtest_report_20250611_193137.html
-2025-06-12 09:54:30 | INFO | Loading configuration from: config/config.yaml
-2025-06-12 09:54:30 | INFO | Initializing backtest engine...
-2025-06-12 09:54:30 | INFO | YFinanceClient initialized with cache_dir=./data/cache
-2025-06-12 09:54:30 | INFO | DataManager initialized with yfinance
-2025-06-12 09:54:30 | INFO | DividendStrategy initialized
-2025-06-12 09:54:30 | INFO | PositionManager initialized
-2025-06-12 09:54:30 | INFO | Portfolio initialized with capital: 10,000,000
-2025-06-12 09:54:30 | INFO | BacktestEngine initialized
-2025-06-12 09:54:30 | INFO | Backtest period: 2019-01-01 to 2023-12-31
-2025-06-12 09:54:30 | INFO | Initial capital: 10,000,000
-2025-06-12 09:54:30 | INFO | Starting Backtest execution
-2025-06-12 09:54:30 | INFO | Loading data for 10 tickers
-2025-06-12 09:54:30 | INFO | Loading data for 10 tickers from 2019-01-01 to 2023-12-31
-2025-06-12 09:54:30 | INFO | Fetching data for 7203 (1/10)
-2025-06-12 09:54:30 | INFO | Fetching data for 6758 (2/10)
-2025-06-12 09:54:30 | INFO | Fetching data for 9432 (3/10)
-2025-06-12 09:54:30 | INFO | Fetching data for 6861 (4/10)
-2025-06-12 09:54:30 | INFO | Fetching data for 8306 (5/10)
-2025-06-12 09:54:30 | INFO | Fetching data for 9433 (6/10)
-2025-06-12 09:54:30 | INFO | Fetching data for 4063 (7/10)
-2025-06-12 09:54:30 | INFO | Fetching data for 9984 (8/10)
-2025-06-12 09:54:30 | INFO | Fetching data for 6098 (9/10)
-2025-06-12 09:54:30 | INFO | Fetching data for 7974 (10/10)
-2025-06-12 09:54:30 | INFO | Data loading completed
-2025-06-12 09:54:30 | INFO | Progress: 0.0% (2019-01-04)
-2025-06-12 09:54:30 | INFO | Progress: 1.6% (2019-02-04)
-2025-06-12 09:54:30 | INFO | Progress: 3.3% (2019-03-05)
-2025-06-12 09:54:30 | INFO | Opened position: 7203, shares=800, price=1134.9182098388671
-2025-06-12 09:54:30 | INFO | Buy executed: 7203 800@1135, cash remaining: 9,091,515
-2025-06-12 09:54:30 | INFO | Opened position: 6758, shares=1000, price=926.645577392578
-2025-06-12 09:54:30 | INFO | Buy executed: 6758 1000@927, cash remaining: 8,164,320
-2025-06-12 09:54:30 | INFO | Opened position: 9432, shares=12800, price=78.353709526062
-2025-06-12 09:54:30 | INFO | Buy executed: 9432 12800@78, cash remaining: 7,160,841
-2025-06-12 09:54:30 | INFO | Opened position: 8306, shares=2300, price=432.150092010498
-2025-06-12 09:54:30 | INFO | Buy executed: 8306 2300@432, cash remaining: 6,166,346
-2025-06-12 09:54:30 | INFO | Opened position: 4063, shares=600, price=1652.48756652832
-2025-06-12 09:54:30 | INFO | Buy executed: 4063 600@1652, cash remaining: 5,174,303
-2025-06-12 09:54:30 | INFO | Opened position: 9984, shares=100, price=5095.878017578125
-2025-06-12 09:54:30 | INFO | Buy executed: 9984 100@5096, cash remaining: 4,664,165
-2025-06-12 09:54:30 | INFO | Opened position: 6098, shares=300, price=3015.2765222167964
-2025-06-12 09:54:30 | INFO | Buy executed: 6098 300@3015, cash remaining: 3,759,032
-2025-06-12 09:54:30 | INFO | Opened position: 7974, shares=300, price=2652.5571533203124
-2025-06-12 09:54:30 | INFO | Buy executed: 7974 300@2653, cash remaining: 2,962,715
-2025-06-12 09:54:30 | INFO | Closed position: 6758, PnL=-6046
-2025-06-12 09:54:30 | INFO | Sell executed: 6758 2000@925, PnL: -6,046
-2025-06-12 09:54:30 | INFO | Closed position: 8306, PnL=-10512
-2025-06-12 09:54:30 | INFO | Sell executed: 8306 4600@431, PnL: -10,512
-2025-06-12 09:54:30 | INFO | Closed position: 4063, PnL=1152
-2025-06-12 09:54:30 | INFO | Sell executed: 4063 1200@1656, PnL: 1,152
-2025-06-12 09:54:30 | INFO | Closed position: 6098, PnL=-3993
-2025-06-12 09:54:30 | INFO | Sell executed: 6098 600@3014, PnL: -3,993
-2025-06-12 09:54:30 | INFO | Closed position: 7974, PnL=-8116
-2025-06-12 09:54:30 | INFO | Sell executed: 7974 600@2644, PnL: -8,116
-2025-06-12 09:54:30 | INFO | Closed position: 9984, PnL=5194
-2025-06-12 09:54:30 | INFO | Sell executed: 9984 200@5133, PnL: 5,194
-2025-06-12 09:54:30 | INFO | Closed position: 7203, PnL=-11377
-2025-06-12 09:54:30 | INFO | Sell executed: 7203 1600@1130, PnL: -11,377
-2025-06-12 09:54:30 | INFO | Progress: 4.9% (2019-04-03)
-2025-06-12 09:54:30 | INFO | Closed position: 9432, PnL=-94450
-2025-06-12 09:54:30 | INFO | Sell executed: 9432 25600@75, PnL: -94,450
-2025-06-12 09:54:30 | INFO | Progress: 6.6% (2019-05-09)
-2025-06-12 09:54:30 | INFO | Progress: 8.2% (2019-06-06)
-2025-06-12 09:54:30 | INFO | Progress: 9.8% (2019-07-04)
-2025-06-12 09:54:30 | INFO | Progress: 11.5% (2019-08-02)
-2025-06-12 09:54:31 | INFO | Progress: 13.1% (2019-09-02)
-2025-06-12 09:54:31 | INFO | Opened position: 7203, shares=700, price=1273.2894854736326
-2025-06-12 09:54:31 | INFO | Buy executed: 7203 700@1273, cash remaining: 16,024,962
-2025-06-12 09:54:31 | INFO | Opened position: 9432, shares=11300, price=88.50731334686279
-2025-06-12 09:54:31 | INFO | Buy executed: 9432 11300@89, cash remaining: 15,024,280
-2025-06-12 09:54:31 | INFO | Opened position: 8306, shares=2200, price=446.3975802612304
-2025-06-12 09:54:31 | INFO | Buy executed: 8306 2200@446, cash remaining: 14,041,655
-2025-06-12 09:54:31 | INFO | Opened position: 9433, shares=800, price=1214.2472076416013
-2025-06-12 09:54:31 | INFO | Buy executed: 9433 800@1214, cash remaining: 13,069,707
-2025-06-12 09:54:31 | INFO | Opened position: 4063, shares=400, price=2127.9442089843747
-2025-06-12 09:54:31 | INFO | Buy executed: 4063 400@2128, cash remaining: 12,217,980
-2025-06-12 09:54:31 | INFO | Opened position: 9984, shares=200, price=4272.783508300781
-2025-06-12 09:54:31 | INFO | Buy executed: 9984 200@4273, cash remaining: 11,362,873
-2025-06-12 09:54:31 | INFO | Opened position: 6098, shares=300, price=3192.359190673828
-2025-06-12 09:54:31 | INFO | Buy executed: 6098 300@3192, cash remaining: 10,404,615
-2025-06-12 09:54:31 | INFO | Opened position: 7974, shares=200, price=3443.5809741210933
-2025-06-12 09:54:31 | INFO | Buy executed: 7974 200@3444, cash remaining: 9,715,349
-2025-06-12 09:54:31 | INFO | Closed position: 7203, PnL=-10431
-2025-06-12 09:54:31 | INFO | Sell executed: 7203 1400@1268, PnL: -10,431
-2025-06-12 09:54:31 | INFO | Added to position: 9432, shares=11400, price=87.24262605285645
-2025-06-12 09:54:31 | INFO | Buy executed: 9432 11400@87, cash remaining: 10,494,483
-2025-06-12 09:54:31 | INFO | Added to position: 8306, shares=2200, price=444.6638281860352
-2025-06-12 09:54:31 | INFO | Buy executed: 8306 2200@445, cash remaining: 9,515,673
-2025-06-12 09:54:31 | INFO | Closed position: 4063, PnL=-9829
-2025-06-12 09:54:31 | INFO | Sell executed: 4063 800@2119, PnL: -9,829
-2025-06-12 09:54:31 | INFO | Added to position: 9984, shares=200, price=4197.3677255859375
-2025-06-12 09:54:31 | INFO | Buy executed: 9984 200@4197, cash remaining: 10,370,208
-2025-06-12 09:54:31 | INFO | Added to position: 6098, shares=300, price=3167.193814453125
-2025-06-12 09:54:31 | INFO | Buy executed: 6098 300@3167, cash remaining: 9,419,500
-2025-06-12 09:54:31 | INFO | Added to position: 7974, shares=200, price=3432.451787109375
-2025-06-12 09:54:31 | INFO | Buy executed: 7974 200@3432, cash remaining: 8,732,460
-2025-06-12 09:54:31 | INFO | Closed position: 6098, PnL=8542
-2025-06-12 09:54:31 | INFO | Sell executed: 6098 900@3198, PnL: 8,542
-2025-06-12 09:54:31 | INFO | Closed position: 7974, PnL=10359
-2025-06-12 09:54:31 | INFO | Sell executed: 7974 600@3464, PnL: 10,359
-2025-06-12 09:54:31 | INFO | Progress: 14.8% (2019-10-02)
-2025-06-12 09:54:31 | INFO | Closed position: 9433, PnL=34316
-2025-06-12 09:54:31 | INFO | Sell executed: 9433 1600@1238, PnL: 34,316
-2025-06-12 09:54:31 | INFO | Closed position: 9432, PnL=60208
-2025-06-12 09:54:31 | INFO | Sell executed: 9432 34000@90, PnL: 60,208
-2025-06-12 09:54:31 | INFO | Closed position: 8306, PnL=-17414
-2025-06-12 09:54:31 | INFO | Sell executed: 8306 6600@444, PnL: -17,414
-2025-06-12 09:54:31 | INFO | Closed position: 9984, PnL=-250866
-2025-06-12 09:54:31 | INFO | Sell executed: 9984 600@3837, PnL: -250,866
-2025-06-12 09:54:31 | INFO | Progress: 16.4% (2019-11-01)
-2025-06-12 09:54:31 | INFO | Progress: 18.0% (2019-12-02)
-2025-06-12 09:54:31 | INFO | Progress: 19.7% (2019-12-30)
-2025-06-12 09:54:31 | INFO | Progress: 21.3% (2020-02-03)
-2025-06-12 09:54:31 | INFO | Progress: 23.0% (2020-03-04)
-2025-06-12 09:54:31 | INFO | Opened position: 7203, shares=800, price=1218.0227358398438
-2025-06-12 09:54:31 | INFO | Buy executed: 7203 800@1218, cash remaining: 22,979,445
-2025-06-12 09:54:31 | INFO | Opened position: 6758, shares=700, price=1307.4282407226563
-2025-06-12 09:54:31 | INFO | Buy executed: 6758 700@1307, cash remaining: 22,063,695
-2025-06-12 09:54:31 | INFO | Opened position: 9432, shares=11100, price=90.04399397277832
-2025-06-12 09:54:31 | INFO | Buy executed: 9432 11100@90, cash remaining: 21,063,657
-2025-06-12 09:54:31 | INFO | Opened position: 8306, shares=2700, price=361.12385174560546
-2025-06-12 09:54:31 | INFO | Buy executed: 8306 2700@361, cash remaining: 20,088,072
-2025-06-12 09:54:31 | INFO | Opened position: 9433, shares=700, price=1417.9879079589844
-2025-06-12 09:54:31 | INFO | Buy executed: 9433 700@1418, cash remaining: 19,094,931
-2025-06-12 09:54:31 | INFO | Opened position: 4063, shares=500, price=1966.68528515625
-2025-06-12 09:54:31 | INFO | Buy executed: 4063 500@1967, cash remaining: 18,111,038
-2025-06-12 09:54:31 | INFO | Opened position: 9984, shares=200, price=3747.1673642578126
-2025-06-12 09:54:31 | INFO | Buy executed: 9984 200@3747, cash remaining: 17,361,055
-2025-06-12 09:54:31 | INFO | Opened position: 6098, shares=300, price=2992.2706918945314
-2025-06-12 09:54:31 | INFO | Buy executed: 6098 300@2992, cash remaining: 16,462,824
-2025-06-12 09:54:31 | INFO | Opened position: 7974, shares=200, price=3434.1519580078125
-2025-06-12 09:54:31 | INFO | Buy executed: 7974 200@3434, cash remaining: 15,775,443
-2025-06-12 09:54:31 | INFO | Added to position: 7203, shares=800, price=1198.277635986328
-2025-06-12 09:54:31 | INFO | Buy executed: 7203 800@1198, cash remaining: 14,816,271
-2025-06-12 09:54:31 | INFO | Added to position: 6758, shares=700, price=1262.4933354492186
-2025-06-12 09:54:31 | INFO | Buy executed: 6758 700@1262, cash remaining: 13,931,976
-2025-06-12 09:54:31 | INFO | Closed position: 9432, PnL=29507
-2025-06-12 09:54:31 | INFO | Sell executed: 9432 22200@92, PnL: 29,507
-2025-06-12 09:54:31 | INFO | Added to position: 8306, shares=2700, price=351.71395623779296
-2025-06-12 09:54:31 | INFO | Buy executed: 8306 2700@352, cash remaining: 15,012,482
-2025-06-12 09:54:31 | INFO | Added to position: 9433, shares=700, price=1389.4291955566407
-2025-06-12 09:54:31 | INFO | Buy executed: 9433 700@1389, cash remaining: 14,039,332
-2025-06-12 09:54:31 | INFO | Added to position: 4063, shares=500, price=1964.8550939941406
-2025-06-12 09:54:31 | INFO | Buy executed: 4063 500@1965, cash remaining: 13,056,354
-2025-06-12 09:54:31 | INFO | Added to position: 9984, shares=200, price=3580.4106884765624
-2025-06-12 09:54:31 | INFO | Buy executed: 9984 200@3580, cash remaining: 12,339,722
-2025-06-12 09:54:31 | INFO | Added to position: 6098, shares=300, price=2890.629338378906
-2025-06-12 09:54:31 | INFO | Buy executed: 6098 300@2891, cash remaining: 11,471,983
-2025-06-12 09:54:31 | INFO | Closed position: 7974, PnL=34278
-2025-06-12 09:54:31 | INFO | Sell executed: 7974 400@3526, PnL: 34,278
-2025-06-12 09:54:31 | INFO | Closed position: 6098, PnL=-416449
-2025-06-12 09:54:31 | INFO | Sell executed: 6098 900@2501, PnL: -416,449
-2025-06-12 09:54:31 | INFO | Progress: 24.6% (2020-04-02)
-2025-06-12 09:54:31 | INFO | Closed position: 7203, PnL=-301167
-2025-06-12 09:54:31 | INFO | Sell executed: 7203 2400@1088, PnL: -301,167
-2025-06-12 09:54:31 | INFO | Closed position: 8306, PnL=-328295
-2025-06-12 09:54:31 | INFO | Sell executed: 8306 8100@318, PnL: -328,295
-2025-06-12 09:54:31 | INFO | Closed position: 9433, PnL=4609
-2025-06-12 09:54:31 | INFO | Sell executed: 9433 2100@1413, PnL: 4,609
-2025-06-12 09:54:31 | INFO | Closed position: 9984, PnL=107463
-2025-06-12 09:54:31 | INFO | Sell executed: 9984 600@3878, PnL: 107,463
-2025-06-12 09:54:31 | INFO | Closed position: 6758, PnL=27175
-2025-06-12 09:54:31 | INFO | Sell executed: 6758 2100@1307, PnL: 27,175
-2025-06-12 09:54:31 | INFO | Closed position: 4063, PnL=99589
-2025-06-12 09:54:31 | INFO | Sell executed: 4063 1500@2035, PnL: 99,589
-2025-06-12 09:54:31 | INFO | Progress: 26.3% (2020-05-01)
-2025-06-12 09:54:31 | INFO | Progress: 27.9% (2020-06-03)
-2025-06-12 09:54:31 | INFO | Progress: 29.5% (2020-07-01)
-2025-06-12 09:54:31 | INFO | Progress: 31.2% (2020-07-31)
-2025-06-12 09:54:31 | INFO | Progress: 32.8% (2020-08-31)
-2025-06-12 09:54:31 | INFO | Opened position: 7203, shares=700, price=1269.4117950439452
-2025-06-12 09:54:31 | INFO | Buy executed: 7203 700@1269, cash remaining: 30,514,381
-2025-06-12 09:54:31 | INFO | Opened position: 6758, shares=600, price=1609.7062426757811
-2025-06-12 09:54:31 | INFO | Buy executed: 6758 600@1610, cash remaining: 29,548,007
-2025-06-12 09:54:31 | INFO | Opened position: 9432, shares=12800, price=78.17530883789061
-2025-06-12 09:54:31 | INFO | Buy executed: 9432 12800@78, cash remaining: 28,546,813
-2025-06-12 09:54:31 | INFO | Opened position: 8306, shares=2700, price=368.8282218933105
-2025-06-12 09:54:31 | INFO | Buy executed: 8306 2700@369, cash remaining: 27,550,427
-2025-06-12 09:54:31 | INFO | Opened position: 9433, shares=800, price=1206.5328021240234
-2025-06-12 09:54:31 | INFO | Buy executed: 9433 800@1207, cash remaining: 26,584,651
-2025-06-12 09:54:31 | INFO | Opened position: 4063, shares=300, price=2564.6208801269527
-2025-06-12 09:54:31 | INFO | Buy executed: 4063 300@2565, cash remaining: 25,814,714
-2025-06-12 09:54:31 | INFO | Opened position: 9984, shares=100, price=6166.087207031249
-2025-06-12 09:54:31 | INFO | Buy executed: 9984 100@6166, cash remaining: 25,197,556
-2025-06-12 09:54:31 | INFO | Opened position: 6098, shares=200, price=4179.2640380859375
-2025-06-12 09:54:31 | INFO | Buy executed: 6098 200@4179, cash remaining: 24,361,153
-2025-06-12 09:54:31 | INFO | Opened position: 7974, shares=100, price=5230.1799755859365
-2025-06-12 09:54:31 | INFO | Buy executed: 7974 100@5230, cash remaining: 23,837,585
-2025-06-12 09:54:31 | INFO | Added to position: 7203, shares=700, price=1254.8609135742188
-2025-06-12 09:54:31 | INFO | Buy executed: 7203 700@1255, cash remaining: 22,958,632
-2025-06-12 09:54:31 | INFO | Closed position: 6758, PnL=-11647
-2025-06-12 09:54:31 | INFO | Sell executed: 6758 1200@1603, PnL: -11,647
-2025-06-12 09:54:31 | INFO | Added to position: 9432, shares=12900, price=77.40405661010742
-2025-06-12 09:54:31 | INFO | Buy executed: 9432 12900@77, cash remaining: 23,881,728
-2025-06-12 09:54:31 | INFO | Closed position: 8306, PnL=-8985
-2025-06-12 09:54:31 | INFO | Sell executed: 8306 5400@368, PnL: -8,985
-2025-06-12 09:54:31 | INFO | Added to position: 9433, shares=800, price=1178.6075148925781
-2025-06-12 09:54:31 | INFO | Buy executed: 9433 800@1179, cash remaining: 24,923,171
-2025-06-12 09:54:31 | INFO | Closed position: 4063, PnL=-10401
-2025-06-12 09:54:31 | INFO | Sell executed: 4063 600@2552, PnL: -10,401
-2025-06-12 09:54:31 | INFO | Closed position: 9984, PnL=8061
-2025-06-12 09:54:31 | INFO | Sell executed: 9984 200@6219, PnL: 8,061
-2025-06-12 09:54:31 | INFO | Closed position: 7974, PnL=15792
-2025-06-12 09:54:31 | INFO | Sell executed: 7974 200@5320, PnL: 15,792
-2025-06-12 09:54:31 | INFO | Progress: 34.5% (2020-09-30)
-2025-06-12 09:54:31 | INFO | Closed position: 6098, PnL=1294
-2025-06-12 09:54:31 | INFO | Sell executed: 6098 400@4190, PnL: 1,294
-2025-06-12 09:54:31 | INFO | Closed position: 9432, PnL=50455
-2025-06-12 09:54:31 | INFO | Sell executed: 9432 38500@79, PnL: 50,455
-2025-06-12 09:54:31 | INFO | Closed position: 9433, PnL=17330
-2025-06-12 09:54:31 | INFO | Sell executed: 9433 2400@1206, PnL: 17,330
-2025-06-12 09:54:31 | INFO | Closed position: 7203, PnL=-80678
-2025-06-12 09:54:31 | INFO | Sell executed: 7203 2100@1228, PnL: -80,678
-2025-06-12 09:54:31 | INFO | Progress: 36.1% (2020-10-28)
-2025-06-12 09:54:31 | INFO | Progress: 37.7% (2020-11-27)
-2025-06-12 09:54:31 | INFO | Progress: 39.4% (2020-12-25)
-2025-06-12 09:54:31 | INFO | Progress: 41.0% (2021-01-27)
-2025-06-12 09:54:32 | INFO | Progress: 42.7% (2021-02-26)
-2025-06-12 09:54:32 | INFO | Progress: 44.3% (2021-03-26)
-2025-06-12 09:54:32 | INFO | Opened position: 7203, shares=600, price=1497.8492028808591
-2025-06-12 09:54:32 | INFO | Buy executed: 7203 600@1498, cash remaining: 38,061,548
-2025-06-12 09:54:32 | INFO | Opened position: 9432, shares=9600, price=104.24535633087157
-2025-06-12 09:54:32 | INFO | Buy executed: 9432 9600@104, cash remaining: 37,060,242
-2025-06-12 09:54:32 | INFO | Opened position: 8306, shares=1900, price=526.8365927124023
-2025-06-12 09:54:32 | INFO | Buy executed: 8306 1900@527, cash remaining: 36,058,702
-2025-06-12 09:54:32 | INFO | Opened position: 4063, shares=200, price=3526.8163696289057
-2025-06-12 09:54:32 | INFO | Buy executed: 4063 200@3527, cash remaining: 35,352,789
-2025-06-12 09:54:32 | INFO | Opened position: 9984, shares=100, price=8860.274326171873
-2025-06-12 09:54:32 | INFO | Buy executed: 9984 100@8860, cash remaining: 34,466,211
-2025-06-12 09:54:32 | INFO | Opened position: 6098, shares=100, price=5263.690444335937
-2025-06-12 09:54:32 | INFO | Buy executed: 6098 100@5264, cash remaining: 33,939,292
-2025-06-12 09:54:32 | INFO | Opened position: 7974, shares=100, price=5703.003522949218
-2025-06-12 09:54:32 | INFO | Buy executed: 7974 100@5703, cash remaining: 33,368,442
-2025-06-12 09:54:32 | INFO | Closed position: 8306, PnL=7850
-2025-06-12 09:54:32 | INFO | Sell executed: 8306 3800@530, PnL: 7,850
-2025-06-12 09:54:32 | INFO | Closed position: 9984, PnL=1394
-2025-06-12 09:54:32 | INFO | Sell executed: 9984 200@8883, PnL: 1,394
-2025-06-12 09:54:32 | INFO | Closed position: 6098, PnL=-6167
-2025-06-12 09:54:32 | INFO | Sell executed: 6098 200@5244, PnL: -6,167
-2025-06-12 09:54:32 | INFO | Closed position: 7203, PnL=40088
-2025-06-12 09:54:32 | INFO | Sell executed: 7203 1200@1534, PnL: 40,088
-2025-06-12 09:54:32 | INFO | Closed position: 4063, PnL=5284
-2025-06-12 09:54:32 | INFO | Sell executed: 4063 400@3547, PnL: 5,284
-2025-06-12 09:54:32 | INFO | Closed position: 7974, PnL=-8501
-2025-06-12 09:54:32 | INFO | Sell executed: 7974 200@5672, PnL: -8,501
-2025-06-12 09:54:32 | INFO | Progress: 45.9% (2021-04-23)
-2025-06-12 09:54:32 | INFO | Closed position: 9432, PnL=-129475
-2025-06-12 09:54:32 | INFO | Sell executed: 9432 19200@98, PnL: -129,475
-2025-06-12 09:54:32 | INFO | Progress: 47.6% (2021-05-27)
-2025-06-12 09:54:32 | INFO | Progress: 49.2% (2021-06-24)
-2025-06-12 09:54:32 | INFO | Progress: 50.9% (2021-07-26)
-2025-06-12 09:54:32 | INFO | Progress: 52.5% (2021-08-24)
-2025-06-12 09:54:32 | INFO | Progress: 54.1% (2021-09-22)
-2025-06-12 09:54:32 | INFO | Opened position: 7203, shares=500, price=1867.3665527343749
-2025-06-12 09:54:32 | INFO | Buy executed: 7203 500@1867, cash remaining: 43,535,515
-2025-06-12 09:54:32 | INFO | Opened position: 6758, shares=300, price=2550.576643066406
-2025-06-12 09:54:32 | INFO | Buy executed: 6758 300@2551, cash remaining: 42,769,792
-2025-06-12 09:54:32 | INFO | Opened position: 9432, shares=8800, price=113.55487117767333
-2025-06-12 09:54:32 | INFO | Buy executed: 9432 8800@114, cash remaining: 41,769,959
-2025-06-12 09:54:32 | INFO | Opened position: 8306, shares=1600, price=598.7333505249023
-2025-06-12 09:54:32 | INFO | Buy executed: 8306 1600@599, cash remaining: 40,811,435
-2025-06-12 09:54:32 | INFO | Opened position: 9433, shares=500, price=1688.259162597656
-2025-06-12 09:54:32 | INFO | Buy executed: 9433 500@1688, cash remaining: 39,966,756
-2025-06-12 09:54:32 | INFO | Opened position: 4063, shares=200, price=3736.524243164062
-2025-06-12 09:54:32 | INFO | Buy executed: 4063 200@3737, cash remaining: 39,218,901
-2025-06-12 09:54:32 | INFO | Opened position: 9984, shares=100, price=6633.956909179687
-2025-06-12 09:54:32 | INFO | Buy executed: 9984 100@6634, cash remaining: 38,554,955
-2025-06-12 09:54:32 | INFO | Opened position: 6098, shares=100, price=6997.152033691405
-2025-06-12 09:54:32 | INFO | Buy executed: 6098 100@6997, cash remaining: 37,854,690
-2025-06-12 09:54:32 | INFO | Opened position: 7974, shares=200, price=4818.334606933593
-2025-06-12 09:54:32 | INFO | Buy executed: 7974 200@4818, cash remaining: 36,890,473
-2025-06-12 09:54:32 | INFO | Closed position: 7203, PnL=-3724
-2025-06-12 09:54:32 | INFO | Sell executed: 7203 1000@1867, PnL: -3,724
-2025-06-12 09:54:32 | INFO | Added to position: 6758, shares=300, price=2454.1859282226565
-2025-06-12 09:54:32 | INFO | Buy executed: 6758 300@2454, cash remaining: 38,019,437
-2025-06-12 09:54:32 | INFO | Added to position: 9432, shares=8900, price=112.03095721435547
-2025-06-12 09:54:32 | INFO | Buy executed: 9432 8900@112, cash remaining: 37,021,812
-2025-06-12 09:54:32 | INFO | Added to position: 8306, shares=1600, price=593.5864757080078
-2025-06-12 09:54:32 | INFO | Buy executed: 8306 1600@594, cash remaining: 36,071,523
-2025-06-12 09:54:32 | INFO | Added to position: 4063, shares=200, price=3628.935767578125
-2025-06-12 09:54:32 | INFO | Buy executed: 4063 200@3629, cash remaining: 35,345,186
-2025-06-12 09:54:32 | INFO | Added to position: 9984, shares=100, price=6538.814709960938
-2025-06-12 09:54:32 | INFO | Buy executed: 9984 100@6539, cash remaining: 34,690,755
-2025-06-12 09:54:32 | INFO | Added to position: 6098, shares=100, price=6717.995109375
-2025-06-12 09:54:32 | INFO | Buy executed: 6098 100@6718, cash remaining: 34,018,405
-2025-06-12 09:54:32 | INFO | Closed position: 7974, PnL=-7218
-2025-06-12 09:54:32 | INFO | Sell executed: 7974 400@4808, PnL: -7,218
-2025-06-12 09:54:32 | INFO | Closed position: 9984, PnL=-222783
-2025-06-12 09:54:32 | INFO | Sell executed: 9984 300@5873, PnL: -222,783
-2025-06-12 09:54:32 | INFO | Closed position: 6098, PnL=36783
-2025-06-12 09:54:32 | INFO | Sell executed: 6098 300@7041, PnL: 36,783
-2025-06-12 09:54:32 | INFO | Closed position: 6758, PnL=8529
-2025-06-12 09:54:32 | INFO | Sell executed: 6758 900@2533, PnL: 8,529
-2025-06-12 09:54:32 | INFO | Progress: 55.8% (2021-10-21)
-2025-06-12 09:54:32 | INFO | Closed position: 9432, PnL=96246
-2025-06-12 09:54:32 | INFO | Sell executed: 9432 26500@117, PnL: 96,246
-2025-06-12 09:54:32 | INFO | Closed position: 8306, PnL=-164119
-2025-06-12 09:54:32 | INFO | Sell executed: 8306 4800@564, PnL: -164,119
-2025-06-12 09:54:32 | INFO | Closed position: 9433, PnL=-44209
-2025-06-12 09:54:32 | INFO | Sell executed: 9433 1000@1647, PnL: -44,209
-2025-06-12 09:54:32 | INFO | Closed position: 4063, PnL=-44937
-2025-06-12 09:54:32 | INFO | Sell executed: 4063 600@3633, PnL: -44,937
-2025-06-12 09:54:32 | INFO | Progress: 57.4% (2021-11-19)
-2025-06-12 09:54:32 | INFO | Progress: 59.1% (2021-12-20)
-2025-06-12 09:54:32 | INFO | Progress: 60.7% (2022-01-20)
-2025-06-12 09:54:32 | INFO | Progress: 62.3% (2022-02-18)
-2025-06-12 09:54:32 | INFO | Progress: 64.0% (2022-03-22)
-2025-06-12 09:54:32 | INFO | Opened position: 7203, shares=400, price=2056.5591522216796
-2025-06-12 09:54:32 | INFO | Buy executed: 7203 400@2057, cash remaining: 50,893,177
-2025-06-12 09:54:32 | INFO | Opened position: 6758, shares=300, price=2562.4491870117185
-2025-06-12 09:54:32 | INFO | Buy executed: 6758 300@2562, cash remaining: 50,123,892
-2025-06-12 09:54:32 | INFO | Opened position: 9432, shares=7600, price=132.13853050231933
-2025-06-12 09:54:32 | INFO | Buy executed: 9432 7600@132, cash remaining: 49,119,087
-2025-06-12 09:54:32 | INFO | Opened position: 8306, shares=1400, price=705.6752508544921
-2025-06-12 09:54:32 | INFO | Buy executed: 8306 1400@706, cash remaining: 48,130,592
-2025-06-12 09:54:32 | INFO | Opened position: 9433, shares=500, price=1870.7859082031248
-2025-06-12 09:54:32 | INFO | Buy executed: 9433 500@1871, cash remaining: 47,194,649
-2025-06-12 09:54:32 | INFO | Opened position: 4063, shares=200, price=3567.4933520507807
-2025-06-12 09:54:32 | INFO | Buy executed: 4063 200@3567, cash remaining: 46,480,600
-2025-06-12 09:54:32 | INFO | Opened position: 9984, shares=100, price=5401.374953613281
-2025-06-12 09:54:32 | INFO | Buy executed: 9984 100@5401, cash remaining: 45,939,913
-2025-06-12 09:54:32 | INFO | Opened position: 6098, shares=100, price=5482.018352050781
-2025-06-12 09:54:32 | INFO | Buy executed: 6098 100@5482, cash remaining: 45,391,161
-2025-06-12 09:54:32 | INFO | Opened position: 7974, shares=100, price=6112.103789062499
-2025-06-12 09:54:32 | INFO | Buy executed: 7974 100@6112, cash remaining: 44,779,401
-2025-06-12 09:54:32 | INFO | Added to position: 7203, shares=400, price=2037.1056298828125
-2025-06-12 09:54:32 | INFO | Buy executed: 7203 400@2037, cash remaining: 43,964,008
-2025-06-12 09:54:32 | INFO | Added to position: 9432, shares=7700, price=130.61244909667968
-2025-06-12 09:54:32 | INFO | Buy executed: 9432 7700@131, cash remaining: 42,957,739
-2025-06-12 09:54:32 | INFO | Added to position: 8306, shares=1400, price=698.6160007324219
-2025-06-12 09:54:32 | INFO | Buy executed: 8306 1400@699, cash remaining: 41,979,127
-2025-06-12 09:54:32 | INFO | Added to position: 9433, shares=500, price=1816.813875
-2025-06-12 09:54:32 | INFO | Buy executed: 9433 500@1817, cash remaining: 41,070,170
-2025-06-12 09:54:32 | INFO | Closed position: 9984, PnL=16207
-2025-06-12 09:54:32 | INFO | Sell executed: 9984 200@5494, PnL: 16,207
-2025-06-12 09:54:32 | INFO | Closed position: 6098, PnL=6722
-2025-06-12 09:54:32 | INFO | Sell executed: 6098 200@5527, PnL: 6,722
-2025-06-12 09:54:32 | INFO | Added to position: 7974, shares=100, price=5867.127826171875
-2025-06-12 09:54:32 | INFO | Buy executed: 7974 100@5867, cash remaining: 42,685,927
-2025-06-12 09:54:32 | INFO | Closed position: 4063, PnL=-13465
-2025-06-12 09:54:32 | INFO | Sell executed: 4063 400@3540, PnL: -13,465
-2025-06-12 09:54:32 | INFO | Closed position: 9432, PnL=-12071
-2025-06-12 09:54:32 | INFO | Sell executed: 9432 22900@131, PnL: -12,071
-2025-06-12 09:54:32 | INFO | Closed position: 9433, PnL=5086
-2025-06-12 09:54:32 | INFO | Sell executed: 9433 1500@1859, PnL: 5,086
-2025-06-12 09:54:32 | INFO | Closed position: 6758, PnL=-191798
-2025-06-12 09:54:32 | INFO | Sell executed: 6758 600@2247, PnL: -191,798
-2025-06-12 09:54:32 | INFO | Progress: 65.6% (2022-04-19)
-2025-06-12 09:54:32 | INFO | Closed position: 7203, PnL=14178
-2025-06-12 09:54:32 | INFO | Sell executed: 7203 1200@2066, PnL: 14,178
-2025-06-12 09:54:32 | INFO | Closed position: 8306, PnL=-154918
-2025-06-12 09:54:32 | INFO | Sell executed: 8306 4200@667, PnL: -154,918
-2025-06-12 09:54:32 | INFO | Closed position: 7974, PnL=-108409
-2025-06-12 09:54:32 | INFO | Sell executed: 7974 300@5683, PnL: -108,409
-2025-06-12 09:54:32 | INFO | Progress: 67.3% (2022-05-23)
-2025-06-12 09:54:32 | INFO | Progress: 68.9% (2022-06-20)
-2025-06-12 09:54:33 | INFO | Progress: 70.5% (2022-07-19)
-2025-06-12 09:54:33 | INFO | Progress: 72.2% (2022-08-17)
-2025-06-12 09:54:33 | INFO | Progress: 73.8% (2022-09-14)
-2025-06-12 09:54:33 | INFO | Opened position: 7203, shares=500, price=1799.1439581298825
-2025-06-12 09:54:33 | INFO | Buy executed: 7203 500@1799, cash remaining: 57,325,534
-2025-06-12 09:54:33 | INFO | Opened position: 6758, shares=500, price=1896.9859588623044
-2025-06-12 09:54:33 | INFO | Buy executed: 6758 500@1897, cash remaining: 56,376,491
-2025-06-12 09:54:33 | INFO | Opened position: 9432, shares=7100, price=140.85259941101071
-2025-06-12 09:54:33 | INFO | Buy executed: 9432 7100@141, cash remaining: 55,375,888
-2025-06-12 09:54:33 | INFO | Opened position: 8306, shares=1600, price=617.0707360839843
-2025-06-12 09:54:33 | INFO | Buy executed: 8306 1600@617, cash remaining: 54,388,025
-2025-06-12 09:54:33 | INFO | Opened position: 9433, shares=500, price=1927.559329833984
-2025-06-12 09:54:33 | INFO | Buy executed: 9433 500@1928, cash remaining: 53,423,695
-2025-06-12 09:54:33 | INFO | Opened position: 4063, shares=300, price=2796.7086511230464
-2025-06-12 09:54:33 | INFO | Buy executed: 4063 300@2797, cash remaining: 52,584,132
-2025-06-12 09:54:33 | INFO | Opened position: 9984, shares=200, price=4865.375771484374
-2025-06-12 09:54:33 | INFO | Buy executed: 9984 200@4865, cash remaining: 51,610,507
-2025-06-12 09:54:33 | INFO | Opened position: 6098, shares=200, price=4123.796184082031
-2025-06-12 09:54:33 | INFO | Buy executed: 6098 200@4124, cash remaining: 50,785,198
-2025-06-12 09:54:33 | INFO | Opened position: 7974, shares=100, price=5564.083374023437
-2025-06-12 09:54:33 | INFO | Buy executed: 7974 100@5564, cash remaining: 50,228,240
-2025-06-12 09:54:33 | INFO | Closed position: 7203, PnL=6717
-2025-06-12 09:54:33 | INFO | Sell executed: 7203 1000@1809, PnL: 6,717
-2025-06-12 09:54:33 | INFO | Closed position: 6758, PnL=-9634
-2025-06-12 09:54:33 | INFO | Sell executed: 6758 1000@1891, PnL: -9,634
-2025-06-12 09:54:33 | INFO | Closed position: 9432, PnL=48435
-2025-06-12 09:54:33 | INFO | Sell executed: 9432 14200@144, PnL: 48,435
-2025-06-12 09:54:33 | INFO | Closed position: 9433, PnL=17173
-2025-06-12 09:54:33 | INFO | Sell executed: 9433 1000@1948, PnL: 17,173
-2025-06-12 09:54:33 | INFO | Closed position: 4063, PnL=-5288
-2025-06-12 09:54:33 | INFO | Sell executed: 4063 600@2793, PnL: -5,288
-2025-06-12 09:54:33 | INFO | Closed position: 9984, PnL=22440
-2025-06-12 09:54:33 | INFO | Sell executed: 9984 400@4930, PnL: 22,440
-2025-06-12 09:54:33 | INFO | Closed position: 6098, PnL=5097
-2025-06-12 09:54:33 | INFO | Sell executed: 6098 400@4144, PnL: 5,097
-2025-06-12 09:54:33 | INFO | Closed position: 7974, PnL=11954
-2025-06-12 09:54:33 | INFO | Sell executed: 7974 200@5636, PnL: 11,954
-2025-06-12 09:54:33 | INFO | Closed position: 8306, PnL=-14075
-2025-06-12 09:54:33 | INFO | Sell executed: 8306 3200@614, PnL: -14,075
-2025-06-12 09:54:33 | INFO | Progress: 75.5% (2022-10-17)
-2025-06-12 09:54:33 | INFO | Progress: 77.1% (2022-11-15)
-2025-06-12 09:54:33 | INFO | Progress: 78.8% (2022-12-14)
-2025-06-12 09:54:33 | INFO | Progress: 80.4% (2023-01-16)
-2025-06-12 09:54:33 | INFO | Progress: 82.0% (2023-02-13)
-2025-06-12 09:54:33 | INFO | Progress: 83.7% (2023-03-14)
-2025-06-12 09:54:33 | INFO | Opened position: 7203, shares=500, price=1727.7749725341796
-2025-06-12 09:54:33 | INFO | Buy executed: 7203 500@1728, cash remaining: 65,450,277
-2025-06-12 09:54:33 | INFO | Opened position: 6758, shares=400, price=2289.088205566406
-2025-06-12 09:54:33 | INFO | Buy executed: 6758 400@2289, cash remaining: 64,534,092
-2025-06-12 09:54:33 | INFO | Opened position: 9432, shares=6600, price=150.52296409606933
-2025-06-12 09:54:33 | INFO | Buy executed: 9432 6600@151, cash remaining: 63,540,090
-2025-06-12 09:54:33 | INFO | Opened position: 8306, shares=1200, price=780.5870086669921
-2025-06-12 09:54:33 | INFO | Buy executed: 8306 1200@781, cash remaining: 62,602,836
-2025-06-12 09:54:33 | INFO | Opened position: 9433, shares=500, price=1937.7901611328123
-2025-06-12 09:54:33 | INFO | Buy executed: 9433 500@1938, cash remaining: 61,633,391
-2025-06-12 09:54:33 | INFO | Opened position: 9984, shares=100, price=5136.554509277344
-2025-06-12 09:54:33 | INFO | Buy executed: 9984 100@5137, cash remaining: 61,119,185
-2025-06-12 09:54:33 | INFO | Opened position: 6098, shares=200, price=3672.0094262695306
-2025-06-12 09:54:33 | INFO | Buy executed: 6098 200@3672, cash remaining: 60,384,233
-2025-06-12 09:54:33 | INFO | Opened position: 7974, shares=200, price=4878.345571289062
-2025-06-12 09:54:33 | INFO | Buy executed: 7974 200@4878, cash remaining: 59,408,014
-2025-06-12 09:54:33 | INFO | Closed position: 7203, PnL=3337
-2025-06-12 09:54:33 | INFO | Sell executed: 7203 1000@1734, PnL: 3,337
-2025-06-12 09:54:33 | INFO | Closed position: 6758, PnL=22952
-2025-06-12 09:54:33 | INFO | Sell executed: 6758 800@2322, PnL: 22,952
-2025-06-12 09:54:33 | INFO | Added to position: 9432, shares=6600, price=149.6595615234375
-2025-06-12 09:54:33 | INFO | Buy executed: 9432 6600@150, cash remaining: 62,009,221
-2025-06-12 09:54:33 | INFO | Added to position: 8306, shares=1200, price=777.7870272216796
-2025-06-12 09:54:33 | INFO | Buy executed: 8306 1200@778, cash remaining: 61,075,326
-2025-06-12 09:54:33 | INFO | Added to position: 9433, shares=500, price=1923.0460568847657
-2025-06-12 09:54:33 | INFO | Buy executed: 9433 500@1923, cash remaining: 60,113,253
-2025-06-12 09:54:33 | INFO | Added to position: 9984, shares=100, price=5037.9821220703125
-2025-06-12 09:54:33 | INFO | Buy executed: 9984 100@5038, cash remaining: 59,608,905
-2025-06-12 09:54:33 | INFO | Added to position: 6098, shares=200, price=3594.3750849609373
-2025-06-12 09:54:33 | INFO | Buy executed: 6098 200@3594, cash remaining: 58,889,480
-2025-06-12 09:54:33 | INFO | Closed position: 8306, PnL=37865
-2025-06-12 09:54:33 | INFO | Sell executed: 8306 3600@791, PnL: 37,865
-2025-06-12 09:54:33 | INFO | Closed position: 9984, PnL=-5226
-2025-06-12 09:54:33 | INFO | Sell executed: 9984 300@5099, PnL: -5,226
-2025-06-12 09:54:33 | INFO | Closed position: 7974, PnL=5985
-2025-06-12 09:54:33 | INFO | Sell executed: 7974 400@4901, PnL: 5,985
-2025-06-12 09:54:33 | INFO | Closed position: 9433, PnL=-9524
-2025-06-12 09:54:33 | INFO | Sell executed: 9433 1500@1929, PnL: -9,524
-2025-06-12 09:54:33 | INFO | Closed position: 6098, PnL=27894
-2025-06-12 09:54:33 | INFO | Sell executed: 6098 600@3700, PnL: 27,894
-2025-06-12 09:54:33 | INFO | Closed position: 9432, PnL=-18718
-2025-06-12 09:54:33 | INFO | Sell executed: 9432 19800@150, PnL: -18,718
-2025-06-12 09:54:33 | INFO | Progress: 85.3% (2023-04-12)
-2025-06-12 09:54:33 | INFO | Progress: 87.0% (2023-05-15)
-2025-06-12 09:54:33 | INFO | Progress: 88.6% (2023-06-12)
-2025-06-12 09:54:33 | INFO | Progress: 90.2% (2023-07-10)
-2025-06-12 09:54:33 | INFO | Progress: 91.9% (2023-08-08)
-2025-06-12 09:54:33 | INFO | Progress: 93.5% (2023-09-06)
-2025-06-12 09:54:33 | INFO | Opened position: 7203, shares=300, price=2613.057659912109
-2025-06-12 09:54:33 | INFO | Buy executed: 7203 300@2613, cash remaining: 72,512,558
-2025-06-12 09:54:33 | INFO | Opened position: 6758, shares=400, price=2478.9294177246093
-2025-06-12 09:54:33 | INFO | Buy executed: 6758 400@2479, cash remaining: 71,520,436
-2025-06-12 09:54:33 | INFO | Opened position: 9432, shares=5800, price=172.91072845458982
-2025-06-12 09:54:33 | INFO | Buy executed: 9432 5800@173, cash remaining: 70,517,002
-2025-06-12 09:54:33 | INFO | Opened position: 8306, shares=800, price=1237.815021972656
-2025-06-12 09:54:33 | INFO | Buy executed: 8306 800@1238, cash remaining: 69,526,200
-2025-06-12 09:54:33 | INFO | Opened position: 9433, shares=400, price=2223.468526611328
-2025-06-12 09:54:33 | INFO | Buy executed: 9433 400@2223, cash remaining: 68,636,263
-2025-06-12 09:54:33 | INFO | Opened position: 4063, shares=200, price=4320.693251953125
-2025-06-12 09:54:33 | INFO | Buy executed: 4063 200@4321, cash remaining: 67,771,574
-2025-06-12 09:54:33 | INFO | Opened position: 9984, shares=100, price=6379.942177734374
-2025-06-12 09:54:33 | INFO | Buy executed: 9984 100@6380, cash remaining: 67,133,030
-2025-06-12 09:54:33 | INFO | Opened position: 6098, shares=200, price=4714.026108398437
-2025-06-12 09:54:33 | INFO | Buy executed: 6098 200@4714, cash remaining: 66,189,675
-2025-06-12 09:54:33 | INFO | Opened position: 7974, shares=100, price=6006.270615234374
-2025-06-12 09:54:33 | INFO | Buy executed: 7974 100@6006, cash remaining: 65,588,498
-2025-06-12 09:54:33 | INFO | Added to position: 7203, shares=300, price=2593.75528125
-2025-06-12 09:54:33 | INFO | Buy executed: 7203 300@2594, cash remaining: 64,809,821
-2025-06-12 09:54:33 | INFO | Added to position: 6758, shares=400, price=2443.546283203125
-2025-06-12 09:54:33 | INFO | Buy executed: 6758 400@2444, cash remaining: 63,831,853
-2025-06-12 09:54:33 | INFO | Added to position: 9432, shares=5800, price=170.8681385192871
-2025-06-12 09:54:33 | INFO | Buy executed: 9432 5800@171, cash remaining: 62,840,268
-2025-06-12 09:54:33 | INFO | Added to position: 9433, shares=400, price=2190.9821044921873
-2025-06-12 09:54:33 | INFO | Buy executed: 9433 400@2191, cash remaining: 61,963,325
-2025-06-12 09:54:33 | INFO | Added to position: 4063, shares=200, price=4208.407828125
-2025-06-12 09:54:33 | INFO | Buy executed: 4063 200@4208, cash remaining: 61,121,093
-2025-06-12 09:54:33 | INFO | Added to position: 9984, shares=100, price=6262.456456054688
-2025-06-12 09:54:33 | INFO | Buy executed: 9984 100@6262, cash remaining: 60,494,297
-2025-06-12 09:54:33 | INFO | Added to position: 6098, shares=200, price=4581.744319335938
-2025-06-12 09:54:33 | INFO | Buy executed: 6098 200@4582, cash remaining: 59,577,399
-2025-06-12 09:54:33 | INFO | Closed position: 7974, PnL=2072
-2025-06-12 09:54:33 | INFO | Sell executed: 7974 200@6029, PnL: 2,072
-2025-06-12 09:54:33 | INFO | Progress: 95.2% (2023-10-05)
-2025-06-12 09:54:33 | INFO | Closed position: 6758, PnL=46370
-2025-06-12 09:54:33 | INFO | Sell executed: 6758 1200@2509, PnL: 46,370
-2025-06-12 09:54:33 | INFO | Closed position: 9984, PnL=11637
-2025-06-12 09:54:33 | INFO | Sell executed: 9984 300@6394, PnL: 11,637
-2025-06-12 09:54:33 | INFO | Closed position: 7203, PnL=3913
-2025-06-12 09:54:33 | INFO | Sell executed: 7203 900@2616, PnL: 3,913
-2025-06-12 09:54:33 | INFO | Closed position: 4063, PnL=50661
-2025-06-12 09:54:33 | INFO | Sell executed: 4063 600@4375, PnL: 50,661
-2025-06-12 09:54:33 | INFO | Closed position: 6098, PnL=22327
-2025-06-12 09:54:33 | INFO | Sell executed: 6098 600@4714, PnL: 22,327
-2025-06-12 09:54:33 | INFO | Closed position: 9432, PnL=-132557
-2025-06-12 09:54:33 | INFO | Sell executed: 9432 17400@165, PnL: -132,557
-2025-06-12 09:54:33 | INFO | Closed position: 8306, PnL=-117375
-2025-06-12 09:54:33 | INFO | Sell executed: 8306 1600@1166, PnL: -117,375
-2025-06-12 09:54:33 | INFO | Closed position: 9433, PnL=-110114
-2025-06-12 09:54:33 | INFO | Sell executed: 9433 1200@2125, PnL: -110,114
-2025-06-12 09:54:33 | INFO | Progress: 96.8% (2023-11-06)
-2025-06-12 09:54:33 | INFO | Progress: 98.4% (2023-12-05)
-2025-06-12 09:54:34 | INFO | Metrics saved to data\results\metrics_20250612_095434.json
-2025-06-12 09:54:34 | INFO | Trades saved to data\results\trades_20250612_095434.csv
-2025-06-12 09:54:34 | INFO | Portfolio history saved to data\results\portfolio_20250612_095434.csv
-2025-06-12 09:54:34 | INFO | Backtest completed
-2025-06-12 09:54:34 | INFO | Completed Backtest execution
-2025-06-12 09:54:34 | INFO | Text report saved to: data\results\backtest_report_20250612_095434.txt
-2025-06-12 09:54:34 | INFO | HTML report saved to: data\results\backtest_report_20250612_095434.html
+2025-06-12 17:01:32 | INFO | Loading configuration from: config/config.yaml
+2025-06-12 17:01:32 | INFO | Initializing backtest engine...
+2025-06-12 17:01:32 | INFO | YFinanceClient initialized with cache_dir=./data/cache
+2025-06-12 17:01:32 | INFO | DataManager initialized with yfinance
+2025-06-12 17:01:32 | INFO | DividendStrategy initialized
+2025-06-12 17:01:32 | INFO | PositionManager initialized
+2025-06-12 17:01:32 | INFO | Portfolio initialized with capital: 10,000,000
+2025-06-12 17:01:33 | INFO | BacktestEngine initialized
+2025-06-12 17:01:33 | INFO | Backtest period: 2019-01-01 to 2023-12-31
+2025-06-12 17:01:33 | INFO | Initial capital: 10,000,000
+2025-06-12 17:01:33 | INFO | Starting Backtest execution
+2025-06-12 17:01:33 | INFO | Loading data for 10 tickers
+2025-06-12 17:01:33 | INFO | Loading data for 10 tickers from 2019-01-01 to 2023-12-31
+2025-06-12 17:01:33 | INFO | Fetching data for 7203 (1/10)
+2025-06-12 17:01:33 | INFO | Price data fetched for 7203: 1218 records
+2025-06-12 17:01:33 | INFO | Dividend data fetched for 7203: 52 records
+2025-06-12 17:01:33 | INFO | Fetching data for 6758 (2/10)
+2025-06-12 17:01:34 | INFO | Price data fetched for 6758: 1218 records
+2025-06-12 17:01:34 | INFO | Dividend data fetched for 6758: 27 records
+2025-06-12 17:01:34 | INFO | Fetching data for 9432 (3/10)
+2025-06-12 17:01:34 | INFO | Price data fetched for 9432: 1218 records
+2025-06-12 17:01:35 | INFO | Dividend data fetched for 9432: 51 records
+2025-06-12 17:01:35 | INFO | Fetching data for 6861 (4/10)
+2025-06-12 17:01:35 | INFO | Price data fetched for 6861: 1218 records
+2025-06-12 17:01:35 | INFO | Dividend data fetched for 6861: 48 records
+2025-06-12 17:01:35 | INFO | Fetching data for 8306 (5/10)
+2025-06-12 17:01:36 | INFO | Price data fetched for 8306: 1218 records
+2025-06-12 17:01:36 | INFO | Dividend data fetched for 8306: 39 records
+2025-06-12 17:01:36 | INFO | Fetching data for 9433 (6/10)
+2025-06-12 17:01:36 | INFO | Price data fetched for 9433: 1218 records
+2025-06-12 17:01:37 | INFO | Dividend data fetched for 9433: 22 records
+2025-06-12 17:01:37 | INFO | Fetching data for 4063 (7/10)
+2025-06-12 17:01:37 | INFO | Price data fetched for 4063: 1218 records
+2025-06-12 17:01:37 | INFO | Dividend data fetched for 4063: 50 records
+2025-06-12 17:01:37 | INFO | Fetching data for 9984 (8/10)
+2025-06-12 17:01:37 | INFO | Price data fetched for 9984: 1218 records
+2025-06-12 17:01:38 | INFO | Dividend data fetched for 9984: 39 records
+2025-06-12 17:01:38 | INFO | Fetching data for 6098 (9/10)
+2025-06-12 17:01:38 | INFO | Price data fetched for 6098: 1218 records
+2025-06-12 17:01:38 | INFO | Dividend data fetched for 6098: 19 records
+2025-06-12 17:01:38 | INFO | Fetching data for 7974 (10/10)
+2025-06-12 17:01:39 | INFO | Price data fetched for 7974: 1218 records
+2025-06-12 17:01:39 | INFO | Dividend data fetched for 7974: 44 records
+2025-06-12 17:01:39 | INFO | Data loading completed
+2025-06-12 17:01:39 | INFO | Progress: 0.0% (2019-01-04)
+2025-06-12 17:01:39 | INFO | Progress: 1.6% (2019-02-04)
+2025-06-12 17:01:39 | INFO | Progress: 3.3% (2019-03-05)
+2025-06-12 17:01:39 | INFO | Opened position: 7203, shares=700, price=1354.5390490722655
+2025-06-12 17:01:39 | INFO | Buy executed: 7203 700@1355, cash remaining: 9,051,273
+2025-06-12 17:01:39 | INFO | Opened position: 9432, shares=10200, price=97.76639877319334
+2025-06-12 17:01:39 | INFO | Buy executed: 9432 10200@98, cash remaining: 8,053,505
+2025-06-12 17:01:39 | INFO | Opened position: 8306, shares=1700, price=562.8
+2025-06-12 17:01:39 | INFO | Buy executed: 8306 1700@563, cash remaining: 7,096,195
+2025-06-12 17:01:39 | INFO | Opened position: 9433, shares=800, price=1251.225
+2025-06-12 17:01:39 | INFO | Buy executed: 9433 800@1251, cash remaining: 6,094,665
+2025-06-12 17:01:39 | INFO | Opened position: 4063, shares=500, price=1865.0790490722654
+2025-06-12 17:01:39 | INFO | Buy executed: 4063 500@1865, cash remaining: 5,161,575
+2025-06-12 17:01:39 | INFO | Opened position: 9984, shares=100, price=5334.037499999999
+2025-06-12 17:01:39 | INFO | Buy executed: 9984 100@5334, cash remaining: 4,627,622
+2025-06-12 17:01:39 | INFO | Opened position: 6098, shares=300, price=3120.5249999999996
+2025-06-12 17:01:39 | INFO | Buy executed: 6098 300@3121, cash remaining: 3,690,914
+2025-06-12 17:01:39 | INFO | Opened position: 7974, shares=300, price=3211.9799999999996
+2025-06-12 17:01:39 | INFO | Buy executed: 7974 300@3212, cash remaining: 2,726,770
+2025-06-12 17:01:39 | INFO | Added to position: 7203, shares=300, price=1326.4476489257813
+2025-06-12 17:01:39 | INFO | Buy executed: 7203 300@1326, cash remaining: 2,328,286
+2025-06-12 17:01:39 | INFO | Added to position: 9432, shares=5200, price=95.71103663635255
+2025-06-12 17:01:39 | INFO | Buy executed: 9432 5200@96, cash remaining: 1,830,038
+2025-06-12 17:01:39 | INFO | Added to position: 8306, shares=800, price=553.605
+2025-06-12 17:01:39 | INFO | Buy executed: 8306 800@554, cash remaining: 1,386,604
+2025-06-12 17:01:39 | INFO | Added to position: 9433, shares=400, price=1210.6665
+2025-06-12 17:01:39 | INFO | Buy executed: 9433 400@1211, cash remaining: 901,788
+2025-06-12 17:01:39 | INFO | Added to position: 7974, shares=100, price=3150.288
+2025-06-12 17:01:39 | INFO | Buy executed: 7974 100@3150, cash remaining: 586,209
+2025-06-12 17:01:39 | WARNING | [DEBUG] 4063: 売却前 - position.total_shares=500, signal.shares=500
+2025-06-12 17:01:39 | INFO | Closed position: 4063, PnL=-8596
+2025-06-12 17:01:39 | INFO | Sell executed: 4063 500@1852, PnL: -8,596
+2025-06-12 17:01:39 | WARNING | [DEBUG] 9984: 売却前 - position.total_shares=100, signal.shares=100
+2025-06-12 17:01:39 | INFO | Closed position: 9984, PnL=572
+2025-06-12 17:01:39 | INFO | Sell executed: 9984 100@5362, PnL: 572
+2025-06-12 17:01:39 | WARNING | [DEBUG] 6098: 売却前 - position.total_shares=300, signal.shares=300
+2025-06-12 17:01:39 | INFO | Closed position: 6098, PnL=8046
+2025-06-12 17:01:39 | INFO | Sell executed: 6098 300@3155, PnL: 8,046
+2025-06-12 17:01:39 | WARNING | [DEBUG] 8306: 売却前 - position.total_shares=2500, signal.shares=2500
+2025-06-12 17:01:39 | INFO | Closed position: 8306, PnL=-5932
+2025-06-12 17:01:39 | INFO | Sell executed: 8306 2500@559, PnL: -5,932
+2025-06-12 17:01:39 | WARNING | [DEBUG] 7974: 売却前 - position.total_shares=400, signal.shares=400
+2025-06-12 17:01:39 | INFO | Closed position: 7974, PnL=-5586
+2025-06-12 17:01:39 | INFO | Sell executed: 7974 400@3192, PnL: -5,586
+2025-06-12 17:01:39 | INFO | Progress: 4.9% (2019-04-03)
+2025-06-12 17:01:39 | WARNING | [DEBUG] 7203: 売却前 - position.total_shares=1000, signal.shares=1000
+2025-06-12 17:01:39 | INFO | Closed position: 7203, PnL=98
+2025-06-12 17:01:39 | INFO | Sell executed: 7203 1000@1350, PnL: 98
+2025-06-12 17:01:39 | WARNING | [DEBUG] 9433: 売却前 - position.total_shares=1200, signal.shares=1200
+2025-06-12 17:01:39 | INFO | Closed position: 9433, PnL=22560
+2025-06-12 17:01:39 | INFO | Sell executed: 9433 1200@1260, PnL: 22,560
+2025-06-12 17:01:39 | WARNING | [DEBUG] 9432: 売却前 - position.total_shares=15400, signal.shares=15400
+2025-06-12 17:01:39 | INFO | Closed position: 9432, PnL=-89616
+2025-06-12 17:01:39 | INFO | Sell executed: 9432 15400@91, PnL: -89,616
+2025-06-12 17:01:39 | INFO | Progress: 6.6% (2019-05-09)
+2025-06-12 17:01:39 | INFO | Progress: 8.2% (2019-06-06)
+2025-06-12 17:01:39 | INFO | Progress: 9.8% (2019-07-04)
+2025-06-12 17:01:39 | INFO | Progress: 11.5% (2019-08-02)
+2025-06-12 17:01:40 | INFO | Progress: 13.1% (2019-09-02)
+2025-06-12 17:01:40 | INFO | Opened position: 7203, shares=600, price=1492.6259509277343
+2025-06-12 17:01:40 | INFO | Buy executed: 7203 600@1493, cash remaining: 9,038,041
+2025-06-12 17:01:40 | INFO | Opened position: 9432, shares=9200, price=108.27869785308837
+2025-06-12 17:01:40 | INFO | Buy executed: 9432 9200@108, cash remaining: 8,041,327
+2025-06-12 17:01:40 | INFO | Opened position: 8306, shares=1700, price=569.9354754638671
+2025-06-12 17:01:40 | INFO | Buy executed: 8306 1700@570, cash remaining: 7,071,887
+2025-06-12 17:01:40 | INFO | Opened position: 4063, shares=400, price=2375.8199999999997
+2025-06-12 17:01:40 | INFO | Buy executed: 4063 400@2376, cash remaining: 6,121,009
+2025-06-12 17:01:40 | INFO | Opened position: 9984, shares=200, price=4463.205
+2025-06-12 17:01:40 | INFO | Buy executed: 9984 200@4463, cash remaining: 5,227,818
+2025-06-12 17:01:40 | INFO | Opened position: 6098, shares=300, price=3288.3599999999997
+2025-06-12 17:01:40 | INFO | Buy executed: 6098 300@3288, cash remaining: 4,240,760
+2025-06-12 17:01:40 | INFO | Opened position: 7974, shares=200, price=4086.3299999999995
+2025-06-12 17:01:40 | INFO | Buy executed: 7974 200@4086, cash remaining: 3,422,944
+2025-06-12 17:01:40 | INFO | Added to position: 7203, shares=300, price=1476.7476489257813
+2025-06-12 17:01:40 | INFO | Buy executed: 7203 300@1477, cash remaining: 2,979,370
+2025-06-12 17:01:40 | INFO | Added to position: 9432, shares=4700, price=104.84927938842773
+2025-06-12 17:01:40 | INFO | Buy executed: 9432 4700@105, cash remaining: 2,486,028
+2025-06-12 17:01:40 | INFO | Added to position: 8306, shares=800, price=555.2081755371094
+2025-06-12 17:01:40 | INFO | Buy executed: 8306 800@555, cash remaining: 2,041,312
+2025-06-12 17:01:40 | INFO | Added to position: 4063, shares=200, price=2360.712
+2025-06-12 17:01:40 | INFO | Buy executed: 4063 200@2361, cash remaining: 1,568,619
+2025-06-12 17:01:40 | INFO | Added to position: 9984, shares=100, price=4362.708
+2025-06-12 17:01:40 | INFO | Buy executed: 9984 100@4363, cash remaining: 1,131,798
+2025-06-12 17:01:40 | INFO | Added to position: 6098, shares=100, price=3247.482
+2025-06-12 17:01:40 | INFO | Buy executed: 6098 100@3247, cash remaining: 806,500
+2025-06-12 17:01:40 | INFO | Added to position: 7974, shares=100, price=4046.076
+2025-06-12 17:01:40 | INFO | Buy executed: 7974 100@4046, cash remaining: 401,343
+2025-06-12 17:01:40 | WARNING | [DEBUG] 6098: 売却前 - position.total_shares=400, signal.shares=400
+2025-06-12 17:01:40 | INFO | Closed position: 6098, PnL=-3128
+2025-06-12 17:01:40 | INFO | Sell executed: 6098 400@3279, PnL: -3,128
+2025-06-12 17:01:40 | WARNING | [DEBUG] 7974: 売却前 - position.total_shares=300, signal.shares=300
+2025-06-12 17:01:40 | INFO | Closed position: 7974, PnL=-276
+2025-06-12 17:01:40 | INFO | Sell executed: 7974 300@4084, PnL: -276
+2025-06-12 17:01:40 | INFO | Progress: 14.8% (2019-10-02)
+2025-06-12 17:01:40 | WARNING | [DEBUG] 9432: 売却前 - position.total_shares=13900, signal.shares=13900
+2025-06-12 17:01:40 | INFO | Closed position: 9432, PnL=10382
+2025-06-12 17:01:40 | INFO | Sell executed: 9432 13900@108, PnL: 10,382
+2025-06-12 17:01:40 | WARNING | [DEBUG] 4063: 売却前 - position.total_shares=600, signal.shares=600
+2025-06-12 17:01:40 | INFO | Closed position: 4063, PnL=10869
+2025-06-12 17:01:40 | INFO | Sell executed: 4063 600@2395, PnL: 10,869
+2025-06-12 17:01:40 | WARNING | [DEBUG] 7203: 売却前 - position.total_shares=900, signal.shares=900
+2025-06-12 17:01:40 | INFO | Closed position: 7203, PnL=-3057
+2025-06-12 17:01:40 | INFO | Sell executed: 7203 900@1488, PnL: -3,057
+2025-06-12 17:01:40 | WARNING | [DEBUG] 8306: 売却前 - position.total_shares=2500, signal.shares=2500
+2025-06-12 17:01:40 | INFO | Closed position: 8306, PnL=-3643
+2025-06-12 17:01:40 | INFO | Sell executed: 8306 2500@565, PnL: -3,643
+2025-06-12 17:01:40 | WARNING | [DEBUG] 9984: 売却前 - position.total_shares=300, signal.shares=300
+2025-06-12 17:01:40 | INFO | Closed position: 9984, PnL=-136025
+2025-06-12 17:01:40 | INFO | Sell executed: 9984 300@3988, PnL: -136,025
+2025-06-12 17:01:40 | INFO | Progress: 16.4% (2019-11-01)
+2025-06-12 17:01:40 | INFO | Progress: 18.0% (2019-12-02)
+2025-06-12 17:01:40 | INFO | Progress: 19.7% (2019-12-30)
+2025-06-12 17:01:40 | INFO | Progress: 21.3% (2020-02-03)
+2025-06-12 17:01:40 | INFO | Progress: 23.0% (2020-03-04)
+2025-06-12 17:01:40 | INFO | Opened position: 7203, shares=700, price=1408.6116489257813
+2025-06-12 17:01:40 | INFO | Buy executed: 7203 700@1409, cash remaining: 8,835,594
+2025-06-12 17:01:40 | INFO | Opened position: 6758, shares=700, price=1340.2751755371094
+2025-06-12 17:01:40 | INFO | Buy executed: 6758 700@1340, cash remaining: 7,896,852
+2025-06-12 17:01:40 | INFO | Opened position: 9432, shares=9200, price=108.216
+2025-06-12 17:01:40 | INFO | Buy executed: 9432 9200@108, cash remaining: 6,900,715
+2025-06-12 17:01:40 | INFO | Opened position: 8306, shares=2200, price=450.9
+2025-06-12 17:01:40 | INFO | Buy executed: 8306 2200@451, cash remaining: 5,908,185
+2025-06-12 17:01:40 | INFO | Opened position: 9433, shares=500, price=1671.837
+2025-06-12 17:01:40 | INFO | Buy executed: 9433 500@1672, cash remaining: 5,071,716
+2025-06-12 17:01:40 | INFO | Opened position: 4063, shares=400, price=2175.342
+2025-06-12 17:01:40 | INFO | Buy executed: 4063 400@2175, cash remaining: 4,201,029
+2025-06-12 17:01:40 | INFO | Opened position: 9984, shares=200, price=3894.774
+2025-06-12 17:01:40 | INFO | Buy executed: 9984 200@3895, cash remaining: 3,421,525
+2025-06-12 17:01:40 | INFO | Opened position: 6098, shares=300, price=3068.124
+2025-06-12 17:01:40 | INFO | Buy executed: 6098 300@3068, cash remaining: 2,500,537
+2025-06-12 17:01:40 | INFO | Opened position: 7974, shares=200, price=4048.08
+2025-06-12 17:01:40 | INFO | Buy executed: 7974 200@4048, cash remaining: 1,690,371
+2025-06-12 17:01:40 | INFO | Added to position: 7203, shares=300, price=1362.1188244628906
+2025-06-12 17:01:40 | INFO | Buy executed: 7203 300@1362, cash remaining: 1,281,186
+2025-06-12 17:01:40 | INFO | Added to position: 6758, shares=300, price=1289.3736489257813
+2025-06-12 17:01:40 | INFO | Buy executed: 6758 300@1289, cash remaining: 893,824
+2025-06-12 17:01:40 | WARNING | [DEBUG] 9432: 売却前 - position.total_shares=9200, signal.shares=9200
+2025-06-12 17:01:40 | INFO | Closed position: 9432, PnL=-3663
+2025-06-12 17:01:40 | INFO | Sell executed: 9432 9200@108, PnL: -3,663
+2025-06-12 17:01:40 | INFO | Added to position: 8306, shares=1100, price=426.9522061157227
+2025-06-12 17:01:40 | INFO | Buy executed: 8306 1100@427, cash remaining: 1,417,201
+2025-06-12 17:01:40 | INFO | Added to position: 9433, shares=200, price=1608.711
+2025-06-12 17:01:40 | INFO | Buy executed: 9433 200@1609, cash remaining: 1,094,908
+2025-06-12 17:01:40 | INFO | Added to position: 4063, shares=200, price=2151.294
+2025-06-12 17:01:40 | INFO | Buy executed: 4063 200@2151, cash remaining: 664,100
+2025-06-12 17:01:40 | INFO | Added to position: 9984, shares=100, price=3700.386
+2025-06-12 17:01:40 | INFO | Buy executed: 9984 100@3700, cash remaining: 293,511
+2025-06-12 17:01:40 | WARNING | Insufficient cash for 6098: required=295489, available=293511
+2025-06-12 17:01:40 | WARNING | [DEBUG] 7974: 売却前 - position.total_shares=200, signal.shares=200
+2025-06-12 17:01:40 | INFO | Closed position: 7974, PnL=2691
+2025-06-12 17:01:40 | INFO | Sell executed: 7974 200@4073, PnL: 2,691
+2025-06-12 17:01:40 | WARNING | [DEBUG] 6098: 売却前 - position.total_shares=300, signal.shares=300
+2025-06-12 17:01:40 | INFO | Closed position: 6098, PnL=-157221
+2025-06-12 17:01:40 | INFO | Sell executed: 6098 300@2551, PnL: -157,221
+2025-06-12 17:01:40 | INFO | Progress: 24.6% (2020-04-02)
+2025-06-12 17:01:40 | WARNING | [DEBUG] 8306: 売却前 - position.total_shares=3300, signal.shares=3300
+2025-06-12 17:01:40 | INFO | Closed position: 8306, PnL=-175880
+2025-06-12 17:01:40 | INFO | Sell executed: 8306 3300@391, PnL: -175,880
+2025-06-12 17:01:40 | WARNING | [DEBUG] 7203: 売却前 - position.total_shares=1000, signal.shares=1000
+2025-06-12 17:01:40 | INFO | Closed position: 7203, PnL=-161702
+2025-06-12 17:01:40 | INFO | Sell executed: 7203 1000@1237, PnL: -161,702
+2025-06-12 17:01:40 | WARNING | [DEBUG] 9984: 売却前 - position.total_shares=300, signal.shares=300
+2025-06-12 17:01:40 | INFO | Closed position: 9984, PnL=49874
+2025-06-12 17:01:40 | INFO | Sell executed: 9984 300@4008, PnL: 49,874
+2025-06-12 17:01:40 | WARNING | [DEBUG] 6758: 売却前 - position.total_shares=1000, signal.shares=1000
+2025-06-12 17:01:40 | INFO | Closed position: 6758, PnL=6650
+2025-06-12 17:01:40 | INFO | Sell executed: 6758 1000@1335, PnL: 6,650
+2025-06-12 17:01:40 | WARNING | [DEBUG] 4063: 売却前 - position.total_shares=600, signal.shares=600
+2025-06-12 17:01:40 | INFO | Closed position: 4063, PnL=33054
+2025-06-12 17:01:40 | INFO | Sell executed: 4063 600@2229, PnL: 33,054
+2025-06-12 17:01:40 | WARNING | [DEBUG] 9433: 売却前 - position.total_shares=700, signal.shares=700
+2025-06-12 17:01:40 | INFO | Closed position: 9433, PnL=-59729
+2025-06-12 17:01:40 | INFO | Sell executed: 9433 700@1573, PnL: -59,729
+2025-06-12 17:01:40 | INFO | Progress: 26.3% (2020-05-01)
+2025-06-12 17:01:40 | INFO | Progress: 27.9% (2020-06-03)
+2025-06-12 17:01:40 | INFO | Progress: 29.5% (2020-07-01)
+2025-06-12 17:01:40 | INFO | Progress: 31.2% (2020-07-31)
+2025-06-12 17:01:40 | INFO | Progress: 32.8% (2020-08-31)
+2025-06-12 17:01:40 | INFO | Opened position: 7203, shares=600, price=1442.9790490722655
+2025-06-12 17:01:40 | INFO | Buy executed: 7203 600@1443, cash remaining: 8,503,936
+2025-06-12 17:01:40 | INFO | Opened position: 9432, shares=10800, price=92.29919631958006
+2025-06-12 17:01:40 | INFO | Buy executed: 9432 10800@92, cash remaining: 7,506,555
+2025-06-12 17:01:40 | INFO | Opened position: 8306, shares=2200, price=447.72749999999996
+2025-06-12 17:01:40 | INFO | Buy executed: 8306 2200@448, cash remaining: 6,521,004
+2025-06-12 17:01:40 | INFO | Opened position: 9433, shares=700, price=1396.9499999999998
+2025-06-12 17:01:40 | INFO | Buy executed: 9433 700@1397, cash remaining: 5,542,589
+2025-06-12 17:01:40 | INFO | Opened position: 4063, shares=300, price=2807.97
+2025-06-12 17:01:40 | INFO | Buy executed: 4063 300@2808, cash remaining: 4,699,648
+2025-06-12 17:01:40 | INFO | Opened position: 9984, shares=100, price=6372.704999999999
+2025-06-12 17:01:40 | INFO | Buy executed: 9984 100@6373, cash remaining: 4,061,828
+2025-06-12 17:01:40 | INFO | Opened position: 6098, shares=200, price=4264.214999999999
+2025-06-12 17:01:40 | INFO | Buy executed: 6098 200@4264, cash remaining: 3,208,435
+2025-06-12 17:01:40 | INFO | Opened position: 7974, shares=100, price=6040.049999999999
+2025-06-12 17:01:40 | INFO | Buy executed: 7974 100@6040, cash remaining: 2,603,880
+2025-06-12 17:01:40 | INFO | Added to position: 7203, shares=300, price=1425.4451755371094
+2025-06-12 17:01:40 | INFO | Buy executed: 7203 300@1425, cash remaining: 2,175,696
+2025-06-12 17:01:40 | INFO | Added to position: 9432, shares=5500, price=89.39844122314453
+2025-06-12 17:01:40 | INFO | Buy executed: 9432 5500@89, cash remaining: 1,683,455
+2025-06-12 17:01:40 | INFO | Added to position: 8306, shares=1100, price=436.97220611572266
+2025-06-12 17:01:40 | INFO | Buy executed: 8306 1100@437, cash remaining: 1,202,236
+2025-06-12 17:01:40 | INFO | Added to position: 9433, shares=300, price=1335.165
+2025-06-12 17:01:40 | INFO | Buy executed: 9433 300@1335, cash remaining: 801,136
+2025-06-12 17:01:40 | INFO | Added to position: 4063, shares=100, price=2791.572
+2025-06-12 17:01:40 | INFO | Buy executed: 4063 100@2792, cash remaining: 521,429
+2025-06-12 17:01:40 | WARNING | [DEBUG] 9984: 売却前 - position.total_shares=100, signal.shares=100
+2025-06-12 17:01:40 | INFO | Closed position: 9984, PnL=1011
+2025-06-12 17:01:40 | INFO | Sell executed: 9984 100@6405, PnL: 1,011
+2025-06-12 17:01:40 | WARNING | [DEBUG] 7974: 売却前 - position.total_shares=100, signal.shares=100
+2025-06-12 17:01:40 | INFO | Closed position: 7974, PnL=-51
+2025-06-12 17:01:40 | INFO | Sell executed: 7974 100@6062, PnL: -51
+2025-06-12 17:01:40 | INFO | Progress: 34.5% (2020-09-30)
+2025-06-12 17:01:40 | WARNING | [DEBUG] 6098: 売却前 - position.total_shares=200, signal.shares=200
+2025-06-12 17:01:40 | INFO | Closed position: 6098, PnL=-1953
+2025-06-12 17:01:40 | INFO | Sell executed: 6098 200@4265, PnL: -1,953
+2025-06-12 17:01:40 | WARNING | [DEBUG] 9432: 売却前 - position.total_shares=16300, signal.shares=16300
+2025-06-12 17:01:40 | INFO | Closed position: 9432, PnL=11382
+2025-06-12 17:01:40 | INFO | Sell executed: 9432 16300@92, PnL: 11,382
+2025-06-12 17:01:40 | WARNING | [DEBUG] 4063: 売却前 - position.total_shares=400, signal.shares=400
+2025-06-12 17:01:40 | INFO | Closed position: 4063, PnL=1156
+2025-06-12 17:01:40 | INFO | Sell executed: 4063 400@2815, PnL: 1,156
+2025-06-12 17:01:40 | WARNING | [DEBUG] 9433: 売却前 - position.total_shares=1000, signal.shares=1000
+2025-06-12 17:01:40 | INFO | Closed position: 9433, PnL=10313
+2025-06-12 17:01:40 | INFO | Sell executed: 9433 1000@1392, PnL: 10,313
+2025-06-12 17:01:40 | WARNING | [DEBUG] 7203: 売却前 - position.total_shares=900, signal.shares=900
+2025-06-12 17:01:40 | INFO | Closed position: 7203, PnL=-41319
+2025-06-12 17:01:40 | INFO | Sell executed: 7203 900@1395, PnL: -41,319
+2025-06-12 17:01:40 | WARNING | [DEBUG] 8306: 売却前 - position.total_shares=3300, signal.shares=3300
+2025-06-12 17:01:40 | INFO | Closed position: 8306, PnL=-74978
+2025-06-12 17:01:40 | INFO | Sell executed: 8306 3300@423, PnL: -74,978
+2025-06-12 17:01:40 | INFO | Progress: 36.1% (2020-10-28)
+2025-06-12 17:01:40 | INFO | Progress: 37.7% (2020-11-27)
+2025-06-12 17:01:40 | INFO | Progress: 39.4% (2020-12-25)
+2025-06-12 17:01:40 | INFO | Progress: 41.0% (2021-01-27)
+2025-06-12 17:01:41 | INFO | Progress: 42.7% (2021-02-26)
+2025-06-12 17:01:41 | INFO | Progress: 44.3% (2021-03-26)
+2025-06-12 17:01:41 | INFO | Opened position: 7203, shares=500, price=1701.465
+2025-06-12 17:01:41 | INFO | Buy executed: 7203 500@1701, cash remaining: 8,437,023
+2025-06-12 17:01:41 | INFO | Opened position: 6758, shares=400, price=2338.6349999999998
+2025-06-12 17:01:41 | INFO | Buy executed: 6758 400@2339, cash remaining: 7,501,019
+2025-06-12 17:01:41 | INFO | Opened position: 9432, shares=8300, price=120.3990030670166
+2025-06-12 17:01:41 | INFO | Buy executed: 9432 8300@120, cash remaining: 6,501,157
+2025-06-12 17:01:41 | INFO | Opened position: 8306, shares=1600, price=621.5925
+2025-06-12 17:01:41 | INFO | Buy executed: 8306 1600@622, cash remaining: 5,506,059
+2025-06-12 17:01:41 | INFO | Opened position: 9433, shares=500, price=1812.0149999999999
+2025-06-12 17:01:41 | INFO | Buy executed: 9433 500@1812, cash remaining: 4,599,501
+2025-06-12 17:01:41 | INFO | Opened position: 4063, shares=200, price=3831.0599999999995
+2025-06-12 17:01:41 | INFO | Buy executed: 4063 200@3831, cash remaining: 3,832,739
+2025-06-12 17:01:41 | INFO | Opened position: 9984, shares=100, price=9125.4
+2025-06-12 17:01:41 | INFO | Buy executed: 9984 100@9125, cash remaining: 2,919,649
+2025-06-12 17:01:41 | INFO | Opened position: 6098, shares=100, price=5358.66
+2025-06-12 17:01:41 | INFO | Buy executed: 6098 100@5359, cash remaining: 2,383,233
+2025-06-12 17:01:41 | INFO | Opened position: 7974, shares=100, price=6497.324999999999
+2025-06-12 17:01:41 | INFO | Buy executed: 7974 100@6497, cash remaining: 1,732,951
+2025-06-12 17:01:41 | INFO | Added to position: 7203, shares=200, price=1675.7448244628906
+2025-06-12 17:01:41 | INFO | Buy executed: 7203 200@1676, cash remaining: 1,397,252
+2025-06-12 17:01:41 | INFO | Added to position: 6758, shares=200, price=2303.598
+2025-06-12 17:01:41 | INFO | Buy executed: 6758 200@2304, cash remaining: 935,982
+2025-06-12 17:01:41 | INFO | Added to position: 9432, shares=4200, price=118.43639694213867
+2025-06-12 17:01:41 | INFO | Buy executed: 9432 4200@118, cash remaining: 438,000
+2025-06-12 17:01:41 | WARNING | Insufficient cash for 8306: required=493935, available=438000
+2025-06-12 17:01:41 | INFO | Added to position: 9433, shares=200, price=1750.494
+2025-06-12 17:01:41 | INFO | Buy executed: 9433 200@1750, cash remaining: 87,351
+2025-06-12 17:01:41 | WARNING | Insufficient cash for 4063: required=380108, available=87351
+2025-06-12 17:01:41 | WARNING | [DEBUG] 9984: 売却前 - position.total_shares=100, signal.shares=100
+2025-06-12 17:01:41 | INFO | Closed position: 9984, PnL=-2126
+2025-06-12 17:01:41 | INFO | Sell executed: 9984 100@9126, PnL: -2,126
+2025-06-12 17:01:41 | WARNING | [DEBUG] 7203: 売却前 - position.total_shares=700, signal.shares=700
+2025-06-12 17:01:41 | INFO | Closed position: 7203, PnL=10807
+2025-06-12 17:01:41 | INFO | Sell executed: 7203 700@1715, PnL: 10,807
+2025-06-12 17:01:41 | WARNING | [DEBUG] 6098: 売却前 - position.total_shares=100, signal.shares=100
+2025-06-12 17:01:41 | INFO | Closed position: 6098, PnL=-666
+2025-06-12 17:01:41 | INFO | Sell executed: 6098 100@5374, PnL: -666
+2025-06-12 17:01:41 | WARNING | [DEBUG] 6758: 売却前 - position.total_shares=600, signal.shares=600
+2025-06-12 17:01:41 | INFO | Closed position: 6758, PnL=-4704
+2025-06-12 17:01:41 | INFO | Sell executed: 6758 600@2325, PnL: -4,704
+2025-06-12 17:01:41 | WARNING | [DEBUG] 4063: 売却前 - position.total_shares=200, signal.shares=200
+2025-06-12 17:01:41 | INFO | Closed position: 4063, PnL=-3545
+2025-06-12 17:01:41 | INFO | Sell executed: 4063 200@3824, PnL: -3,545
+2025-06-12 17:01:41 | WARNING | [DEBUG] 7974: 売却前 - position.total_shares=100, signal.shares=100
+2025-06-12 17:01:41 | INFO | Closed position: 7974, PnL=-5628
+2025-06-12 17:01:41 | INFO | Sell executed: 7974 100@6463, PnL: -5,628
+2025-06-12 17:01:41 | INFO | Progress: 45.9% (2021-04-23)
+2025-06-12 17:01:41 | WARNING | [DEBUG] 9432: 売却前 - position.total_shares=12500, signal.shares=12500
+2025-06-12 17:01:41 | INFO | Closed position: 9432, PnL=-113998
+2025-06-12 17:01:41 | INFO | Sell executed: 9432 12500@111, PnL: -113,998
+2025-06-12 17:01:41 | WARNING | [DEBUG] 8306: 売却前 - position.total_shares=1600, signal.shares=1600
+2025-06-12 17:01:41 | INFO | Closed position: 8306, PnL=-82580
+2025-06-12 17:01:41 | INFO | Sell executed: 8306 1600@571, PnL: -82,580
+2025-06-12 17:01:41 | WARNING | [DEBUG] 9433: 売却前 - position.total_shares=700, signal.shares=700
+2025-06-12 17:01:41 | INFO | Closed position: 9433, PnL=-100604
+2025-06-12 17:01:41 | INFO | Sell executed: 9433 700@1656, PnL: -100,604
+2025-06-12 17:01:41 | INFO | Progress: 47.6% (2021-05-27)
+2025-06-12 17:01:41 | INFO | Progress: 49.2% (2021-06-24)
+2025-06-12 17:01:41 | INFO | Progress: 50.9% (2021-07-26)
+2025-06-12 17:01:41 | INFO | Progress: 52.5% (2021-08-24)
+2025-06-12 17:01:41 | INFO | Progress: 54.1% (2021-09-22)
+2025-06-12 17:01:41 | INFO | Opened position: 7203, shares=400, price=2087.3849999999998
+2025-06-12 17:01:41 | INFO | Buy executed: 7203 400@2087, cash remaining: 8,162,484
+2025-06-12 17:01:41 | INFO | Opened position: 9432, shares=7700, price=128.96160736083982
+2025-06-12 17:01:41 | INFO | Buy executed: 9432 7700@129, cash remaining: 7,168,930
+2025-06-12 17:01:41 | INFO | Opened position: 8306, shares=1400, price=692.1435122680664
+2025-06-12 17:01:41 | INFO | Buy executed: 8306 1400@692, cash remaining: 6,199,379
+2025-06-12 17:01:41 | INFO | Opened position: 4063, shares=200, price=4029.0449999999996
+2025-06-12 17:01:41 | INFO | Buy executed: 4063 200@4029, cash remaining: 5,393,020
+2025-06-12 17:01:41 | INFO | Opened position: 9984, shares=100, price=6815.909999999999
+2025-06-12 17:01:41 | INFO | Buy executed: 9984 100@6816, cash remaining: 4,710,879
+2025-06-12 17:01:41 | INFO | Opened position: 6098, shares=100, price=7109.369999999999
+2025-06-12 17:01:41 | INFO | Buy executed: 6098 100@7109, cash remaining: 3,999,392
+2025-06-12 17:01:41 | INFO | Opened position: 7974, shares=100, price=5369.714999999999
+2025-06-12 17:01:41 | INFO | Buy executed: 7974 100@5370, cash remaining: 3,461,871
+2025-06-12 17:01:41 | INFO | Added to position: 7203, shares=200, price=2077.146
+2025-06-12 17:01:41 | INFO | Buy executed: 7203 200@2077, cash remaining: 3,045,891
+2025-06-12 17:01:41 | INFO | Added to position: 9432, shares=3900, price=125.04960305786133
+2025-06-12 17:01:41 | INFO | Buy executed: 9432 3900@125, cash remaining: 2,557,648
+2025-06-12 17:01:41 | INFO | Added to position: 8306, shares=700, price=672.7428244628907
+2025-06-12 17:01:41 | INFO | Buy executed: 8306 700@673, cash remaining: 2,086,178
+2025-06-12 17:01:41 | INFO | Added to position: 4063, shares=100, price=3883.752
+2025-06-12 17:01:41 | INFO | Buy executed: 4063 100@3884, cash remaining: 1,697,253
+2025-06-12 17:01:41 | WARNING | [DEBUG] 7974: 売却前 - position.total_shares=100, signal.shares=100
+2025-06-12 17:01:41 | INFO | Closed position: 7974, PnL=1213
+2025-06-12 17:01:41 | INFO | Sell executed: 7974 100@5404, PnL: 1,213
+2025-06-12 17:01:41 | WARNING | [DEBUG] 9984: 売却前 - position.total_shares=100, signal.shares=100
+2025-06-12 17:01:41 | INFO | Closed position: 9984, PnL=-82296
+2025-06-12 17:01:41 | INFO | Sell executed: 9984 100@6015, PnL: -82,296
+2025-06-12 17:01:41 | WARNING | [DEBUG] 7203: 売却前 - position.total_shares=600, signal.shares=600
+2025-06-12 17:01:41 | INFO | Closed position: 7203, PnL=-152003
+2025-06-12 17:01:41 | INFO | Sell executed: 7203 600@1836, PnL: -152,003
+2025-06-12 17:01:41 | WARNING | [DEBUG] 6098: 売却前 - position.total_shares=100, signal.shares=100
+2025-06-12 17:01:41 | INFO | Closed position: 6098, PnL=1231
+2025-06-12 17:01:41 | INFO | Sell executed: 6098 100@7144, PnL: 1,231
+2025-06-12 17:01:41 | INFO | Progress: 55.8% (2021-10-21)
+2025-06-12 17:01:41 | WARNING | [DEBUG] 9432: 売却前 - position.total_shares=11600, signal.shares=11600
+2025-06-12 17:01:41 | INFO | Closed position: 9432, PnL=28294
+2025-06-12 17:01:41 | INFO | Sell executed: 9432 11600@130, PnL: 28,294
+2025-06-12 17:01:41 | WARNING | [DEBUG] 8306: 売却前 - position.total_shares=2100, signal.shares=2100
+2025-06-12 17:01:41 | INFO | Closed position: 8306, PnL=-101866
+2025-06-12 17:01:41 | INFO | Sell executed: 8306 2100@639, PnL: -101,866
+2025-06-12 17:01:41 | WARNING | [DEBUG] 4063: 売却前 - position.total_shares=300, signal.shares=300
+2025-06-12 17:01:41 | INFO | Closed position: 4063, PnL=-31205
+2025-06-12 17:01:41 | INFO | Sell executed: 4063 300@3888, PnL: -31,205
+2025-06-12 17:01:41 | INFO | Progress: 57.4% (2021-11-19)
+2025-06-12 17:01:41 | INFO | Progress: 59.1% (2021-12-20)
+2025-06-12 17:01:41 | INFO | Progress: 60.7% (2022-01-20)
+2025-06-12 17:01:41 | INFO | Progress: 62.3% (2022-02-18)
+2025-06-12 17:01:41 | INFO | Progress: 64.0% (2022-03-22)
+2025-06-12 17:01:41 | INFO | Opened position: 7203, shares=400, price=2272.305
+2025-06-12 17:01:41 | INFO | Buy executed: 7203 400@2272, cash remaining: 7,762,402
+2025-06-12 17:01:41 | INFO | Opened position: 6758, shares=300, price=2602.95
+2025-06-12 17:01:41 | INFO | Buy executed: 6758 300@2603, cash remaining: 6,980,967
+2025-06-12 17:01:41 | INFO | Opened position: 9432, shares=6800, price=147.4937944793701
+2025-06-12 17:01:41 | INFO | Buy executed: 9432 6800@147, cash remaining: 5,977,458
+2025-06-12 17:01:41 | INFO | Opened position: 8306, shares=1200, price=799.7789877319335
+2025-06-12 17:01:41 | INFO | Buy executed: 8306 1200@800, cash remaining: 5,017,173
+2025-06-12 17:01:41 | INFO | Opened position: 9433, shares=400, price=2085.8774999999996
+2025-06-12 17:01:41 | INFO | Buy executed: 9433 400@2086, cash remaining: 4,182,272
+2025-06-12 17:01:41 | INFO | Opened position: 4063, shares=200, price=3817.9949999999994
+2025-06-12 17:01:41 | INFO | Buy executed: 4063 200@3818, cash remaining: 3,418,123
+2025-06-12 17:01:41 | INFO | Opened position: 9984, shares=100, price=5531.5199999999995
+2025-06-12 17:01:41 | INFO | Buy executed: 9984 100@5532, cash remaining: 2,864,421
+2025-06-12 17:01:41 | INFO | Opened position: 6098, shares=100, price=5561.669999999999
+2025-06-12 17:01:41 | INFO | Buy executed: 6098 100@5562, cash remaining: 2,307,704
+2025-06-12 17:01:41 | INFO | Opened position: 7974, shares=100, price=6732.494999999999
+2025-06-12 17:01:41 | INFO | Buy executed: 7974 100@6732, cash remaining: 1,633,905
+2025-06-12 17:01:41 | INFO | Added to position: 7203, shares=200, price=2222.937
+2025-06-12 17:01:41 | INFO | Buy executed: 7203 200@2223, cash remaining: 1,188,767
+2025-06-12 17:01:41 | INFO | Added to position: 6758, shares=100, price=2592.174
+2025-06-12 17:01:41 | INFO | Buy executed: 6758 100@2592, cash remaining: 929,000
+2025-06-12 17:01:41 | INFO | Added to position: 9432, shares=3500, price=143.40623510742188
+2025-06-12 17:01:41 | INFO | Buy executed: 9432 3500@143, cash remaining: 426,528
+2025-06-12 17:01:41 | WARNING | Insufficient cash for 8306: required=466961, available=426528
+2025-06-12 17:01:41 | INFO | Added to position: 9433, shares=200, price=1993.98
+2025-06-12 17:01:41 | INFO | Buy executed: 9433 200@1994, cash remaining: 27,182
+2025-06-12 17:01:41 | WARNING | Insufficient cash for 4063: required=377402, available=27182
+2025-06-12 17:01:41 | WARNING | [DEBUG] 9984: 売却前 - position.total_shares=100, signal.shares=100
+2025-06-12 17:01:41 | INFO | Closed position: 9984, PnL=5032
+2025-06-12 17:01:41 | INFO | Sell executed: 9984 100@5604, PnL: 5,032
+2025-06-12 17:01:41 | WARNING | [DEBUG] 6098: 売却前 - position.total_shares=100, signal.shares=100
+2025-06-12 17:01:41 | INFO | Closed position: 6098, PnL=1321
+2025-06-12 17:01:41 | INFO | Sell executed: 6098 100@5597, PnL: 1,321
+2025-06-12 17:01:41 | WARNING | [DEBUG] 9432: 売却前 - position.total_shares=10300, signal.shares=10300
+2025-06-12 17:01:41 | INFO | Closed position: 9432, PnL=37238
+2025-06-12 17:01:41 | INFO | Sell executed: 9432 10300@150, PnL: 37,238
+2025-06-12 17:01:41 | WARNING | [DEBUG] 6758: 売却前 - position.total_shares=400, signal.shares=400
+2025-06-12 17:01:41 | INFO | Closed position: 6758, PnL=-132827
+2025-06-12 17:01:41 | INFO | Sell executed: 6758 400@2276, PnL: -132,827
+2025-06-12 17:01:41 | WARNING | [DEBUG] 9433: 売却前 - position.total_shares=600, signal.shares=600
+2025-06-12 17:01:41 | INFO | Closed position: 9433, PnL=7591
+2025-06-12 17:01:41 | INFO | Sell executed: 9433 600@2074, PnL: 7,591
+2025-06-12 17:01:41 | WARNING | [DEBUG] 4063: 売却前 - position.total_shares=200, signal.shares=200
+2025-06-12 17:01:41 | INFO | Closed position: 4063, PnL=-81171
+2025-06-12 17:01:41 | INFO | Sell executed: 4063 200@3423, PnL: -81,171
+2025-06-12 17:01:41 | INFO | Progress: 65.6% (2022-04-19)
+2025-06-12 17:01:41 | WARNING | [DEBUG] 7203: 売却前 - position.total_shares=600, signal.shares=600
+2025-06-12 17:01:41 | INFO | Closed position: 7203, PnL=-51761
+2025-06-12 17:01:41 | INFO | Sell executed: 7203 600@2176, PnL: -51,761
+2025-06-12 17:01:41 | WARNING | [DEBUG] 8306: 売却前 - position.total_shares=1200, signal.shares=1200
+2025-06-12 17:01:41 | INFO | Closed position: 8306, PnL=-70681
+2025-06-12 17:01:41 | INFO | Sell executed: 8306 1200@743, PnL: -70,681
+2025-06-12 17:01:41 | WARNING | [DEBUG] 7974: 売却前 - position.total_shares=100, signal.shares=100
+2025-06-12 17:01:41 | INFO | Closed position: 7974, PnL=-62677
+2025-06-12 17:01:41 | INFO | Sell executed: 7974 100@6128, PnL: -62,677
+2025-06-12 17:01:41 | INFO | Progress: 67.3% (2022-05-23)
+2025-06-12 17:01:41 | INFO | Progress: 68.9% (2022-06-20)
+2025-06-12 17:01:42 | INFO | Progress: 70.5% (2022-07-19)
+2025-06-12 17:01:42 | INFO | Progress: 72.2% (2022-08-17)
+2025-06-12 17:01:42 | INFO | Progress: 73.8% (2022-09-14)
+2025-06-12 17:01:42 | INFO | Opened position: 7203, shares=500, price=1963.2674999999997
+2025-06-12 17:01:42 | INFO | Buy executed: 7203 500@1963, cash remaining: 7,354,458
+2025-06-12 17:01:42 | INFO | Opened position: 6758, shares=500, price=1921.7609509277343
+2025-06-12 17:01:42 | INFO | Buy executed: 6758 500@1922, cash remaining: 6,393,028
+2025-06-12 17:01:42 | INFO | Opened position: 9432, shares=6400, price=154.64940490722654
+2025-06-12 17:01:42 | INFO | Buy executed: 9432 6400@155, cash remaining: 5,402,722
+2025-06-12 17:01:42 | INFO | Opened position: 8306, shares=1400, price=686.6160122680664
+2025-06-12 17:01:42 | INFO | Buy executed: 8306 1400@687, cash remaining: 4,440,909
+2025-06-12 17:01:42 | INFO | Opened position: 4063, shares=300, price=2953.6949999999997
+2025-06-12 17:01:42 | INFO | Buy executed: 4063 300@2954, cash remaining: 3,554,251
+2025-06-12 17:01:42 | INFO | Opened position: 9984, shares=200, price=4962.69
+2025-06-12 17:01:42 | INFO | Buy executed: 9984 200@4963, cash remaining: 2,561,163
+2025-06-12 17:01:42 | INFO | Opened position: 6098, shares=200, price=4175.775
+2025-06-12 17:01:42 | INFO | Buy executed: 6098 200@4176, cash remaining: 1,725,458
+2025-06-12 17:01:42 | INFO | Opened position: 7974, shares=100, price=5999.849999999999
+2025-06-12 17:01:42 | INFO | Buy executed: 7974 100@6000, cash remaining: 1,124,923
+2025-06-12 17:01:42 | WARNING | [DEBUG] 9432: 売却前 - position.total_shares=6400, signal.shares=6400
+2025-06-12 17:01:42 | INFO | Closed position: 9432, PnL=7565
+2025-06-12 17:01:42 | INFO | Sell executed: 9432 6400@156, PnL: 7,565
+2025-06-12 17:01:42 | INFO | Added to position: 8306, shares=700, price=670.6385877685547
+2025-06-12 17:01:42 | INFO | Buy executed: 8306 700@671, cash remaining: 1,653,897
+2025-06-12 17:01:42 | INFO | Added to position: 4063, shares=100, price=2924.838
+2025-06-12 17:01:42 | INFO | Buy executed: 4063 100@2925, cash remaining: 1,360,863
+2025-06-12 17:01:42 | WARNING | [DEBUG] 9984: 売却前 - position.total_shares=200, signal.shares=200
+2025-06-12 17:01:42 | INFO | Closed position: 9984, PnL=6430
+2025-06-12 17:01:42 | INFO | Sell executed: 9984 200@5006, PnL: 6,430
+2025-06-12 17:01:42 | WARNING | [DEBUG] 6098: 売却前 - position.total_shares=200, signal.shares=200
+2025-06-12 17:01:42 | INFO | Closed position: 6098, PnL=-361
+2025-06-12 17:01:42 | INFO | Sell executed: 6098 200@4185, PnL: -361
+2025-06-12 17:01:42 | WARNING | [DEBUG] 7974: 売却前 - position.total_shares=100, signal.shares=100
+2025-06-12 17:01:42 | INFO | Closed position: 7974, PnL=-906
+2025-06-12 17:01:42 | INFO | Sell executed: 7974 100@6013, PnL: -906
+2025-06-12 17:01:42 | WARNING | [DEBUG] 4063: 売却前 - position.total_shares=400, signal.shares=400
+2025-06-12 17:01:42 | INFO | Closed position: 4063, PnL=11503
+2025-06-12 17:01:42 | INFO | Sell executed: 4063 400@2984, PnL: 11,503
+2025-06-12 17:01:42 | WARNING | [DEBUG] 7203: 売却前 - position.total_shares=500, signal.shares=500
+2025-06-12 17:01:42 | INFO | Closed position: 7203, PnL=16162
+2025-06-12 17:01:42 | INFO | Sell executed: 7203 500@2000, PnL: 16,162
+2025-06-12 17:01:42 | WARNING | [DEBUG] 6758: 売却前 - position.total_shares=500, signal.shares=500
+2025-06-12 17:01:42 | INFO | Closed position: 6758, PnL=9870
+2025-06-12 17:01:42 | INFO | Sell executed: 6758 500@1946, PnL: 9,870
+2025-06-12 17:01:42 | INFO | Progress: 75.5% (2022-10-17)
+2025-06-12 17:01:42 | WARNING | [DEBUG] 8306: 売却前 - position.total_shares=2100, signal.shares=2100
+2025-06-12 17:01:42 | INFO | Closed position: 8306, PnL=8880
+2025-06-12 17:01:42 | INFO | Sell executed: 8306 2100@687, PnL: 8,880
+2025-06-12 17:01:42 | INFO | Progress: 77.1% (2022-11-15)
+2025-06-12 17:01:42 | INFO | Progress: 78.8% (2022-12-14)
+2025-06-12 17:01:42 | INFO | Progress: 80.4% (2023-01-16)
+2025-06-12 17:01:42 | INFO | Progress: 82.0% (2023-02-13)
+2025-06-12 17:01:42 | INFO | Progress: 83.7% (2023-03-14)
+2025-06-12 17:01:42 | INFO | Opened position: 7203, shares=500, price=1861.2599999999998
+2025-06-12 17:01:42 | INFO | Buy executed: 7203 500@1861, cash remaining: 7,474,856
+2025-06-12 17:01:42 | INFO | Opened position: 6758, shares=400, price=2310.495
+2025-06-12 17:01:42 | INFO | Buy executed: 6758 400@2310, cash remaining: 6,550,108
+2025-06-12 17:01:42 | INFO | Opened position: 9432, shares=6100, price=162.68940490722653
+2025-06-12 17:01:42 | INFO | Buy executed: 9432 6100@163, cash remaining: 5,557,152
+2025-06-12 17:01:42 | INFO | Opened position: 8306, shares=1100, price=848.2199999999999
+2025-06-12 17:01:42 | INFO | Buy executed: 8306 1100@848, cash remaining: 4,623,560
+2025-06-12 17:01:42 | INFO | Opened position: 9984, shares=100, price=5215.95
+2025-06-12 17:01:42 | INFO | Buy executed: 9984 100@5216, cash remaining: 4,101,415
+2025-06-12 17:01:42 | INFO | Opened position: 6098, shares=200, price=3708.45
+2025-06-12 17:01:42 | INFO | Buy executed: 6098 200@3708, cash remaining: 3,359,175
+2025-06-12 17:01:42 | INFO | Opened position: 7974, shares=100, price=5204.8949999999995
+2025-06-12 17:01:42 | INFO | Buy executed: 7974 100@5205, cash remaining: 2,838,136
+2025-06-12 17:01:42 | INFO | Added to position: 7203, shares=200, price=1845.684
+2025-06-12 17:01:42 | INFO | Buy executed: 7203 200@1846, cash remaining: 2,468,449
+2025-06-12 17:01:42 | WARNING | [DEBUG] 6758: 売却前 - position.total_shares=400, signal.shares=400
+2025-06-12 17:01:42 | INFO | Closed position: 6758, PnL=7708
+2025-06-12 17:01:42 | INFO | Sell executed: 6758 400@2335, PnL: 7,708
+2025-06-12 17:01:42 | INFO | Added to position: 9432, shares=3100, price=159.35807327270507
+2025-06-12 17:01:42 | INFO | Buy executed: 9432 3100@159, cash remaining: 2,907,445
+2025-06-12 17:01:42 | INFO | Added to position: 8306, shares=500, price=829.155
+2025-06-12 17:01:42 | INFO | Buy executed: 8306 500@829, cash remaining: 2,492,317
+2025-06-12 17:01:42 | INFO | Added to position: 6098, shares=100, price=3619.224
+2025-06-12 17:01:42 | INFO | Buy executed: 6098 100@3619, cash remaining: 2,129,845
+2025-06-12 17:01:42 | WARNING | [DEBUG] 7203: 売却前 - position.total_shares=700, signal.shares=700
+2025-06-12 17:01:42 | INFO | Closed position: 7203, PnL=6013
+2025-06-12 17:01:42 | INFO | Sell executed: 7203 700@1871, PnL: 6,013
+2025-06-12 17:01:42 | WARNING | [DEBUG] 8306: 売却前 - position.total_shares=1600, signal.shares=1600
+2025-06-12 17:01:42 | INFO | Closed position: 8306, PnL=-1448
+2025-06-12 17:01:42 | INFO | Sell executed: 8306 1600@844, PnL: -1,448
+2025-06-12 17:01:42 | WARNING | [DEBUG] 9984: 売却前 - position.total_shares=100, signal.shares=100
+2025-06-12 17:01:42 | INFO | Closed position: 9984, PnL=-3039
+2025-06-12 17:01:42 | INFO | Sell executed: 9984 100@5208, PnL: -3,039
+2025-06-12 17:01:42 | WARNING | [DEBUG] 6098: 売却前 - position.total_shares=300, signal.shares=300
+2025-06-12 17:01:42 | INFO | Closed position: 6098, PnL=10618
+2025-06-12 17:01:42 | INFO | Sell executed: 6098 300@3726, PnL: 10,618
+2025-06-12 17:01:42 | WARNING | [DEBUG] 7974: 売却前 - position.total_shares=100, signal.shares=100
+2025-06-12 17:01:42 | INFO | Closed position: 7974, PnL=17428
+2025-06-12 17:01:42 | INFO | Sell executed: 7974 100@5401, PnL: 17,428
+2025-06-12 17:01:42 | INFO | Progress: 85.3% (2023-04-12)
+2025-06-12 17:01:42 | WARNING | [DEBUG] 9432: 売却前 - position.total_shares=9200, signal.shares=9200
+2025-06-12 17:01:42 | INFO | Closed position: 9432, PnL=-2832
+2025-06-12 17:01:42 | INFO | Sell executed: 9432 9200@162, PnL: -2,832
+2025-06-12 17:01:42 | INFO | Progress: 87.0% (2023-05-15)
+2025-06-12 17:01:42 | INFO | Progress: 88.6% (2023-06-12)
+2025-06-12 17:01:42 | INFO | Progress: 90.2% (2023-07-10)
+2025-06-12 17:01:42 | INFO | Progress: 91.9% (2023-08-08)
+2025-06-12 17:01:42 | INFO | Progress: 93.5% (2023-09-06)
+2025-06-12 17:01:42 | INFO | Opened position: 7203, shares=300, price=2761.74
+2025-06-12 17:01:42 | INFO | Buy executed: 7203 300@2762, cash remaining: 7,622,008
+2025-06-12 17:01:42 | INFO | Opened position: 6758, shares=400, price=2493.4049999999997
+2025-06-12 17:01:42 | INFO | Buy executed: 6758 400@2493, cash remaining: 6,624,096
+2025-06-12 17:01:42 | INFO | Opened position: 9432, shares=5400, price=184.1159969329834
+2025-06-12 17:01:42 | INFO | Buy executed: 9432 5400@184, cash remaining: 5,629,320
+2025-06-12 17:01:42 | INFO | Opened position: 8306, shares=700, price=1319.5649999999998
+2025-06-12 17:01:42 | INFO | Buy executed: 8306 700@1320, cash remaining: 4,705,074
+2025-06-12 17:01:42 | INFO | Opened position: 9433, shares=400, price=2362.2524999999996
+2025-06-12 17:01:42 | INFO | Buy executed: 9433 400@2362, cash remaining: 3,759,623
+2025-06-12 17:01:42 | INFO | Opened position: 4063, shares=200, price=4493.355
+2025-06-12 17:01:42 | INFO | Buy executed: 4063 200@4493, cash remaining: 2,860,402
+2025-06-12 17:01:42 | INFO | Opened position: 9984, shares=100, price=6451.094999999999
+2025-06-12 17:01:42 | INFO | Buy executed: 9984 100@6451, cash remaining: 2,214,743
+2025-06-12 17:01:42 | INFO | Opened position: 6098, shares=200, price=4746.615
+2025-06-12 17:01:42 | INFO | Buy executed: 6098 200@4747, cash remaining: 1,264,870
+2025-06-12 17:01:42 | INFO | Opened position: 7974, shares=100, price=6256.124999999999
+2025-06-12 17:01:42 | INFO | Buy executed: 7974 100@6256, cash remaining: 638,707
+2025-06-12 17:01:42 | INFO | Added to position: 7203, shares=100, price=2711.412
+2025-06-12 17:01:42 | INFO | Buy executed: 7203 100@2711, cash remaining: 367,016
+2025-06-12 17:01:42 | WARNING | Insufficient cash for 6758: required=490528, available=367016
+2025-06-12 17:01:42 | WARNING | Insufficient cash for 9432: required=485087, available=367016
+2025-06-12 17:01:42 | WARNING | Insufficient cash for 8306: required=390578, available=367016
+2025-06-12 17:01:42 | WARNING | Insufficient cash for 9433: required=459165, available=367016
+2025-06-12 17:01:42 | WARNING | Insufficient cash for 4063: required=433314, available=367016
+2025-06-12 17:01:42 | WARNING | Insufficient cash for 6098: required=460769, available=367016
+2025-06-12 17:01:42 | WARNING | [DEBUG] 7974: 売却前 - position.total_shares=100, signal.shares=100
+2025-06-12 17:01:42 | INFO | Closed position: 7974, PnL=-7927
+2025-06-12 17:01:42 | INFO | Sell executed: 7974 100@6199, PnL: -7,927
+2025-06-12 17:01:42 | INFO | Progress: 95.2% (2023-10-05)
+2025-06-12 17:01:42 | WARNING | [DEBUG] 6758: 売却前 - position.total_shares=400, signal.shares=400
+2025-06-12 17:01:42 | INFO | Closed position: 6758, PnL=6814
+2025-06-12 17:01:42 | INFO | Sell executed: 6758 400@2516, PnL: 6,814
+2025-06-12 17:01:42 | WARNING | [DEBUG] 9984: 売却前 - position.total_shares=100, signal.shares=100
+2025-06-12 17:01:42 | INFO | Closed position: 9984, PnL=-3001
+2025-06-12 17:01:42 | INFO | Sell executed: 9984 100@6443, PnL: -3,001
+2025-06-12 17:01:42 | WARNING | [DEBUG] 4063: 売却前 - position.total_shares=200, signal.shares=200
+2025-06-12 17:01:42 | INFO | Closed position: 4063, PnL=-1074
+2025-06-12 17:01:42 | INFO | Sell executed: 4063 200@4499, PnL: -1,074
+2025-06-12 17:01:42 | WARNING | [DEBUG] 6098: 売却前 - position.total_shares=200, signal.shares=200
+2025-06-12 17:01:42 | INFO | Closed position: 6098, PnL=-4421
+2025-06-12 17:01:42 | INFO | Sell executed: 6098 200@4736, PnL: -4,421
+2025-06-12 17:01:42 | WARNING | [DEBUG] 7203: 売却前 - position.total_shares=400, signal.shares=400
+2025-06-12 17:01:42 | INFO | Closed position: 7203, PnL=-67278
+2025-06-12 17:01:42 | INFO | Sell executed: 7203 400@2589, PnL: -67,278
+2025-06-12 17:01:42 | WARNING | [DEBUG] 9432: 売却前 - position.total_shares=5400, signal.shares=5400
+2025-06-12 17:01:42 | INFO | Closed position: 9432, PnL=-61400
+2025-06-12 17:01:42 | INFO | Sell executed: 9432 5400@173, PnL: -61,400
+2025-06-12 17:01:42 | WARNING | [DEBUG] 8306: 売却前 - position.total_shares=700, signal.shares=700
+2025-06-12 17:01:42 | INFO | Closed position: 8306, PnL=-69063
+2025-06-12 17:01:42 | INFO | Sell executed: 8306 700@1224, PnL: -69,063
+2025-06-12 17:01:42 | WARNING | [DEBUG] 9433: 売却前 - position.total_shares=400, signal.shares=400
+2025-06-12 17:01:42 | INFO | Closed position: 9433, PnL=-57683
+2025-06-12 17:01:42 | INFO | Sell executed: 9433 400@2224, PnL: -57,683
+2025-06-12 17:01:42 | INFO | Progress: 96.8% (2023-11-06)
+2025-06-12 17:01:42 | INFO | Progress: 98.4% (2023-12-05)
+2025-06-12 17:01:43 | INFO | Metrics saved to data\results\metrics_20250612_170143.json
+2025-06-12 17:01:43 | INFO | Trades saved to data\results\trades_20250612_170143.csv
+2025-06-12 17:01:43 | INFO | Portfolio history saved to data\results\portfolio_20250612_170143.csv
+2025-06-12 17:01:43 | INFO | Positions summary saved to data\results\positions_20250612_170143.csv
+2025-06-12 17:01:43 | INFO | Backtest completed
+2025-06-12 17:01:43 | INFO | Completed Backtest execution
+2025-06-12 17:01:43 | INFO | Text report saved to: data\results\backtest_report_20250612_170143.txt
+2025-06-12 17:01:43 | INFO | HTML report saved to: data\results\backtest_report_20250612_170143.html

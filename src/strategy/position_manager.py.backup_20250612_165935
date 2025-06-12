@@ -197,7 +197,7 @@ class PositionManager:
             status=PositionStatus.OPEN,
             entry_date=date,
             entry_price=price,
-            total_shares=0,  # add_tradeで追加されるため0で初期化
+            total_shares=shares,
             average_price=price
         )
         
