@@ -37,7 +37,8 @@ TOPIX500採用銘柄を対象とした配当取り戦略のバックテストシ
 - 配当税: 20.315%を適用
 
 ### 配当支払いタイミング
-- 権利確定日から2-3ヶ月後の実際の支払日をモデル化
+- 現在は簡略化版：権利落ち日に配当を即座に計上
+- 実際の支払日（権利確定日から2-3ヶ月後）のモデル化は今後実装予定
 
 ## インストール
 
@@ -52,7 +53,7 @@ cd yfinance_topix500_verification
 
 ### 2. Python環境の準備
 
-Python 3.8以上が必要です。
+Python 3.13以上が必要です。
 
 ```bash
 # 仮想環境の作成（推奨）
@@ -81,7 +82,7 @@ pip install -r requirements.txt
 
 ```bash
 # 3銘柄、1年間のクイックテスト
-python scripts/run_quick_test.py
+python scripts/test/run_quick_test.py
 ```
 
 ### キャッシュのクリア（重要）
@@ -118,7 +119,7 @@ TOPIX500の主要構成銘柄（約450銘柄）を対象とした本格的なバ
 
 ```bash
 # Python実行
-python run_topix500_backtest.py
+python scripts/run/run_topix500_backtest.py
 
 # Windows バッチファイル
 run_topix500_backtest.bat
@@ -157,9 +158,15 @@ strategy:
     position_size: 1_000_000   # 1銘柄あたりの投資額
     max_positions: 10          # 最大同時保有銘柄数
   
+  addition:
+    enabled: true              # 買い増し機能の有効/無効
+    add_ratio: 0.5             # 初期投資額の50%まで買い増し
+    add_on_drop: true          # 権利落ち日の下落時に買い増し
+  
   exit:
     max_holding_days: 20       # 最大保有期間（営業日）
     stop_loss_pct: 0.1         # 損切りライン（10%）
+    take_profit_on_window_fill: true  # 窓埋め達成で利益確定
 
 execution:
   slippage: 0.002              # スリッページ（0.2%）
@@ -191,7 +198,7 @@ yfinance_topix500_verification/
 │   └── utils/              # ユーティリティ
 ├── config/                 # 設定ファイル
 │   └── config.yaml         # メイン設定
-├── data/
+├── data/                   # データディレクトリ（初回実行時に自動作成）
 │   ├── cache/              # データキャッシュ
 │   └── results/            # バックテスト結果
 ├── docs/                   # ドキュメント
@@ -279,7 +286,7 @@ pytest tests/test_strategy.py
 del /s /q data\cache\*
 
 # 2. 未調整価格が使用されているか確認
-python scripts/verify_adjustments.py
+python scripts/test/verify_adjustments.py
 ```
 
 ### yfinanceのデータ取得エラー
