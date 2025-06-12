@@ -66,6 +66,22 @@ class DataManager:
         
         log.info("Data loading completed")
     
+    def get_price_data(self, ticker: str) -> Optional[pd.DataFrame]:
+        """
+        指定銘柄の全価格データを取得
+        
+        Args:
+            ticker: 銘柄コード
+            
+        Returns:
+            価格データ（データがない場合None）
+        """
+        if ticker not in self._price_data_cache:
+            log.warning(f"No price data cached for {ticker}")
+            return None
+        
+        return self._price_data_cache[ticker]
+    
     def get_price_on_date(self, 
                          ticker: str, 
                          date: datetime,
