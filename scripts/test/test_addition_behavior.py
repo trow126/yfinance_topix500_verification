@@ -6,7 +6,7 @@
 
 import sys
 from pathlib import Path
-sys.path.append(str(Path(__file__).parent))
+sys.path.append(str(Path(__file__).parent.parent.parent))
 
 from src.utils.config import load_config
 from src.strategy.dividend_strategy import DividendStrategy

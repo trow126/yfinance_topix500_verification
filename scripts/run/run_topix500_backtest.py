@@ -16,7 +16,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # プロジェクトルートをパスに追加
-project_root = Path(__file__).parent
+project_root = Path(__file__).parent.parent.parent
 sys.path.append(str(project_root))
 
 from main import run_backtest
@@ -162,8 +162,8 @@ def main():
         print("\nバックテストを開始します...")
         print("（進捗状況は ./logs/topix500_backtest.log で確認できます）")
         
-        config_path = "config/topix500_full_config.yaml"
-        output_dir = "./data/results/topix500_full"
+        config_path = str(project_root / "config" / "topix500_full_config.yaml")
+        output_dir = str(project_root / "data" / "results" / "topix500_full")
         
         # 出力ディレクトリ作成
         Path(output_dir).mkdir(parents=True, exist_ok=True)

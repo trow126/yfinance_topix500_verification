@@ -8,8 +8,8 @@
 import sys
 import os
 
-# プロジェクトルートをパスに追加（1つ上のディレクトリ）
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# プロジェクトルートをパスに追加
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from src.utils.config import load_config, Config
 from src.backtest.engine import BacktestEngine
