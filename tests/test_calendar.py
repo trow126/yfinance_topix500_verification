@@ -90,19 +90,33 @@ class TestDividendDateCalculator:
     
     def test_calculate_record_date(self):
         """権利確定日の計算"""
-        # 2023年3月29日（水）が権利落ち日の場合
-        ex_date = datetime(2023, 3, 29)
+        # 2023年3月30日（木）が権利落ち日の場合
+        ex_date = datetime(2023, 3, 30)
         record_date = DividendDateCalculator.calculate_record_date(ex_date)
-        # T+2ルールで2営業日後の3月31日（金）が権利確定日
+        # T+2決済では1営業日後の3月31日（金）が権利確定日
         assert record_date == datetime(2023, 3, 31)
-    
+
     def test_calculate_record_date_with_weekend(self):
         """週末を挟む権利確定日の計算"""
-        # 2023年6月29日（木）が権利落ち日の場合
-        ex_date = datetime(2023, 6, 29)
+        # 2023年6月30日（金）が権利落ち日の場合
+        ex_date = datetime(2023, 6, 30)
         record_date = DividendDateCalculator.calculate_record_date(ex_date)
-        # 6月30日（金）、7月3日（月）で2営業日後
+        # 週末を挟んで7月3日（月）が1営業日後
         assert record_date == datetime(2023, 7, 3)
+
+    def test_calculate_record_date_before_t2(self):
+        """T+2移行前（T+3決済）の権利確定日の計算"""
+        # 2019年3月27日（水）が権利落ち日の場合、2営業日後の3月29日（金）
+        record_date = DividendDateCalculator.calculate_record_date(datetime(2019, 3, 27))
+        assert record_date == datetime(2019, 3, 29)
+
+    def test_t2_transition(self):
+        """T+2移行期の権利落ち日（2019年7月）"""
+        # 7月15日は海の日
+        assert DividendDateCalculator.calculate_ex_dividend_date(datetime(2019, 7, 17)) == datetime(2019, 7, 12)
+        assert DividendDateCalculator.calculate_ex_dividend_date(datetime(2019, 7, 18)) == datetime(2019, 7, 17)
+        assert DividendDateCalculator.calculate_record_date(datetime(2019, 7, 12)) == datetime(2019, 7, 17)
+        assert DividendDateCalculator.calculate_record_date(datetime(2019, 7, 17)) == datetime(2019, 7, 18)
     
     def test_calculate_entry_date(self):
         """エントリー日の計算"""
@@ -117,5 +131,5 @@ class TestDividendDateCalculator:
         # 2023年3月31日（金）が権利確定日の場合
         record_date = datetime(2023, 3, 31)
         ex_date = DividendDateCalculator.calculate_ex_dividend_date(record_date)
-        # 2営業日前は3月29日（水）
-        assert ex_date == datetime(2023, 3, 29)
+        # T+2決済では1営業日前の3月30日（木）
+        assert ex_date == datetime(2023, 3, 30)

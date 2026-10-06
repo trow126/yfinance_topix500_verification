@@ -279,9 +279,12 @@ class Portfolio:
             profits = sum(p.realized_pnl for p in closed_positions if p.realized_pnl > 0)
             losses = abs(sum(p.realized_pnl for p in closed_positions if p.realized_pnl < 0))
             profit_factor = profits / losses if losses > 0 else float('inf')
+            # 平均保有期間（暦日、MetricsCalculatorと同じ定義）
+            avg_holding_days = float(np.mean([p.get_holding_days(p.exit_date) for p in closed_positions]))
         else:
             profit_factor = 0
-        
+            avg_holding_days = 0.0
+
         return {
             'total_return': total_return,
             'annualized_return': annualized_return,
@@ -293,6 +296,7 @@ class Portfolio:
             'total_trades': self.total_trades,
             'winning_trades': self.winning_trades,
             'losing_trades': self.losing_trades,
+            'avg_holding_days': avg_holding_days,
             'total_commission': self.total_commission,
             'total_dividend': self.total_dividend,
             'final_value': final_value

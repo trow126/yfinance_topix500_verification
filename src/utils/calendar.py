@@ -117,19 +117,28 @@ class BusinessDayCalculator:
 
 class DividendDateCalculator:
     """配当権利日計算クラス（既存コードから移植）"""
-    
+
+    # 受渡しがT+3からT+2に短縮された日（2019年7月16日約定分から）。
+    # 移行期は権利確定日 2019-07-17 の権利落ち日が 2019-07-12（旧ルール）、
+    # 2019-07-18 の権利落ち日が 2019-07-17（新ルール）。
+    T2_SETTLEMENT_START = datetime(2019, 7, 16)
+    T2_FIRST_RECORD_DATE = datetime(2019, 7, 18)
+
     @staticmethod
     def calculate_record_date(ex_dividend_date: datetime) -> datetime:
         """
-        権利落ち日から権利確定日を計算（T+2ルール）
-        
+        権利落ち日から権利確定日を計算
+
         Args:
             ex_dividend_date: 権利落ち日
-            
+
         Returns:
             権利確定日
         """
-        # T+2ルールで2営業日後が権利確定日
+        if ex_dividend_date >= DividendDateCalculator.T2_SETTLEMENT_START:
+            # T+2決済: 権利落ち日の1営業日後が権利確定日
+            return BusinessDayCalculator.add_business_days(ex_dividend_date, 1)
+        # T+3決済（2019年7月以前）: 2営業日後が権利確定日
         return BusinessDayCalculator.add_business_days(ex_dividend_date, 2)
     
     @staticmethod
@@ -157,7 +166,10 @@ class DividendDateCalculator:
         Returns:
             権利落ち日
         """
-        # 権利確定日の2営業日前が権利落ち日
+        if record_date >= DividendDateCalculator.T2_FIRST_RECORD_DATE:
+            # T+2決済: 権利確定日の1営業日前が権利落ち日
+            return BusinessDayCalculator.add_business_days(record_date, -1)
+        # T+3決済（2019年7月以前）: 2営業日前が権利落ち日
         return BusinessDayCalculator.add_business_days(record_date, -2)
 
 

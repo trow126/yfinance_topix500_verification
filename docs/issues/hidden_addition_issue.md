@@ -1,5 +1,7 @@
 # 権利落ち日の隠れた買い増し問題
 
+> **ステータス: 解決済み** — 修正は `src/backtest/engine.py` に反映済みです。以下で言及している `fix_hidden_addition.py` / `detect_hidden_addition.py` は削除済みです（git履歴から参照可能）。
+
 ## 問題の概要
 
 設定ファイルで買い増し機能を無効（`addition.enabled: false`）にしているにも関わらず、実際のバックテストでは権利落ち日に買い増しが実行されてしまう問題が発見されました。

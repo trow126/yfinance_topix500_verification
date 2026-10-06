@@ -102,8 +102,7 @@ def test_engine_addition_check():
     elif old_pattern in content:
         print("⚠️ engine.pyは未修正です")
         print("  買い増し設定のチェックが含まれていません")
-        print("\n  fix_hidden_addition.py を実行して修正してください：")
-        print("  python fix_hidden_addition.py")
+        print("\n  docs/issues/hidden_addition_issue.md の手動修正を参照してください")
     else:
         print("？ engine.pyの買い増し処理が見つかりません")
         print("  コードが変更されている可能性があります")

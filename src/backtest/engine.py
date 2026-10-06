@@ -106,15 +106,16 @@ class BacktestEngine:
         # 現在の価格を取得
         current_prices = self._get_current_prices(current_date)
         
-        # 1. 既存ポジションの処理
-        self._process_existing_positions(current_date, current_prices)
-        
-        # 2. 新規エントリーのチェック
-        self._check_new_entries(current_date, current_prices)
-        
-        # 3. 配当処理
+        # 1. 配当処理
+        # 権利は前営業日の保有分に付くため、当日の決済・買い増しより先に計上する
         self._process_dividends(current_date)
-        
+
+        # 2. 既存ポジションの処理
+        self._process_existing_positions(current_date, current_prices)
+
+        # 3. 新規エントリーのチェック
+        self._check_new_entries(current_date, current_prices)
+
         # 4. ポートフォリオ評価
         evaluation = self.portfolio.mark_to_market(current_date, current_prices)
         self.daily_stats.append(evaluation)
@@ -325,13 +326,6 @@ class BacktestEngine:
         # 権利落ち日前後かチェック（ポジション情報から取得）
         is_around_ex_date = False
         position = self.portfolio.position_manager.get_position(signal.ticker)
-        # デバッグ: 売却前の株数を確認
-        position = self.portfolio.position_manager.get_position(signal.ticker)
-        if position:
-            log.warning(f"[DEBUG] {signal.ticker}: 売却前 - position.total_shares={position.total_shares}, signal.shares={signal.shares}")
-            if position.total_shares != signal.shares:
-                log.error(f"[DEBUG] 株数不一致！ position={position.total_shares}, signal={signal.shares}")
-        
         if position and position.ex_dividend_date:
             days_to_ex = abs((position.ex_dividend_date - signal.date).days)
             is_around_ex_date = days_to_ex <= 1

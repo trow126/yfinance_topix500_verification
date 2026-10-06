@@ -77,8 +77,8 @@ class Position:
         self.trades.append(trade)
         
         if trade.trade_type == TradeType.BUY:
-            # 平均取得単価を更新
-            total_cost = self.average_price * self.total_shares + trade.amount
+            # 平均取得単価を更新（手数料は含めず total_commission で別管理）
+            total_cost = self.average_price * self.total_shares + trade.price * trade.shares
             self.total_shares += trade.shares
             self.average_price = total_cost / self.total_shares if self.total_shares > 0 else 0
         else:
@@ -303,14 +303,16 @@ class PositionManager:
             reason=reason
         )
         
+        # 売却前の取得原価（買い手数料込み）
+        cost_basis = position.average_price * shares + position.total_commission
+
         # ポジションを更新
         position.add_trade(trade)
         position.exit_reason = reason
         self.all_trades.append(trade)
-        
-        # 実現損益を計算
+
+        # 実現損益を計算（売却手数料は proceeds 側で控除）
         proceeds = price * shares - commission
-        cost_basis = position.average_price * shares + position.total_commission
         position.realized_pnl = proceeds - cost_basis + position.dividend_received
         
         # クローズドポジションリストに移動
