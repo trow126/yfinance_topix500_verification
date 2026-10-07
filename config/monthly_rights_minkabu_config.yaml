@@ -1,0 +1,37 @@
+# 月次権利取り戦略（みんかぶ月別優待人気ランキング版）
+# 月初に、その月の人気ランキング（選定日より前に保存された最新版）から、
+# いらない優待を除いた上位N銘柄を、優待がもらえる株数で買う。
+# 下がったら同じ株数をナンピンし、平均取得単価まで戻ったら売る（期限なし）。
+# 優待の価値は計上しない（配当のみ）。
+
+start_date: "2019-10-01"   # ランキングの保存が始まった 2019-09 の翌月から
+end_date: "2025-12-31"
+initial_capital: 10_000_000
+data_dir: "./data/cache/universe"
+results_dir: "./data/results/monthly_rights_minkabu"
+
+selection:
+  source: "minkabu"
+  ranking_file: "./data/rankings/minkabu_popular_monthly.tsv"   # scripts/data/fetch_minkabu_rankings.py で作成
+  ranking_max_age_days: 400
+  top_n: 3
+  max_unit_cost: 500_000
+  # 使える場所・用途が限られる優待は除外
+  exclude_keywords: ["ホテル", "宿泊", "カーシェア", "施設"]
+  exclude_categories: ["交通・旅行"]
+  # 優待の権利確定日は有価証券報告書の「株主に対する特典」から取る（scripts/data/fetch_edinet_benefits.py）
+  benefits_file: "./data/edinet/share_procedures.tsv"
+  exclude_continuous_holding: false   # true にすると「1年以上継続保有」などが条件の優待を除外
+
+trading:
+  entry_days_before_ex: 2        # 権利付き最終日の前日に買う
+  nanpin_step: 0.10              # 初回購入価格から -10%, -20% でナンピン
+  nanpin_max: 2                  # 毎回、初回と同じ株数
+
+costs:
+  # 楽天証券ゼロコース（2023年10月〜）は国内株式の売買手数料0円
+  slippage: 0.002
+  commission: 0.0
+  min_commission: 0
+  max_commission: 0
+  tax_rate: 0.20315

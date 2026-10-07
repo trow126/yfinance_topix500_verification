@@ -1,0 +1,31 @@
+# 月次権利取り戦略の設定
+# 毎月、その月に権利確定がある銘柄を客観指標でランキングし、上位を単元株で買う。
+# 下がったら初回と同じ株数をナンピンし、平均取得単価まで戻ったら売る（期限なし）。
+# 株主優待の価値は計上しない（配当のみ）。
+
+start_date: "2019-01-01"
+end_date: "2025-12-31"
+initial_capital: 10_000_000
+data_dir: "./data/cache/universe"          # scripts/data/fetch_universe_data.py で作成
+results_dir: "./data/results/monthly_rights"
+
+selection:
+  # 「今月の人気ランキング」の代用。選定日の前日までに分かるデータだけを使う
+  top_n: 3                       # 毎月買う銘柄数
+  min_turnover: 1_000_000_000    # 直近60営業日の平均売買代金の下限（10億円/日）
+  turnover_window: 60
+  max_unit_cost: 500_000         # 1単元50万円以下
+  min_yield: 0.0                 # 過去1年の実績配当利回りの下限（0 = 無配を除外）
+
+trading:
+  unit_shares: 100               # 最初に買う株数（優待・配当がもらえる単元）
+  entry_days_before_ex: 2        # 権利落ち日の2営業日前（= 権利付き最終日の前日）に買う
+  nanpin_step: 0.10              # 初回購入価格から -10%, -20%, ... でナンピン
+  nanpin_max: 2                  # ナンピンは最大2回（毎回、初回と同じ株数）
+
+costs:
+  slippage: 0.002
+  commission: 0.00055
+  min_commission: 550
+  max_commission: 1100
+  tax_rate: 0.20315

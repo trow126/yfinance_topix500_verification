@@ -1,0 +1,33 @@
+# 月次権利取り戦略（2014〜2017年の みんかぶ「配当+優待利回りランキング」版）
+# 2019年以降の人気ランキングとは並び順の基準が違う（人気ではなく利回り順）ので、参考の検証。
+# 優待の権利確定日は有報を使わず、同月の配当の権利落ち日 → 月末の順で決める。
+
+start_date: "2015-01-01"
+end_date: "2018-12-31"
+initial_capital: 10_000_000
+data_dir: "./data/cache/universe_2013"   # fetch_universe_data.py --start 2013-01-01 --cache-dir data/cache/universe_2013
+results_dir: "./data/results/monthly_rights_minkabu_2014"
+
+selection:
+  source: "minkabu"
+  ranking_file: "./data/rankings/minkabu_yield_monthly_2014_2017.tsv"
+  ranking_max_age_days: 400
+  top_n: 3
+  max_unit_cost: 500_000
+  exclude_keywords: ["ホテル", "宿泊", "カーシェア", "施設"]
+  exclude_categories: ["交通・旅行", "宿泊"]   # 旧形式は「宿泊」が独立したカテゴリ
+  benefits_file: ""
+
+trading:
+  entry_days_before_ex: 2
+  nanpin_step: 0.10
+  nanpin_max: 5
+  max_holding_days: 365
+
+costs:
+  # 当時はネット証券でも手数料がかかったが、今の運用（楽天ゼロコース）に合わせて0円で比べる
+  slippage: 0.002
+  commission: 0.0
+  min_commission: 0
+  max_commission: 0
+  tax_rate: 0.20315

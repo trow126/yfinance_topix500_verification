@@ -221,9 +221,10 @@ class Portfolio:
         }
         
         # 履歴に追加
-        self.portfolio_history.append(evaluation)
-        if daily_return != 0:
+        # 前日比が0の日（ノーポジション等）も含めないと年率リターン・ボラティリティが歪む
+        if self.portfolio_history:
             self.daily_returns.append(daily_return)
+        self.portfolio_history.append(evaluation)
         
         return evaluation
     

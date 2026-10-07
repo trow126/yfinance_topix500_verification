@@ -333,7 +333,8 @@ class PositionManager:
         """
         if ticker in self.positions:
             position = self.positions[ticker]
-            position.dividend_received = dividend_per_share * position.total_shares
+            # 長期保有で複数回受け取る場合に備えて累計する
+            position.dividend_received += dividend_per_share * position.total_shares
             log.info(f"Dividend received: {ticker}, amount={position.dividend_received:.0f}")
     
     def update_pre_ex_price(self, ticker: str, pre_ex_price: float) -> None:
