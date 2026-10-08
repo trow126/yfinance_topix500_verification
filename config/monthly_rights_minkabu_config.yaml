@@ -1,12 +1,12 @@
 # 月次権利取り戦略（みんかぶ月別優待人気ランキング版）
 # 月初に、その月の人気ランキング（選定日より前に保存された最新版）から、
-# いらない優待を除いた上位N銘柄を、優待がもらえる株数で買う。
-# 下がったら同じ株数をナンピンし、平均取得単価まで戻ったら売る（期限なし）。
+# いらない優待を除いた銘柄を、ランキング順に月の予算に収まるだけ、優待がもらえる株数で買う。
+# 下がったら同じ株数をナンピンし、平均取得単価まで戻ったら売る（最長1年）。
 # 優待の価値は計上しない（配当のみ）。
 
 start_date: "2019-10-01"   # ランキングの保存が始まった 2019-09 の翌月から
 end_date: "2025-12-31"
-initial_capital: 10_000_000
+initial_capital: 15_000_000   # 初回購入は月200万円まで。ナンピン込みの最大投資額は約1,250万円（2019-2025）
 data_dir: "./data/cache/universe"
 results_dir: "./data/results/monthly_rights_minkabu"
 
@@ -14,8 +14,9 @@ selection:
   source: "minkabu"
   ranking_file: "./data/rankings/minkabu_popular_monthly.tsv"   # scripts/data/fetch_minkabu_rankings.py で作成
   ranking_max_age_days: 400
-  top_n: 3
-  max_unit_cost: 500_000
+  top_n: 20                      # 上位20のうち除外条件以外を、月の予算に収まるだけランキング順に買う
+  monthly_budget: 2_000_000
+  max_unit_cost: 2_000_000
   # 使える場所・用途が限られる優待は除外
   exclude_keywords: ["ホテル", "宿泊", "カーシェア", "施設"]
   exclude_categories: ["交通・旅行"]
@@ -26,7 +27,8 @@ selection:
 trading:
   entry_days_before_ex: 2        # 権利付き最終日の前日に買う
   nanpin_step: 0.10              # 初回購入価格から -10%, -20% でナンピン
-  nanpin_max: 2                  # 毎回、初回と同じ株数
+  nanpin_max: 5                  # 毎回、初回と同じ株数（-10%刻みでは5回が実質の上限）
+  max_holding_days: 365          # 権利落ち後、購入から1年で売る
 
 costs:
   # 楽天証券ゼロコース（2023年10月〜）は国内株式の売買手数料0円

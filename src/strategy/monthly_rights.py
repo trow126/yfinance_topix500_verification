@@ -33,6 +33,7 @@ class SelectionConfig:
     ranking_min_yield: float = 0.0       # minkabu: 過去1年の実績配当利回りの下限。0 = 条件なし
     random_seed: int = 0                 # pick: random のときの乱数シード
     max_unit_cost: float = 500_000       # 1単元の購入額の上限（円）
+    monthly_budget: float = 0            # 1か月の初回購入額の上限（円）。順に見て収まる銘柄だけ買う。0 = 上限なし
     # --- objective ---
     min_turnover: float = 1_000_000_000  # 直近の平均売買代金の下限（円/日）。人気の代用
     turnover_window: int = 60            # 売買代金の平均をとる営業日数
@@ -225,7 +226,21 @@ def load_rankings(path: str) -> pd.DataFrame:
     rankings = pd.read_csv(path, sep="\t", dtype={"code": str}, parse_dates=["snapshot"])
     rankings["yutai_content"] = rankings["yutai_content"].fillna("")
     rankings["categories"] = rankings["categories"].fillna("")
+    if "yutai_months" not in rankings:
+        rankings["yutai_months"] = ""
+    rankings["yutai_months"] = rankings["yutai_months"].fillna("").astype(str)
     return rankings
+
+
+def yutai_value_per_record(yutai_yield, min_invest_yen, yutai_months: str) -> float:
+    """
+    1回の権利確定で受け取る優待の価値（円）の見積もり
+    みんかぶの優待利回りは「年間の優待価値 ÷ 最低投資金額」なので、年の権利確定回数で割る
+    """
+    if pd.isna(yutai_yield) or pd.isna(min_invest_yen):
+        return 0.0
+    times = len([m for m in str(yutai_months).split("|") if m]) or 1
+    return float(yutai_yield) / 100 * float(min_invest_yen) / times
 
 
 class RankingSelector:
@@ -373,7 +388,13 @@ class RankingSelector:
                 continue
 
             ex_idx, record_date, dividend, source = dates
+            # 継続保有が条件の優待は、初回の購入ではもらえないものとして0円にする
+            continuous = benefit is not None and benefit.continuous_holding == "required"
+            yutai_value = 0.0 if continuous else yutai_value_per_record(
+                row.yutai_yield, row.min_invest_yen, row.yutai_months)
             picks.append({
+                "yutai_yield": row.yutai_yield, "yutai_months": row.yutai_months,
+                "yutai_value": yutai_value,
                 "code": row.code, "name": row.name, "rank": row.rank, "snapshot": snapshot,
                 "yutai_content": row.yutai_content, "categories": row.categories,
                 "ex_date": panel.calendar[ex_idx], "record_date": record_date, "dividend": dividend,
@@ -391,10 +412,21 @@ class RankingSelector:
         # 比較用: 条件を満たす銘柄のうち下位やランダムを選ぶこともできる
         n = self.config.top_n
         if self.config.pick == "bottom":
-            picks = picks[-n:]
+            picks = picks[::-1]
         elif self.config.pick == "random":
             rng = random.Random(f"{self.config.random_seed}-{selection_date:%Y%m}")
-            picks = rng.sample(picks, min(n, len(picks)))
-        else:
-            picks = picks[:n]
-        return pd.DataFrame(picks)
+            picks = rng.sample(picks, len(picks))
+        return pd.DataFrame(self._within_budget(picks, n))
+
+    def _within_budget(self, picks: List[dict], n: int) -> List[dict]:
+        """並び順に見て、銘柄数と月の予算に収まるものを選ぶ（予算を超える銘柄は飛ばす）"""
+        budget = self.config.monthly_budget
+        chosen, total = [], 0.0
+        for p in picks:
+            if len(chosen) >= n:
+                break
+            if budget and total + p["unit_cost"] > budget:
+                continue
+            chosen.append(p)
+            total += p["unit_cost"]
+        return chosen

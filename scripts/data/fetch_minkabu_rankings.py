@@ -33,7 +33,7 @@ KINDS = {
 }
 CDX = "https://web.archive.org/cdx/search/cdx"
 FIELDS = ["snapshot", "month", "rank", "code", "name", "yutai_content", "categories",
-          "min_invest_yen", "yutai_shares", "yutai_yield", "dividend_yield"]
+          "min_invest_yen", "yutai_shares", "yutai_yield", "dividend_yield", "yutai_months"]
 
 session = requests.Session()
 session.headers["User-Agent"] = "yfinance_topix500_verification research (personal backtest)"
@@ -92,6 +92,17 @@ def _labeled_value(item, label: str):
     return value * 10_000 if m.group(2) == "万" else value
 
 
+def _rights_months(item) -> str:
+    """「優待権利確定月 4月,10月」（2019年形式は「権利確定月 9月,3月」）→ "4|10\""""
+    node = item.find(string=re.compile("権利確定月"))
+    if node is None:
+        return ""
+    text = node.parent.parent.get_text(" ", strip=True)
+    after = text[text.find("権利確定月") + len("権利確定月"):][:40]
+    months = sorted({int(m) for m in re.findall(r"(\d{1,2})月", after) if 1 <= int(m) <= 12})
+    return "|".join(str(m) for m in months)
+
+
 def parse_ranking(html: str) -> list:
     soup = BeautifulSoup(html, "html.parser")
     rows = []
@@ -114,6 +125,7 @@ def parse_ranking(html: str) -> list:
             "yutai_shares": _labeled_value(item, "優待発生株数"),
             "yutai_yield": _labeled_value(item, "^優待利回り"),
             "dividend_yield": _labeled_value(item, "^配当利回り"),
+            "yutai_months": _rights_months(item),
         })
     return rows
 
@@ -140,6 +152,7 @@ def parse_ranking_old(html: str) -> list:
             "yutai_shares": None,
             "yutai_yield": _number(yld.get_text()) if yld else None,  # 配当+優待利回り
             "dividend_yield": None,
+            "yutai_months": "",
         })
     return rows
 
@@ -149,6 +162,8 @@ def main():
     parser.add_argument("--kind", choices=list(KINDS), default="popular")
     parser.add_argument("--since", default=None, help="この年（YYYY）以降のスナップショットのみ")
     parser.add_argument("--until", default=None, help="この年（YYYY）以前のスナップショットのみ")
+    parser.add_argument("--offline", action="store_true",
+                        help="Wayback に問い合わせず、取得済みのHTML（data/cache/wayback）だけで作り直す")
     args = parser.parse_args()
     url, out_file = KINDS[args.kind]
     since = args.since or ("2019" if args.kind == "popular" else "2014")
@@ -159,7 +174,12 @@ def main():
     out_file.parent.mkdir(parents=True, exist_ok=True)
     out_rows = []
     for month in range(1, 13):
-        snapshots = [t for t in list_snapshots(url, month) if since <= t[:4] <= until]
+        if args.offline:
+            cached = CACHE_DIR.glob(f"minkabu_{args.kind}_m{month:02d}_*.html")
+            listed = sorted(p.stem.rsplit("_", 1)[1] for p in cached)
+        else:
+            listed = list_snapshots(url, month)
+        snapshots = [t for t in listed if since <= t[:4] <= until]
         print(f"{month}月: スナップショット {len(snapshots)} 件", flush=True)
         for ts in snapshots:
             rows = parse(fetch_snapshot(args.kind, url, month, ts))

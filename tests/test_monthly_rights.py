@@ -127,6 +127,9 @@ def make_rankings():
     df = pd.DataFrame(rows, columns=["snapshot", "month", "rank", "code", "name", "yutai_content",
                                      "categories", "min_invest_yen", "yutai_shares"])
     df["snapshot"] = pd.to_datetime(df["snapshot"])
+    # 優待利回り（年）と権利確定月。2222は年2回（3月・9月）で利回り2%
+    df["yutai_yield"] = [1.0, 1.0, 1.0, 2.0, None, 1.0]
+    df["yutai_months"] = ["3", "3", "3", "3|9", "", "3"]
     return df
 
 
@@ -204,3 +207,35 @@ def test_objective_selector_bottom_and_random(data):
     picked = rand.select(pd.Timestamp("2023-03-01"))["code"].tolist()
     assert len(picked) == 1 and picked[0] in {"1111", "2222"}
     assert rand.select(pd.Timestamp("2023-03-01"))["code"].tolist() == picked  # 同じシードなら同じ結果
+
+
+def test_ranking_selector_monthly_budget(data):
+    panel = MarketPanel(data)
+    # 2222: 200株×1000円=20万、3333: 300株×1000円=30万 → 予算40万なら2222だけ、60万なら両方
+    selection = SelectionConfig(source="minkabu", top_n=20, max_unit_cost=10_000_000, monthly_budget=400_000,
+                                exclude_keywords=["ホテル"], exclude_categories=["交通・旅行"])
+    selector = RankingSelector(panel, selection, TradingConfig(), make_rankings())
+    assert selector.select(pd.Timestamp("2023-03-01"))["code"].tolist() == ["2222"]
+
+    selection.monthly_budget = 600_000
+    assert selector.select(pd.Timestamp("2023-03-01"))["code"].tolist() == ["2222", "3333"]
+
+
+def test_yutai_value_estimate(data):
+    from src.strategy.monthly_rights import yutai_value_per_record
+
+    # 年間 2% × 20万円 = 4,000円を年2回に分けて1回2,000円。利回り不明は0円
+    assert yutai_value_per_record(2.0, 200_000, "3|9") == pytest.approx(2000)
+    assert yutai_value_per_record(None, 200_000, "3") == 0
+
+    cfg = config()
+    cfg.selection = SelectionConfig(source="minkabu", top_n=2, max_unit_cost=10_000_000,
+                                    exclude_keywords=["ホテル"], exclude_categories=["交通・旅行"])
+    engine = MonthlyRightsEngine(cfg, data)
+    engine.selector.rankings = make_rankings()
+    m = engine.run()["metrics"]
+
+    # 3月に2222（2,000円）と3333（利回り不明→0円）の権利を取る
+    assert m["yutai_records"] == 2
+    assert m["yutai_records_valued"] == 1
+    assert m["yutai_value"] == pytest.approx(2000)

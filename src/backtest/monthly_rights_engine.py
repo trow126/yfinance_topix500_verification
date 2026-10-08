@@ -35,6 +35,7 @@ class CycleState:
     ex_date: pd.Timestamp     # 狙っている権利落ち日
     entry_date: pd.Timestamp
     nanpin_count: int = 0
+    yutai_value: float = 0.0  # 狙っている権利確定で受け取る優待の価値（見積もり）
 
 
 class MonthlyRightsEngine:
@@ -62,6 +63,7 @@ class MonthlyRightsEngine:
         self.selections: List[pd.DataFrame] = []
         self.skipped: List[dict] = []
         self.nanpin_trades = 0
+        self.yutai_received: List[dict] = []
 
         dividends = self.panel.events.set_index(["ex_date", "code"])["dividend"]
         self.dividends_by_date = {d: g.droplevel(0).to_dict() for d, g in dividends.groupby(level=0)}
@@ -89,6 +91,10 @@ class MonthlyRightsEngine:
         for code, dividend in self.dividends_by_date.get(date, {}).items():
             if self.portfolio.position_manager.get_position(code):
                 self.portfolio.update_dividend(code, dividend * (1 - self.config.costs.tax_rate), date)
+        # 優待（現金ではないので口座には入れず、見積もり額を別に記録する）
+        for code, state in self.states.items():
+            if state.ex_date == date:
+                self.yutai_received.append({"date": date, "code": code, "value": state.yutai_value})
 
         # 2. 保有銘柄の売却・ナンピン
         for code in list(self.states):
@@ -122,7 +128,8 @@ class MonthlyRightsEngine:
             # unit_shares は当時の実株数。yfinanceの価格は後の分割で遡及調整されているので補正する
             shares = int(round(row["unit_shares"] * self.panel.split_factor.at[date, code]))
             if self._buy(code, date, price, shares, "Entry (monthly rights)", row):
-                self.states[code] = CycleState(code, price, shares, row["ex_date"], date)
+                self.states[code] = CycleState(code, price, shares, row["ex_date"], date,
+                                               yutai_value=float(row.get("yutai_value", 0.0) or 0.0))
 
         # 4. 時価評価
         self.portfolio.mark_to_market(date, self.panel.valuation_prices(date))
@@ -228,6 +235,10 @@ class MonthlyRightsEngine:
                                    if invested.mean() > 0 and years > 0 else 0.0),
             "worst_open_pnl": float(opened["unrealized_pnl"].min()) if len(opened) else 0.0,
             "exit_reasons": closed["exit_reason"].value_counts().to_dict() if len(closed) else {},
+            # 優待（見積もり。現金ではないので上の損益には含まない）
+            "yutai_records": len(self.yutai_received),
+            "yutai_records_valued": sum(1 for y in self.yutai_received if y["value"] > 0),
+            "yutai_value": float(sum(y["value"] for y in self.yutai_received)),
         }
 
 
