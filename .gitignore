@@ -59,3 +59,7 @@ old/
 
 # EDINET の取得データ（大量保有報告書。提出者の個人名を含むため追跡しない。scripts/data/fetch_edinet_large_holdings.py で再取得）
 data/edinet/large_holdings*
+
+# J-Quants（再配布不可のライセンスデータ）
+data/jquants/
+data/rankings/jquants_missing_codes.txt
