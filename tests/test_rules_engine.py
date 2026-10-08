@@ -6,7 +6,8 @@ import pandas as pd
 import pytest
 
 from src.backtest.rules_engine import ExecutionConfig, Orders, RulesConfig, RulesEngine
-from src.backtest.stats import deflated_sharpe_ratio, probabilistic_sharpe_ratio, random_rank
+from src.backtest.stats import (block_bootstrap_outperform, deflated_sharpe_ratio, probabilistic_sharpe_ratio,
+                                random_rank)
 from src.strategy.monthly_rights import MarketPanel
 
 DATES = pd.bdate_range("2023-01-02", "2023-12-29")
@@ -124,3 +125,17 @@ def test_stats_helpers():
     assert 0.0 <= d["dsr"] <= 1.0
     r = random_rank(10.0, [1, 2, 3, 4, 5, 6, 7, 8, 9, 11])
     assert r["percentile"] == pytest.approx(0.9)
+
+
+def test_block_bootstrap_outperform():
+    import numpy as np
+    rng = np.random.default_rng(1)
+    idx = pd.bdate_range("2020-01-01", periods=1000)
+    strong = pd.Series(rng.normal(0.001, 0.005, 1000), index=idx)   # 年率 +25%、明らかに正
+    noise = pd.Series(rng.normal(0.0, 0.01, 1000), index=idx)
+    b1 = block_bootstrap_outperform(strong, block_len=20, n_boot=2000)
+    b2 = block_bootstrap_outperform(noise, block_len=20, n_boot=2000)
+    assert b1["p_outperform"] > 0.99
+    assert 0.2 < b2["p_outperform"] < 0.8
+    assert b1["mean_lo"] < b1["mean_ann"] < b1["mean_hi"]
+    assert block_bootstrap_outperform(noise.iloc[:10])["p_outperform"] != block_bootstrap_outperform(noise)["p_outperform"]

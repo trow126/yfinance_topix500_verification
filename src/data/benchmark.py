@@ -51,9 +51,11 @@ def apply_corrections(df: pd.DataFrame, code: str,
 
 
 def load_benchmark(code: str = "1306", data_dir: str = "./data/cache/benchmark") -> pd.DataFrame:
-    """補正済みのベンチマーク ETF データを読み込む"""
+    """補正済みのベンチマーク ETF データを読み込む（数日だけ桁が違う不備も直す）"""
+    from .quality import fix_transient_scale_errors
+
     df = pd.read_pickle(Path(data_dir) / f"{code}.pkl")
-    return apply_corrections(df, code)
+    return fix_transient_scale_errors(apply_corrections(df, code))
 
 
 def find_unrecorded_splits(df: pd.DataFrame, threshold: float = 0.45) -> pd.DataFrame:

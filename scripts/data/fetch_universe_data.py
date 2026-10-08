@@ -70,6 +70,7 @@ def main():
     parser.add_argument("--sleep", type=float, default=5.0, help="バッチ間の待ち時間（秒）")
     parser.add_argument("--limit", type=int, default=None, help="動作確認用に先頭N銘柄だけ取得")
     parser.add_argument("--codes", nargs="*", help="指定した銘柄だけ取得（REIT・上場廃止銘柄など一覧外も可）")
+    parser.add_argument("--codes-file", default=None, help="1 行 1 銘柄のファイルから取得する銘柄を読む")
     parser.add_argument("--rankings", nargs="?", const="data/rankings/minkabu_popular_monthly.tsv",
                         help="ランキングファイルに出てくる銘柄だけ取得（省略時は人気ランキング）")
     parser.add_argument("--cache-dir", default=None, help="保存先（期間を変えて取り直すときは別にする）")
@@ -79,7 +80,9 @@ def main():
     if args.cache_dir:
         CACHE_DIR = PROJECT_ROOT / args.cache_dir
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    if args.codes:
+    if args.codes_file:
+        codes = [line.strip() for line in Path(args.codes_file).read_text(encoding="utf-8").splitlines() if line.strip()]
+    elif args.codes:
         codes = args.codes
     elif args.rankings:
         rankings = PROJECT_ROOT / args.rankings

@@ -37,3 +37,38 @@ def anomalous_codes(data: Dict[str, pd.DataFrame], threshold: float = 0.45,
 
 def excluded_codes(data: Dict[str, pd.DataFrame], **kw) -> Set[str]:
     return set(anomalous_codes(data, **kw)["code"].unique())
+
+
+PRICE_COLUMNS = ("Open", "High", "Low", "Close")
+
+
+def fix_transient_scale_errors(df: pd.DataFrame, max_days: int = 3) -> pd.DataFrame:
+    """
+    yfinance が数日だけ価格を 1/10（または 10 倍）で返す不備を直す
+
+    例: 1306.T の 2026-03-30・31 は終値 37 円（前後は 380 円台）。分割の記録は無く、2 日で元に戻る。
+    前日比が 1/8〜1/12 に落ち、max_days 営業日以内に 8〜12 倍で戻る区間の OHLC を 10 倍する
+    （逆に 10 倍に跳ねて戻る区間は 1/10 にする）。本当の分割・併合（戻らない）は対象にならない。
+    """
+    close = df["Close"].to_numpy(dtype=float)
+    out = df.copy()
+    i = 1
+    n = len(close)
+    while i < n:
+        prev = close[i - 1]
+        if prev > 0 and close[i] > 0:
+            ratio = close[i] / prev
+            for down, factor in ((True, 10.0), (False, 0.1)):
+                if (0.08 <= ratio <= 0.125) if down else (8.0 <= ratio <= 12.5):
+                    # 戻る日を探す
+                    for j in range(i + 1, min(i + max_days + 1, n)):
+                        back = close[j] / close[j - 1] if close[j - 1] > 0 else 0
+                        if (8.0 <= back <= 12.5) if down else (0.08 <= back <= 0.125):
+                            cols = [c for c in PRICE_COLUMNS if c in out.columns]
+                            out.iloc[i:j, [out.columns.get_loc(c) for c in cols]] *= factor
+                            close[i:j] *= factor
+                            i = j
+                            break
+                    break
+        i += 1
+    return out

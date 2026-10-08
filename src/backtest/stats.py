@@ -84,6 +84,32 @@ def deflated_sharpe_ratio(sr: float, trial_sharpes: Iterable[float], T: int,
             "dsr": probabilistic_sharpe_ratio(sr, sr_star, T, skew_, kurt)}
 
 
+def block_bootstrap_outperform(active: pd.Series, block_len: int = 20, n_boot: int = 10_000,
+                               seed: int = 0) -> Dict[str, float]:
+    """
+    対ベンチマークの日次超過リターン系列を循環ブロックブートストラップで再抽出し、
+    「期間全体の累積超過リターンが正になる確率」と、超過平均の信頼区間を出す。
+
+    - ブロック長は事前に固定する（既定 20 営業日: 月次リバランスの周期に合わせる）
+    - 累積は (1 + r_strategy) / (1 + r_bench) の比ではなく、超過リターンの単純合計で近似する
+    """
+    x = active.dropna().to_numpy()
+    T = len(x)
+    if T < block_len * 2:
+        return {"T": T, "p_outperform": float("nan"), "mean_lo": float("nan"), "mean_hi": float("nan")}
+    rng = np.random.default_rng(seed)
+    n_blocks = int(np.ceil(T / block_len))
+    starts = rng.integers(0, T, size=(n_boot, n_blocks))
+    idx = (starts[:, :, None] + np.arange(block_len)[None, None, :]) % T
+    samples = x[idx.reshape(n_boot, -1)[:, :T]]
+    sums = samples.sum(axis=1)
+    means = samples.mean(axis=1)
+    return {"T": T, "block_len": block_len, "n_boot": n_boot,
+            "p_outperform": float((sums > 0).mean()),
+            "mean_lo": float(np.quantile(means, 0.05) * 252), "mean_hi": float(np.quantile(means, 0.95) * 252),
+            "mean_ann": float(x.mean() * 252)}
+
+
 def random_rank(value: float, random_values: Iterable[float]) -> Dict[str, float]:
     """ランダム選定の分布の中での位置（percentile: 上位何%か。上位 10% = percentile >= 0.9）"""
     xs = np.array(sorted(float(v) for v in random_values))

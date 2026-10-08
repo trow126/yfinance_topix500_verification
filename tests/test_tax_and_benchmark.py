@@ -68,6 +68,24 @@ def test_apply_corrections_divides_prices_and_dividends_before_split():
     assert find_unrecorded_splits(fixed).empty
 
 
+def test_fix_transient_scale_errors():
+    from src.data.quality import fix_transient_scale_errors
+    dates = pd.bdate_range("2026-03-20", "2026-04-10")
+    df = pd.DataFrame({"Open": 380.0, "High": 385.0, "Low": 378.0, "Close": 382.0, "Volume": 1000,
+                       "Dividends": 0.0, "Stock Splits": 0.0}, index=dates)
+    for c in ("Open", "High", "Low", "Close"):
+        df.loc["2026-03-30":"2026-03-31", c] = df.loc["2026-03-30":"2026-03-31", c] / 10
+    fixed = fix_transient_scale_errors(df)
+    assert fixed.loc["2026-03-30", "Close"] == pytest.approx(382.0)
+    assert fixed.loc["2026-03-31", "Low"] == pytest.approx(378.0)
+    assert (fixed["Close"] == 382.0).all()
+    # 本当の分割（戻らない）は直さない
+    real = df.copy()
+    for c in ("Open", "High", "Low", "Close"):
+        real.loc["2026-03-30":, c] = 38.2
+    assert fix_transient_scale_errors(real).loc["2026-04-10", "Close"] == pytest.approx(38.2)
+
+
 def test_buy_and_hold_after_tax():
     dates = pd.bdate_range("2023-01-02", "2023-12-29")
     etf = pd.DataFrame({"Close": 100.0, "Dividends": 0.0}, index=dates)
