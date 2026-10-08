@@ -189,12 +189,24 @@ H10_GRID = {
 }
 
 
-def fin_filter(fund: Fundamentals):
+def fin_filter(fund: Fundamentals, panel: MarketPanel):
+    """
+    財務フィルタ（3g 章）。加えて、配当の株数ベースが食い違う銘柄を除く（7 章 2026-10-09、データ確認の結果。結果を見る前）:
+    (a) 直近の通期短信が分かった日から判断日の前日までに分割・併合（yfinance の Stock Splits）がある
+    (b) 今期の予想配当 ÷ 前期の実績配当 が 3 倍超または 1/3 未満（併合後ベースの予想を併合前に出した例など）
+    """
     cache = {}
+    sf = panel.split_factor
 
     def extra(date, f):
         if date not in cache:
-            cache[date] = fund.passes(date)
+            ok = fund.passes(date)
+            prev = panel.calendar[panel.calendar.get_loc(date) - 1]
+            ok = ok.loc[[c for c in ok.index if c in sf.columns]]
+            known = panel.calendar[ok["prev_known_idx"].astype(int).to_numpy()]
+            same_basis = [abs(sf.at[k, c] - sf.at[prev, c]) < 1e-9 for c, k in zip(ok.index, known)]
+            ratio = ok["fdiv"] / ok["prev_div"]
+            cache[date] = ok[pd.Series(same_basis, index=ok.index) & (ratio <= 3) & (ratio >= 1 / 3)]
         ok = cache[date]
         f = f[f.index.isin(ok.index)].copy()
         # J-Quants の配当は当時の株数ベース。yfinance の終値は後の分割で調整済みなので当時の株価に戻して割る
@@ -204,9 +216,9 @@ def fin_filter(fund: Fundamentals):
 
 
 def run_h10(panel, etf, cand, seeds, confirm, only=None):
-    summary = pd.read_parquet(PROJECT_ROOT / "data" / "jquants" / "summary.parquet")
+    summary = pd.read_pickle(PROJECT_ROOT / "data" / "jquants" / "summary.pkl")
     fund = Fundamentals(summary, panel.calendar)
-    extra = fin_filter(fund)
+    extra = fin_filter(fund, panel)
     periods = dict(CONFIRM) if confirm else dict(EXPLORE)
     rows = []
     for period, (start, end) in periods.items():

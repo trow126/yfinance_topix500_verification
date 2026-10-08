@@ -12,7 +12,7 @@ J-Quants API（V2）から決算短信サマリー（fins/summary）・銘柄マ
     python scripts/data/fetch_jquants.py summary --start 2012-01-01 --end 2026-10-08
     python scripts/data/fetch_jquants.py master --dates 2015-01-05,2026-10-08
     python scripts/data/fetch_jquants.py bars --codes-file data/rankings/delisted_codes.txt
-    python scripts/data/fetch_jquants.py build      # キャッシュから data/jquants/summary.parquet を作る
+    python scripts/data/fetch_jquants.py build      # キャッシュから data/jquants/summary.pkl を作る
 """
 
 import argparse
@@ -125,8 +125,8 @@ def build():
     rows = [r for f in files for r in json.loads(f.read_text())]
     df = pd.DataFrame(rows)
     OUT.mkdir(parents=True, exist_ok=True)
-    df.to_parquet(OUT / "summary.parquet", index=False)
-    print(f"summary.parquet: {len(df)} 行、{files[0].stem}〜{files[-1].stem}、"
+    df.to_pickle(OUT / "summary.pkl")
+    print(f"summary.pkl: {len(df)} 行、{files[0].stem}〜{files[-1].stem}、"
           f"銘柄 {df['Code'].nunique() if 'Code' in df else df.get('LocalCode', pd.Series()).nunique()}")
 
 

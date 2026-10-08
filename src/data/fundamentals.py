@@ -63,6 +63,7 @@ class Fundamentals:
         out = pd.DataFrame({"np_pos3": np_pos3})
         out["prev_div"] = latest_fy["DivAnn"]
         out["prev_fy_end"] = latest_fy["fy_end"]
+        out["prev_known_idx"] = latest_fy["known_idx"]
         fs = d[d["is_fs"]].groupby("code").tail(1).set_index("code")
         out["eqar"] = fs["EqAR"]
         # 今期の配当予想
