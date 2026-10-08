@@ -268,10 +268,16 @@ def main():
     p.add_argument("--hyp", required=True, choices=["H9", "H8R", "H10", "H11"])
     p.add_argument("--only", default="", help="確認期間で回す条件の ID（カンマ区切り。探索で基準 1 を満たしたもの）")
     p.add_argument("--seeds", type=int, default=20)
+    p.add_argument("--with-delisted", action="store_true", help="J-Quants の日足で yfinance に無い銘柄（上場廃止など）を補う")
     p.add_argument("--confirm", action="store_true", help="確認期間を回す（探索で基準 1 を満たした条件だけ。1 回だけ）")
     args = p.parse_args()
     BacktestLogger().setup_logger(log_level="ERROR")
     data = load_all()
+    if args.with_delisted:
+        from src.data.jquants_bars import load_jquants_bars
+        extra = {c: df for c, df in load_jquants_bars(PROJECT_ROOT / "data" / "cache" / "jquants" / "bars").items() if c not in data}
+        print(f"J-Quants の日足で補う銘柄 {len(extra)}", flush=True)
+        data.update(extra)
     etf = load_etf()
     excluded = excluded_codes(data)
     panel = MarketPanel(data)
