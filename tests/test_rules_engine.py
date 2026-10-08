@@ -139,3 +139,44 @@ def test_block_bootstrap_outperform():
     assert 0.2 < b2["p_outperform"] < 0.8
     assert b1["mean_lo"] < b1["mean_ann"] < b1["mean_hi"]
     assert block_bootstrap_outperform(noise.iloc[:10])["p_outperform"] != block_bootstrap_outperform(noise)["p_outperform"]
+
+
+def test_exec_delay_fills_at_next_day_close():
+    # 3/1 に判断 → exec_delay=1 なら 3/2 の終値（1,100 円）で約定し、6/1 の判断の売りは 6/2 の終値で約定
+    data = {"AAAA": make_stock(prices={"2023-03-02": 1100.0, "2023-06-02": 1300.0})}
+    res = RulesEngine(config(exec_delay=1), BuyOnceSellLater(), MarketPanel(data)).run()
+    t = res["trades"]
+    assert list(t["date"]) == [pd.Timestamp("2023-03-02"), pd.Timestamp("2023-06-02")]
+    assert t.iloc[0]["price"] == pytest.approx(1100.0)
+    assert t.iloc[1]["price"] == pytest.approx(1300.0)
+    assert res["closed"].iloc[0]["signal_date"] == pd.Timestamp("2023-03-01")
+    # 当日約定（第 1 期）は 1,000 円で買う
+    res0 = RulesEngine(config(), BuyOnceSellLater(), MarketPanel(data)).run()
+    assert res0["trades"].iloc[0]["price"] == pytest.approx(1000.0)
+
+
+def test_exec_delay_drops_orders_after_last_day():
+    class LastDayBuy:
+        name = "t"
+
+        def orders(self, date, panel, holdings, equity):
+            return Orders(buys={"AAAA": 500_000}) if date == pd.Timestamp("2023-12-29") else None
+
+    res = RulesEngine(config(exec_delay=1), LastDayBuy(), MarketPanel({"AAAA": make_stock()})).run()
+    assert res["metrics"]["stock_trades"] == 0
+
+
+def test_open_execution_uses_open_price():
+    df = make_stock()
+    df.loc[pd.Timestamp("2023-03-01"), "Open"] = 950.0
+    res = RulesEngine(config(exec_price="open"), BuyOnceSellLater(), MarketPanel({"AAAA": df})).run()
+    assert res["trades"].iloc[0]["price"] == pytest.approx(950.0)
+    assert res["trades"].iloc[1]["price"] == pytest.approx(1000.0)
+
+
+def test_exclude_trades_skips_banned_buy():
+    from src.strategy.rules import ExcludeTrades
+    data = {"AAAA": make_stock()}
+    s = ExcludeTrades(BuyOnceSellLater(), [("AAAA", "2023-03-01")])
+    res = RulesEngine(config(), s, MarketPanel(data)).run()
+    assert res["metrics"]["stock_trades"] == 0

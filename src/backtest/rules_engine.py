@@ -44,6 +44,11 @@ class RulesConfig:
     sweep_ticker: str = "1306"              # 空なら現金のまま
     cash_buffer: float = 0.0
     liquidate_at_end: bool = True
+    # 約定のタイミング（第 2 期: docs/research/hypotheses.md 3d 章）
+    # exec_delay: 判断日（orders() が呼ばれた日）の何営業日後に約定するか。0 = 判断日の当日（第 1 期）
+    # exec_price: "close"（終値）/ "open"（始値。待機資金の 1306 も始値で売買する）
+    exec_delay: int = 0
+    exec_price: str = "close"
     execution: ExecutionConfig = field(default_factory=ExecutionConfig)
 
 
@@ -101,6 +106,13 @@ class RulesEngine:
             self.etf_close = etf["Close"].reindex(cal).ffill()
             self.etf_dist = etf["Dividends"].reindex(cal).fillna(0.0)
         self.etf_raw = etf
+        if config.exec_price not in ("close", "open"):
+            raise ValueError(f"exec_price は close / open: {config.exec_price}")
+        if config.exec_price == "open" and config.sweep_ticker:
+            self.etf_open = etf["Open"].reindex(cal)
+        else:
+            self.etf_open = None
+        self.pending: Dict[int, List[tuple]] = {}  # 約定する営業日の番号 → [(判断日, Orders)]
 
         ev = panel.events.set_index(["ex_date", "code"])["dividend"]
         self.dividends_by_date = {d: g.droplevel(0).to_dict() for d, g in ev.groupby(level=0)}
@@ -111,6 +123,7 @@ class RulesEngine:
         self.dividends_after_tax = 0.0
         self.commission_paid = 0.0
         self.skipped: List[dict] = []
+        self._trading_open = False
 
     # ------------------------------------------------------------------ helpers
     def _slippage(self, code: str, date: pd.Timestamp) -> float:
@@ -127,6 +140,22 @@ class RulesEngine:
         p = self.etf_close.get(date)
         return None if p is None or pd.isna(p) else float(p)
 
+    def _etf_trade_price(self, date) -> Optional[float]:
+        """ETF を売買する価格（始値約定なら始値。無ければ終値）"""
+        if self.etf_open is not None and self._trading_open:
+            p = self.etf_open.get(date)
+            if p is not None and pd.notna(p):
+                return float(p)
+        return self._etf_price(date)
+
+    def _trade_price(self, code: str, date: pd.Timestamp) -> Optional[float]:
+        if self._trading_open:
+            p = self.panel.open_price(code, date)
+            if p is not None:
+                return p
+            # 始値が無い（寄らなかった）日は終値で約定したとみなす
+        return self.panel.price(code, date)
+
     def _buy_etf(self, amount: float, date) -> None:
         price = self._etf_price(date)
         if not price or amount <= 0:
@@ -139,7 +168,7 @@ class RulesEngine:
 
     def _sell_etf(self, amount: float, date, all_units: bool = False) -> float:
         """現金が amount 足りないとき（または全部）ETF を売る。売却益には課税。得た現金を返す"""
-        price = self._etf_price(date)
+        price = self._etf_trade_price(date)
         if not price or self.etf_units <= 0:
             return 0.0
         fill = price * (1 - self.config.execution.etf_slippage)
@@ -163,7 +192,7 @@ class RulesEngine:
         return max(1, int(round(self.config.execution.lot * (f if pd.notna(f) else 1.0))))
 
     def _buy(self, code: str, date: pd.Timestamp, yen: float, reason: str, meta: dict) -> bool:
-        price = self.panel.price(code, date)
+        price = self._trade_price(code, date)
         if price is None or yen <= 0:
             return False
         fill = price * (1 + self._slippage(code, date))
@@ -195,7 +224,7 @@ class RulesEngine:
 
     def _sell(self, code: str, date: pd.Timestamp, reason: str) -> bool:
         h = self.holdings.get(code)
-        price = self.panel.price(code, date)
+        price = self._trade_price(code, date)
         if h is None:
             return False
         if price is None:
@@ -216,6 +245,14 @@ class RulesEngine:
                             "holding_days": (date - h.entry_date).days, "reason": reason, **h.meta})
         del self.holdings[code]
         return True
+
+    def _execute(self, orders: Orders, date: pd.Timestamp, signal_date: pd.Timestamp) -> None:
+        for code in orders.sells:
+            self._sell(code, date, orders.reason)
+        for code, yen in orders.buys.items():
+            meta = dict(orders.meta.get(code, {}))
+            meta.setdefault("signal_date", signal_date)
+            self._buy(code, date, yen, orders.reason, meta)
 
     def _stock_value(self, date) -> float:
         if not self.holdings:
@@ -242,14 +279,18 @@ class RulesEngine:
                     net = gross - self.tax.on_dividend(date, gross)
                     self.cash += net
                     self.dividends_after_tax += net
-            # 2. 戦略の注文
+            # 2. 前の営業日までに決めた注文の約定（exec_delay >= 1）→ 戦略の注文
+            self._trading_open = self.config.exec_price == "open"
+            for signal_date, queued in self.pending.pop(i, []):
+                self._execute(queued, date, signal_date)
             equity = self.cash + self._stock_value(date) + self.etf_units * (self._etf_price(date) or 0.0)
             orders = self.strategy.orders(date, self.panel, self.holdings, equity)
             if orders:
-                for code in orders.sells:
-                    self._sell(code, date, orders.reason)
-                for code, yen in orders.buys.items():
-                    self._buy(code, date, yen, orders.reason, orders.meta.get(code, {}))
+                if self.config.exec_delay <= 0:
+                    self._execute(orders, date, date)
+                else:  # 期末を過ぎる注文は約定しない（期末清算に任せる）
+                    self.pending.setdefault(i + self.config.exec_delay, []).append((date, orders))
+            self._trading_open = False  # 期末清算と待機資金の買いは終値
             # 3. 期末の清算
             last = i == len(self.trading_days) - 1
             if last and self.config.liquidate_at_end:

@@ -375,3 +375,25 @@ class IndexTiming:
         if not inside and self.code in holdings:
             return Orders(sells=[self.code], reason=f"{self.name} out")
         return None
+
+
+class ExcludeTrades:
+    """
+    別の戦略をそのまま動かし、指定した (銘柄, 判断日) の買いだけを出さない（その枠は 1306 のまま）。
+    「実現損益の上位 3 件の取引が無かったら」の再実行に使う（docs/research/hypotheses.md 3d 章）。
+    判断日はエンジンが保有の meta["signal_date"] に残す。
+    """
+
+    def __init__(self, inner, banned):
+        self.inner = inner
+        self.banned = {(str(c), pd.Timestamp(d)) for c, d in banned}
+        self.name = f"{getattr(inner, 'name', type(inner).__name__)} (除外 {len(self.banned)} 件)"
+
+    def orders(self, date, panel, holdings, equity) -> Optional[Orders]:
+        o = self.inner.orders(date, panel, holdings, equity)
+        if o is None:
+            return None
+        buys = {c: y for c, y in o.buys.items() if (c, date) not in self.banned}
+        if not o.sells and not buys:
+            return None
+        return Orders(sells=o.sells, buys=buys, reason=o.reason, meta=o.meta)

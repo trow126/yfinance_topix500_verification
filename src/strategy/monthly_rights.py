@@ -125,6 +125,8 @@ class MarketPanel:
             volume = volume[traded]
         self.close_ffill = self.close.ffill()
         self.calendar = self.close.index
+        # 始値（寄付約定の対照用。Open 列が無いデータでは終値で代用）
+        self.open = pd.DataFrame({c: (df["Open"] if "Open" in df else df["Close"]) for c, df in data.items()}).reindex(self.calendar)
 
         # 選定日より前のデータだけを使うため1日ずらす
         self.avg_turnover = (self.close * volume).rolling(turnover_window, min_periods=turnover_window // 2).mean().shift(1)
@@ -168,6 +170,11 @@ class MarketPanel:
         """当日の終値（売買のない日はNone）"""
         value = self.close.at[date, code] if code in self.close.columns else None
         return None if value is None or pd.isna(value) else float(value)
+
+    def open_price(self, code: str, date: pd.Timestamp) -> Optional[float]:
+        """当日の始値（寄らなかった日・0 円は None）"""
+        value = self.open.at[date, code] if code in self.open.columns else None
+        return None if value is None or pd.isna(value) or value <= 0 else float(value)
 
     def valuation_prices(self, date: pd.Timestamp) -> Dict[str, float]:
         """時価評価用の価格（売買のない銘柄は直近の終値）"""
