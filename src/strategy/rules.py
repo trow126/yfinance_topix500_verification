@@ -92,7 +92,9 @@ class FactorStrategy:
     毎月（または毎四半期）の最初の営業日に、候補をファクターの合成スコアで並べて上位 n 銘柄を等金額で持つ。
     すでに保有していて順位が keep_rank 以内なら持ち続ける（売買を減らす）。
     factors: "mom_12_1", "low_vol"(= -vol_252), "div_yield", "mom_6_1" の組み合わせ。
-    pick: "top" / "bottom" / "random"（random は同じ候補からランダムに n 銘柄。比較用）
+    pick: "top" / "bottom" / "random"（random は同じ候補から毎月ランダムに n 銘柄。比較用）
+          / "random_sticky"（銘柄ごとに年初に引いた乱数を順位にする。毎月引き直さないので売買回数が
+          ファクター戦略に近い。比較用。事後に追加: docs/research/hypotheses.md 7 章）
     """
     candidates: Candidates
     name: str = "factor"
@@ -139,6 +141,11 @@ class FactorStrategy:
             rng = random.Random(f"{self.seed}-{date:%Y%m}")
             chosen = rng.sample(list(f.index), min(self.n, len(f)))
             rank = pd.Series(range(1, len(chosen) + 1), index=chosen)
+        elif self.pick == "random_sticky":
+            scores = pd.Series({c: random.Random(f"{self.seed}-{date:%Y}-{c}").random() for c in f.index})
+            s = scores.sort_values()
+            rank = pd.Series(range(1, len(s) + 1), index=s.index)
+            chosen = list(s.index[:self.n])
         else:
             s = self.score(f).sort_values(ascending=(self.pick == "bottom"))
             rank = pd.Series(range(1, len(s) + 1), index=s.index)

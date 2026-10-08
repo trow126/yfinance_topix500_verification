@@ -77,6 +77,14 @@ def test_factor_random_pick_is_reproducible(data):
     assert runs[0] == runs[1]
 
 
+def test_factor_random_sticky_keeps_holdings_within_year(data):
+    panel = MarketPanel(data)
+    s = FactorStrategy(Candidates(panel, min_turnover=1_000_000), n=1, keep_rank=1, pick="random_sticky", seed=3)
+    res = RulesEngine(config(start="2022-02-01", end="2022-12-29"), s, panel).run()
+    buys = res["trades"][res["trades"]["side"] == "BUY"]
+    assert len(buys) == 1   # 年内は同じ乱数順位なので買い直さない
+
+
 def test_post_ex_rebound_buys_on_ex_date_and_exits_on_window_fill(data):
     # FLAT は 9/29 に配当 30 で落ち、その後すぐ戻るように価格を作る
     d = {k: v for k, v in data.items()}
