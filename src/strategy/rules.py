@@ -108,11 +108,13 @@ class FactorStrategy:
     factors: List[str] = field(default_factory=lambda: ["mom_12_1"])
     n: int = 20
     keep_rank: int = 40
-    rebalance: str = "M"            # "M" 毎月 / "Q" 3 か月ごと（1・4・7・10 月） / "H" 半年ごと（1・7 月）
+    rebalance: str = "M"            # "M" 毎月 / "Q" 3 か月ごと（1・4・7・10 月） / "H" 半年ごと（1・7 月） / "Y" 年 1 回（1 月）
     weight: float = 1.0             # 株に充てる口座の割合（残りは 1306）
     pick: str = "top"
     seed: int = 0
     no_cut: bool = False            # True なら「直近 12 か月の配当合計 ≥ その前 12 か月 > 0」の銘柄だけを候補にする（減配回避）
+    # 候補表に列を足す・候補を絞る関数 (date, f) -> f。財務フィルタ（H10）などに使う。factors に足した列名を書ける
+    extra: Optional[object] = None
     _last_period: Optional[pd.Period] = None
 
     def _is_rebalance_day(self, date: pd.Timestamp) -> bool:
@@ -122,6 +124,8 @@ class FactorStrategy:
         if self.rebalance == "Q" and date.month % 3 != 1:
             return False
         if self.rebalance == "H" and date.month not in (1, 7):
+            return False
+        if self.rebalance == "Y" and date.month != 1:
             return False
         self._last_period = period
         return True
@@ -147,6 +151,8 @@ class FactorStrategy:
         f = f[f["unit_cost"] <= yen]
         if self.no_cut:
             f = f[f["no_cut"].fillna(False)]
+        if self.extra is not None and not f.empty:
+            f = self.extra(date, f)
         if f.empty:
             return None
         if self.pick == "random":

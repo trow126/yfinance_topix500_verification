@@ -32,7 +32,8 @@ from src.backtest.evaluation import COST_LEVELS, cost_key, evaluate, verdict  # 
 from src.backtest.rules_engine import ExecutionConfig, RulesConfig  # noqa: E402
 from src.data.quality import excluded_codes  # noqa: E402
 from src.strategy.monthly_rights import MarketPanel  # noqa: E402
-from src.strategy.rules import Candidates, EventHold, YearEndLosers  # noqa: E402
+from src.data.fundamentals import Fundamentals  # noqa: E402
+from src.strategy.rules import Candidates, EventHold, FactorStrategy, YearEndLosers  # noqa: E402
 from src.utils.logger import BacktestLogger  # noqa: E402
 
 CAPITAL = 15_000_000
@@ -180,9 +181,54 @@ def h8r_strata(ev, panel, etf):
     return pd.DataFrame(out)
 
 
+# ---------------------------------------------------------------------- H10
+H10_GRID = {
+    "H10-a 予想配当利回り 財務フィルタ 上位20 半年": dict(factors=["fdiv_yield"], rebalance="H", no_cut=False),
+    "H10-b 予想配当利回り 財務フィルタ 上位20 年1回": dict(factors=["fdiv_yield"], rebalance="Y", no_cut=False),
+    "H10-c 実績配当利回り 財務フィルタ+減配なし 上位20 半年": dict(factors=["div_yield"], rebalance="H", no_cut=True),
+}
+
+
+def fin_filter(fund: Fundamentals):
+    cache = {}
+
+    def extra(date, f):
+        if date not in cache:
+            cache[date] = fund.passes(date)
+        ok = cache[date]
+        f = f[f.index.isin(ok.index)].copy()
+        # J-Quants の配当は当時の株数ベース。yfinance の終値は後の分割で調整済みなので当時の株価に戻して割る
+        f["fdiv_yield"] = ok.loc[f.index, "fdiv"] / (f["unit_cost"] / 100)
+        return f
+    return extra
+
+
+def run_h10(panel, etf, cand, seeds, confirm, only=None):
+    summary = pd.read_parquet(PROJECT_ROOT / "data" / "jquants" / "summary.parquet")
+    fund = Fundamentals(summary, panel.calendar)
+    extra = fin_filter(fund)
+    periods = dict(CONFIRM) if confirm else dict(EXPLORE)
+    rows = []
+    for period, (start, end) in periods.items():
+        print(f"=== {period}", flush=True)
+        for name, spec in H10_GRID.items():
+            if only and name.split()[0] not in only:
+                continue
+
+            def factory(seed, pick, spec=spec, name=name):
+                return FactorStrategy(cand, name=name, factors=spec["factors"], n=20, keep_rank=40,
+                                      rebalance=spec["rebalance"], no_cut=spec["no_cut"], extra=extra,
+                                      pick=pick or "top", seed=seed)
+
+            record(rows, name, period, evaluate(factory, config(start, end), panel, etf, seeds=seeds, n_trials=13,
+                                                random_pick="random_sticky"))
+    return summarize(rows, "h10_confirm" if confirm else "h10")
+
+
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--hyp", required=True, choices=["H9", "H8R"])
+    p.add_argument("--hyp", required=True, choices=["H9", "H8R", "H10"])
+    p.add_argument("--only", default="", help="確認期間で回す条件の ID（カンマ区切り。探索で基準 1 を満たしたもの）")
     p.add_argument("--seeds", type=int, default=20)
     p.add_argument("--confirm", action="store_true", help="確認期間を回す（探索で基準 1 を満たした条件だけ。1 回だけ）")
     args = p.parse_args()
@@ -194,6 +240,11 @@ def main():
     print(f"銘柄 {len(data)}、異常値で除外 {len(excluded)}、営業日 {panel.calendar[0].date()}〜{panel.calendar[-1].date()}", flush=True)
     if args.hyp == "H9":
         run_h9(panel, etf, Candidates(panel, min_turnover=1_000_000_000, excluded=excluded), args.seeds, args.confirm)
+    elif args.hyp == "H10":
+        only = [x for x in args.only.split(",") if x] or None
+        if args.confirm and not only:
+            raise SystemExit("--confirm には --only で探索を通った条件を指定する")
+        run_h10(panel, etf, Candidates(panel, min_turnover=1_000_000_000, excluded=excluded), args.seeds, args.confirm, only)
     else:
         run_h8r(panel, etf, excluded, args.seeds)
     return 0
