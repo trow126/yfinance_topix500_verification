@@ -112,14 +112,30 @@ RANDOM_BASE = {
                   "trading.nanpin_max": 5, "trading.max_holding_days": 365},
 }
 
-GRIDS = {"round1": lambda: ROUND1, "round2": round2, "old": lambda: OLD, "objective": objective}
+# 権利落ち前に買う（配当・優待を取る）か、権利落ち後に買う（配当・優待は諦めて戻りを取る）か
+_OBJ5 = {"selection.source": "objective", "selection.top_n": 5, "selection.max_unit_cost": 500_000}
+AFTER_EX = {
+    "人気: 落ち2日前に買い 取得単価で売り（標準）": {},
+    "人気: 落ち2日前に買い 窓埋めで売り": {"trading.exit_target": "pre_ex_close"},
+    "人気: 落ち日に買い 窓埋めで売り": {"trading.entry_days_before_ex": 0, "trading.exit_target": "pre_ex_close"},
+    "人気: 落ち5日後に買い 窓埋めで売り": {"trading.entry_days_before_ex": -5, "trading.exit_target": "pre_ex_close"},
+    "人気: 落ち10日後に買い 窓埋めで売り": {"trading.entry_days_before_ex": -10, "trading.exit_target": "pre_ex_close"},
+    "客観5: 落ち2日前に買い 取得単価で売り": {**_OBJ5},
+    "客観5: 落ち日に買い 窓埋めで売り": {**_OBJ5, "trading.entry_days_before_ex": 0,
+                                   "trading.exit_target": "pre_ex_close"},
+    "客観5: 落ち5日後に買い 窓埋めで売り": {**_OBJ5, "trading.entry_days_before_ex": -5,
+                                    "trading.exit_target": "pre_ex_close"},
+}
+
+GRIDS = {"round1": lambda: ROUND1, "round2": round2, "old": lambda: OLD, "objective": objective,
+         "after_ex": lambda: AFTER_EX}
 
 COLUMNS = {
     "profit": "損益(円)", "return_on_invested": "投資額比/年", "total_return": "口座リターン",
     "max_drawdown": "最大DD", "cycles": "回数", "win_rate_closed": "勝率", "open_cycles": "保有中",
     "worst_open_pnl": "最大含み損", "median_holding_days_closed": "保有中央値(日)",
     "max_holding_days": "最長保有(日)", "avg_invested": "平均投資額", "max_invested": "最大投資額",
-    "skipped_for_cash": "資金不足",
+    "skipped_for_cash": "資金不足", "yutai_value": "優待(見積)",
 }
 
 
@@ -188,13 +204,17 @@ def main():
 
     # 表示: ランダムは分布（中央値と上下10%）にまとめる
     random_rows = df[df["条件"].str.startswith("比較: ランダム")]
-    summary = (random_rows.groupby("期間")[["損益(円)", "投資額比/年", "勝率"]]
-               .quantile([0.1, 0.5, 0.9]).unstack(level=1))
+    summary = None
+    if not random_rows.empty:
+        summary = (random_rows.groupby("期間")[["損益(円)", "投資額比/年", "勝率"]]
+                   .quantile([0.1, 0.5, 0.9]).unstack(level=1))
     main_rows = df[~df["条件"].str.startswith("比較: ランダム")]
     pd.set_option("display.width", 250)
     pd.set_option("display.max_columns", 30)
     for period in PERIODS:
         t = main_rows[main_rows["期間"] == period].drop(columns=["期間", "出口"]).set_index("条件")
+        t.insert(1, "損益+優待", (t["損益(円)"] + t["優待(見積)"]).round(-3).astype(int))
+        t["優待(見積)"] = t["優待(見積)"].round(-3).astype(int)
         t["損益(円)"] = t["損益(円)"].round(-3).astype(int)
         t["最大含み損"] = t["最大含み損"].round(-3).astype(int)
         for col in ("平均投資額", "最大投資額"):
@@ -203,6 +223,8 @@ def main():
             t[c] = (t[c] * 100).round(1).astype(str) + "%"
         print(f"\n===== {period} {PERIODS[period][0]} 〜 {PERIODS[period][1]} =====")
         print(t.to_string())
+        if summary is None:
+            continue
         s = summary.loc[period]
         print(f"  ランダム{args.seeds}回: 損益 中央値 {s[('損益(円)', 0.5)]:,.0f} 円"
               f"（下位10% {s[('損益(円)', 0.1)]:,.0f} 〜 上位10% {s[('損益(円)', 0.9)]:,.0f}）、"

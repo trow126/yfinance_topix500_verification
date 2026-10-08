@@ -36,6 +36,7 @@ class CycleState:
     entry_date: pd.Timestamp
     nanpin_count: int = 0
     yutai_value: float = 0.0  # 狙っている権利確定で受け取る優待の価値（見積もり）
+    target_price: Optional[float] = None  # 売る価格（窓埋めの場合は権利落ち前日の終値）。Noneなら平均取得単価
 
 
 class MonthlyRightsEngine:
@@ -105,8 +106,9 @@ class MonthlyRightsEngine:
             position = self.portfolio.position_manager.get_position(code)
             t = self.config.trading
             after_rights = date >= state.ex_date
-            if after_rights and price >= position.average_price:
-                self._sell(code, date, price, "Recovered to average cost")
+            if after_rights and price >= (state.target_price or position.average_price):
+                self._sell(code, date, price,
+                           "Window filled" if state.target_price else "Recovered to average cost")
             elif after_rights and t.max_holding_days and (date - state.entry_date).days >= t.max_holding_days:
                 self._sell(code, date, price, "Max holding period")
             elif (t.stop_loss_pct and state.nanpin_count >= t.nanpin_max
@@ -129,10 +131,19 @@ class MonthlyRightsEngine:
             shares = int(round(row["unit_shares"] * self.panel.split_factor.at[date, code]))
             if self._buy(code, date, price, shares, "Entry (monthly rights)", row):
                 self.states[code] = CycleState(code, price, shares, row["ex_date"], date,
-                                               yutai_value=float(row.get("yutai_value", 0.0) or 0.0))
+                                               yutai_value=float(row.get("yutai_value", 0.0) or 0.0),
+                                               target_price=self._target_price(code, row["ex_date"]))
 
         # 4. 時価評価
         self.portfolio.mark_to_market(date, self.panel.valuation_prices(date))
+
+    def _target_price(self, code: str, ex_date: pd.Timestamp) -> Optional[float]:
+        """窓埋めで売る場合の目標価格（権利落ち前日の終値）"""
+        if self.config.trading.exit_target != "pre_ex_close":
+            return None
+        idx = self.panel.calendar.get_loc(ex_date) - 1
+        price = self.panel.close_ffill.iat[idx, self.panel.close_ffill.columns.get_loc(code)]
+        return None if pd.isna(price) else float(price)
 
     def _nanpin_due(self, state: CycleState, price: float) -> bool:
         t = self.config.trading

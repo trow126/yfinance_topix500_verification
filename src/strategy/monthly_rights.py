@@ -51,7 +51,8 @@ class SelectionConfig:
 class TradingConfig:
     """売買ルールの設定"""
     unit_shares: int = 100               # 最初に買う株数（優待・配当がもらえる単元）
-    entry_days_before_ex: int = 2        # 権利落ち日の何営業日前に買うか（2 = 権利付き最終日の前日）
+    entry_days_before_ex: int = 2        # 権利落ち日の何営業日前に買うか（2 = 権利付き最終日の前日、0 = 権利落ち日、-5 = 5営業日後）
+    exit_target: str = "average_cost"    # 売る価格: average_cost（平均取得単価） / pre_ex_close（権利落ち前日の終値＝窓埋め）
     nanpin_step: float = 0.10            # 初回購入価格から何%下がるごとにナンピンするか
     nanpin_max: int = 2                  # ナンピンの最大回数（初回と同じ株数を買い増す）
     max_holding_days: int = 0            # 権利落ち後、購入からこの暦日数を過ぎたら成行で売る（0 = 期限なし）
@@ -183,7 +184,7 @@ class MonthlyRightsSelector:
 
         upcoming = panel.events[panel.events["record_month"] == month].copy()
         upcoming["entry_idx"] = upcoming["ex_idx"] - self.trading.entry_days_before_ex
-        upcoming = upcoming[upcoming["entry_idx"] >= sel_idx]
+        upcoming = upcoming[(upcoming["entry_idx"] >= sel_idx) & (upcoming["entry_idx"] < len(panel.calendar))]
         upcoming = upcoming.sort_values("ex_date").drop_duplicates("code")
         if upcoming.empty or sel_idx == 0:
             return upcoming.iloc[0:0]
@@ -368,6 +369,8 @@ class RankingSelector:
                 dates = self._rights_dates(row.code, month, sel_idx, benefit)
                 if dates is None or dates[0] is None or dates[0] - self.trading.entry_days_before_ex < sel_idx:
                     reason = "権利日が選定日より前"
+                elif dates[0] - self.trading.entry_days_before_ex >= len(panel.calendar):
+                    reason = "購入日がデータの期間外"
             if reason is None:
                 if pd.notna(row.yutai_shares):
                     shares = int(row.yutai_shares)
