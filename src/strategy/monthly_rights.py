@@ -117,6 +117,12 @@ class MarketPanel:
     def __init__(self, data: Dict[str, pd.DataFrame], turnover_window: int = 60):
         self.close = pd.DataFrame({c: df["Close"] for c, df in data.items()}).sort_index()
         volume = pd.DataFrame({c: df["Volume"] for c, df in data.items()}).reindex(self.close.index)
+        # yfinance は休場日（1/1〜1/3、12/31 など）にも前日終値・出来高 0 の行を返すことがある。
+        # 全銘柄の出来高が 0 の日は営業日ではないので除く
+        traded = volume.fillna(0).sum(axis=1) > 0
+        if (~traded).any():
+            self.close = self.close[traded]
+            volume = volume[traded]
         self.close_ffill = self.close.ffill()
         self.calendar = self.close.index
 
@@ -152,6 +158,9 @@ class MarketPanel:
                 record = self.calendar[min(i + offset, len(self.calendar) - 1)]
                 rows.append((code, ex_date, record, float(amount), i))
         events = pd.DataFrame(rows, columns=["code", "ex_date", "record_date", "dividend", "ex_idx"])
+        # 配当が1件もない（テスト用データなど）場合も .dt が使えるように日付型にそろえる
+        events["ex_date"] = pd.to_datetime(events["ex_date"])
+        events["record_date"] = pd.to_datetime(events["record_date"])
         events["record_month"] = events["record_date"].dt.to_period("M")
         return events.sort_values(["ex_date", "code"]).reset_index(drop=True)
 
