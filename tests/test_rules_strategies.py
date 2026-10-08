@@ -77,6 +77,26 @@ def test_factor_random_pick_is_reproducible(data):
     assert runs[0] == runs[1]
 
 
+def test_no_cut_filter_and_half_year_rebalance():
+    # CUT は 2 年目に減配、KEEP は維持、NEW は 1 年目の配当履歴しかない
+    d = {
+        "CUT": make_stock(dividends={"2021-03-30": 30.0, "2022-03-30": 10.0}),
+        "KEEP": make_stock(dividends={"2021-03-30": 20.0, "2022-03-30": 20.0}),
+        "NEW": make_stock(dividends={"2022-03-30": 40.0}),
+    }
+    panel = MarketPanel(d)
+    c = Candidates(panel, min_turnover=1_000_000)
+    f = c.frame(pd.Timestamp("2023-01-04"))
+    assert bool(f.at["KEEP", "no_cut"]) is True
+    assert bool(f.at["CUT", "no_cut"]) is False
+    assert bool(f.at["NEW", "no_cut"]) is False       # 前の 12 か月が 0 なので減配判定できない → 除外
+    s = FactorStrategy(c, factors=["div_yield"], n=1, keep_rank=1, no_cut=True, rebalance="H")
+    res = RulesEngine(config(start="2023-01-04", end="2023-12-29"), s, panel).run()
+    buys = res["trades"][res["trades"]["side"] == "BUY"]
+    assert buys["code"].tolist() == ["KEEP"]           # 利回り最高の NEW・CUT は除外され、7 月は保有継続
+    assert buys.iloc[0]["date"] == pd.Timestamp("2023-01-04")
+
+
 def test_factor_random_sticky_keeps_holdings_within_year(data):
     panel = MarketPanel(data)
     s = FactorStrategy(Candidates(panel, min_turnover=1_000_000), n=1, keep_rank=1, pick="random_sticky", seed=3)

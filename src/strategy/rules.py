@@ -43,6 +43,9 @@ class Candidates:
         div = ev.pivot_table(index="ex_date", columns="code", values="dividend", aggfunc="sum")
         div = div.reindex(index=close.index, columns=close.columns).fillna(0.0)  # 無配銘柄は 0
         self._trailing_div = div.rolling(252, min_periods=1).sum().shift(1)
+        # その前の 1 年（253〜504 営業日前）の配当合計。データの先頭付近は窓が 200 営業日以上あれば使う
+        # （2013-01 開始のデータで 2015-01 の選定から減配判定ができるように。短い分は合計が小さくなり「減配なし」側に倒れる）
+        self._prev_div = div.rolling(252, min_periods=200).sum().shift(253)
 
     def _prev(self, date: pd.Timestamp) -> Optional[pd.Timestamp]:
         i = self.panel.calendar.get_loc(date)
@@ -75,7 +78,11 @@ class Candidates:
         f["mom_6_1"] = p_1 / close.iloc[max(i - 126, 0)][codes] - 1
         r = self._ret.iloc[max(i - 251, 0):i + 1][codes]
         f["vol_252"] = r.std()
-        f["div_yield"] = self._trailing_div.loc[prev, codes] / px[codes]
+        f["div_12"] = self._trailing_div.loc[prev, codes]
+        f["div_prev12"] = self._prev_div.loc[prev, codes]
+        f["div_yield"] = f["div_12"] / px[codes]
+        # 減配なし: 直近 12 か月の配当合計がその前の 12 か月以上で、その前の 12 か月に配当がある
+        f["no_cut"] = (f["div_12"] >= f["div_prev12"]) & (f["div_prev12"] > 0)
         year_start = close.index[close.index.year == prev.year][0]
         f["ret_ytd"] = px[codes] / close.loc[year_start, codes] - 1
         return f
@@ -101,10 +108,11 @@ class FactorStrategy:
     factors: List[str] = field(default_factory=lambda: ["mom_12_1"])
     n: int = 20
     keep_rank: int = 40
-    rebalance: str = "M"            # "M" 毎月 / "Q" 3 か月ごと
+    rebalance: str = "M"            # "M" 毎月 / "Q" 3 か月ごと（1・4・7・10 月） / "H" 半年ごと（1・7 月）
     weight: float = 1.0             # 株に充てる口座の割合（残りは 1306）
     pick: str = "top"
     seed: int = 0
+    no_cut: bool = False            # True なら「直近 12 か月の配当合計 ≥ その前 12 か月 > 0」の銘柄だけを候補にする（減配回避）
     _last_period: Optional[pd.Period] = None
 
     def _is_rebalance_day(self, date: pd.Timestamp) -> bool:
@@ -112,6 +120,8 @@ class FactorStrategy:
         if period == self._last_period:
             return False
         if self.rebalance == "Q" and date.month % 3 != 1:
+            return False
+        if self.rebalance == "H" and date.month not in (1, 7):
             return False
         self._last_period = period
         return True
@@ -135,6 +145,8 @@ class FactorStrategy:
         # 1 単元が 1 銘柄の予算を超える銘柄は買えないので候補から外す
         f = f.dropna(subset=["mom_12_1", "vol_252"])
         f = f[f["unit_cost"] <= yen]
+        if self.no_cut:
+            f = f[f["no_cut"].fillna(False)]
         if f.empty:
             return None
         if self.pick == "random":
