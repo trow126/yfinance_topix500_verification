@@ -32,7 +32,7 @@ from src.backtest.evaluation import COST_LEVELS, cost_key, evaluate, verdict  # 
 from src.backtest.rules_engine import ExecutionConfig, RulesConfig  # noqa: E402
 from src.data.quality import excluded_codes  # noqa: E402
 from src.strategy.monthly_rights import MarketPanel  # noqa: E402
-from src.data.fundamentals import Fundamentals  # noqa: E402
+from src.data.fundamentals import Fundamentals, earnings_events  # noqa: E402
 from src.strategy.rules import Candidates, EventHold, FactorStrategy, YearEndLosers  # noqa: E402
 from src.utils.logger import BacktestLogger  # noqa: E402
 
@@ -237,9 +237,35 @@ def run_h10(panel, etf, cand, seeds, confirm, only=None):
     return summarize(rows, "h10_confirm" if confirm else "h10")
 
 
+# ---------------------------------------------------------------------- H11
+H11_GRID = {"H11-a 会社予想の純利益 +10% 以上の上方修正（短信） 60日": "revision_up",
+            "H11-b 第2四半期 進捗率 0.6 以上・下方修正なし 60日": "q2_progress"}
+
+
+def run_h11(panel, etf, cand, seeds, confirm, only=None):
+    ev_all = earnings_events(pd.read_pickle(PROJECT_ROOT / "data" / "jquants" / "summary.pkl"), panel.calendar)
+    periods = dict(CONFIRM) if confirm else dict(EXPLORE)
+    rows = []
+    for period, (start, end) in periods.items():
+        print(f"=== {period}", flush=True)
+        for name, kind in H11_GRID.items():
+            if only and name.split()[0] not in only:
+                continue
+            ev = ev_all[(ev_all["kind"] == kind) & (ev_all["date"] >= start) & (ev_all["date"] <= end)][["date", "code"]]
+
+            def factory(seed, pick, ev=ev, name=name):
+                return EventHold(cand, ev, name=name, hold_days=60, max_positions=10, entry_lag=1,
+                                 pick=pick or "event", seed=seed)
+
+            out = evaluate(factory, config(start, end), panel, etf, seeds=seeds, n_trials=2)
+            out["row"]["events"] = len(ev)
+            record(rows, name, period, out)
+    return summarize(rows, "h11_confirm" if confirm else "h11")
+
+
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--hyp", required=True, choices=["H9", "H8R", "H10"])
+    p.add_argument("--hyp", required=True, choices=["H9", "H8R", "H10", "H11"])
     p.add_argument("--only", default="", help="確認期間で回す条件の ID（カンマ区切り。探索で基準 1 を満たしたもの）")
     p.add_argument("--seeds", type=int, default=20)
     p.add_argument("--confirm", action="store_true", help="確認期間を回す（探索で基準 1 を満たした条件だけ。1 回だけ）")
@@ -252,6 +278,11 @@ def main():
     print(f"銘柄 {len(data)}、異常値で除外 {len(excluded)}、営業日 {panel.calendar[0].date()}〜{panel.calendar[-1].date()}", flush=True)
     if args.hyp == "H9":
         run_h9(panel, etf, Candidates(panel, min_turnover=1_000_000_000, excluded=excluded), args.seeds, args.confirm)
+    elif args.hyp == "H11":
+        only = [x for x in args.only.split(",") if x] or None
+        if args.confirm and not only:
+            raise SystemExit("--confirm には --only で探索を通った条件を指定する")
+        run_h11(panel, etf, Candidates(panel, min_turnover=1_000_000_000, excluded=excluded), args.seeds, args.confirm, only)
     elif args.hyp == "H10":
         only = [x for x in args.only.split(",") if x] or None
         if args.confirm and not only:

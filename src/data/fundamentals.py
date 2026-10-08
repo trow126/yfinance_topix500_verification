@@ -84,3 +84,51 @@ class Fundamentals:
         f = self.frame(date)
         ok = f["np_pos3"] & (f["eqar"] >= min_eqar) & f["fdiv"].notna() & f["prev_div"].notna() & (f["fdiv"] >= f["prev_div"])
         return f[ok]
+
+
+def _first(d: pd.DataFrame, cols) -> pd.Series:
+    out = pd.Series(np.nan, index=d.index)
+    for c in cols:
+        if c in d:
+            out = out.fillna(_num(d[c]))
+    return out
+
+
+def earnings_events(summary: pd.DataFrame, calendar: pd.DatetimeIndex) -> pd.DataFrame:
+    """
+    H11（hypotheses.md 3h 章）のイベント。列: date（開示が分かった日）, code, kind（"revision_up" / "q2_progress"）
+
+    - 当期純利益の今期の会社予想: FNP（空欄なら FNCNP）。通期短信の来期予想 NxFNp（空欄なら NxFNCNP）は翌期の予想として扱う
+    - 直前の予想 = 同じ決算期について、それより前に開示された予想（短信・業績予想の修正のどれでも）の最新
+    - revision_up: 決算短信（FinancialStatements）で、今期予想 ≥ 直前の予想 × 1.10 かつ直前の予想 > 0
+    - q2_progress: 第 2 四半期の決算短信で、累計の当期純利益 ÷ 今期予想 ≥ 0.6、今期予想 > 0、直前の予想があり今期予想 ≥ 直前の予想
+    - 開示が分かった日: 取引時間中は開示日、15:00（2024-11-05 以降は 15:30）以降と休日は翌営業日
+    """
+    d = summary.copy()
+    d["code"] = d["Code"].astype(str).str[:4]
+    d["disc_date"] = pd.to_datetime(d["DiscDate"])
+    t = d["DiscTime"].fillna("").str.slice(0, 5)
+    cutoff = np.where(d["disc_date"] >= LATE_CUTOFF_CHANGE, "15:30", "15:00")
+    late = ((t >= cutoff) & (t != "")).astype(int).to_numpy()
+    pos = calendar.searchsorted(d["disc_date"].to_numpy(), side="left") + late
+    d = d[pos < len(calendar)].copy()
+    d["date"] = calendar[pos[pos < len(calendar)]]
+    d["is_fs"] = d["DocType"].str.contains("FinancialStatements", na=False)
+    d["np"] = _first(d, ["NP", "NCNP"])
+    cur = d[["code", "date", "DiscTime", "DocType", "CurPerType", "is_fs", "np"]].copy()
+    cur["fy"] = pd.to_datetime(d["CurFYEn"], errors="coerce")
+    cur["fc"] = _first(d, ["FNP", "FNCNP"])
+    nxt = d[["code", "date", "DiscTime", "DocType", "CurPerType", "is_fs", "np"]].copy()
+    nxt["fy"] = pd.to_datetime(d["NxtFYEn"], errors="coerce")
+    nxt["fc"] = _first(d, ["NxFNp", "NxFNCNP"])
+    nxt["is_fs"] = False  # 来期予想の初出は「修正」ではない
+    nxt["CurPerType"] = "next"
+    f = pd.concat([cur, nxt]).dropna(subset=["fy", "fc"])
+    f = f.sort_values(["code", "fy", "date", "DiscTime"]).reset_index(drop=True)
+    f["prev_fc"] = f.groupby(["code", "fy"])["fc"].shift(1)
+    fs = f[f["is_fs"]]
+    up = fs[(fs["prev_fc"] > 0) & (fs["fc"] >= fs["prev_fc"] * 1.10)]
+    q2 = fs[(fs["CurPerType"] == "2Q") & (fs["fc"] > 0) & (fs["np"] / fs["fc"] >= 0.6)
+            & fs["prev_fc"].notna() & (fs["fc"] >= fs["prev_fc"])]
+    ev = pd.concat([up.assign(kind="revision_up"), q2.assign(kind="q2_progress")])
+    return ev[["date", "code", "kind", "fc", "prev_fc", "np"]].drop_duplicates(["date", "code", "kind"]).reset_index(drop=True)
