@@ -49,7 +49,8 @@ def fetch_batch(codes: list, start: str, end: str) -> dict:
         if raw.empty:
             break
         try:
-            df = raw[ticker] if len(tickers) > 1 else raw
+            # group_by="ticker" では1銘柄でも (銘柄, 項目) の2段の列になることがある
+            df = raw[ticker] if isinstance(raw.columns, pd.MultiIndex) else raw
         except KeyError:
             continue
         df = df.reindex(columns=COLUMNS).dropna(subset=["Close"])

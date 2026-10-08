@@ -77,6 +77,10 @@ class MonthlyRightsConfig:
     initial_capital: float = 10_000_000
     data_dir: str = "./data/cache/universe"
     results_dir: str = "./data/results/monthly_rights"
+    # 待機資金の置き場所: 使っていない現金をこのETFで持ち、買うときに必要な分だけ売る（空なら現金のまま）
+    sweep_ticker: str = ""
+    sweep_data_dir: str = "./data/cache/benchmark"
+    cash_buffer: float = 0               # ETFに入れずに残す現金
     selection: SelectionConfig = field(default_factory=SelectionConfig)
     trading: TradingConfig = field(default_factory=TradingConfig)
     costs: CostConfig = field(default_factory=CostConfig)

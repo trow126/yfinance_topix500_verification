@@ -239,3 +239,18 @@ def test_yutai_value_estimate(data):
     assert m["yutai_records"] == 2
     assert m["yutai_records_valued"] == 1
     assert m["yutai_value"] == pytest.approx(2000)
+
+
+def test_cash_sweep_into_etf(data, tmp_path):
+    # 価格が一定（100円）のETF。待機資金はETFに置かれ、買うときに必要な分だけ売られる
+    etf = make_stock(base=100.0)
+    etf.to_pickle(tmp_path / "1306.pkl")
+    cfg = config()
+    cfg.sweep_ticker, cfg.sweep_data_dir = "1306", str(tmp_path)
+    engine = MonthlyRightsEngine(cfg, data)
+    m = engine.run()["metrics"]
+
+    assert m["avg_etf_value"] > 900_000          # 資金の大半はETFで待機
+    assert m["skipped_for_cash"] == 0             # 買うときはETFを売って資金を用意できている
+    # 戦略の損益（+12,000円）は同じで、ETFの売買コストの分だけわずかに減る
+    assert 1_000_000 + 12_000 - 3_000 < m["final_value"] < 1_000_000 + 12_000

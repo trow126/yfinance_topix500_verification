@@ -66,6 +66,14 @@ class MonthlyRightsEngine:
         self.nanpin_trades = 0
         self.yutai_received: List[dict] = []
 
+        # 待機資金のETF（使っていない現金はETFで持つ）
+        self.etf_units = 0.0
+        self.etf_close = self.etf_dividend = None
+        if config.sweep_ticker:
+            etf = pd.read_pickle(Path(config.sweep_data_dir) / f"{config.sweep_ticker}.pkl")
+            self.etf_close = etf["Close"].reindex(self.panel.calendar).ffill()
+            self.etf_dividend = etf["Dividends"].reindex(self.panel.calendar).fillna(0.0)
+
         dividends = self.panel.events.set_index(["ex_date", "code"])["dividend"]
         self.dividends_by_date = {d: g.droplevel(0).to_dict() for d, g in dividends.groupby(level=0)}
 
@@ -87,7 +95,39 @@ class MonthlyRightsEngine:
         for row in picks.to_dict("records"):
             self.pending_entries.setdefault(row["entry_date"], []).append(row)
 
+    # ETFの売買コスト（流動性が高いので個別株より小さく見積もる）
+    ETF_SLIPPAGE = 0.0005
+
+    def _etf_price(self, date) -> Optional[float]:
+        if self.etf_close is None:
+            return None
+        price = self.etf_close.get(date)
+        return None if price is None or pd.isna(price) else float(price)
+
+    def _sell_etf_for(self, amount: float, date) -> None:
+        """現金が amount 足りないとき、その分のETFを売る"""
+        price = self._etf_price(date)
+        if not price or self.etf_units <= 0:
+            return
+        units = min(amount / (price * (1 - self.ETF_SLIPPAGE)), self.etf_units)
+        self.etf_units -= units
+        self.portfolio.cash += units * price * (1 - self.ETF_SLIPPAGE)
+
+    def _invest_idle_cash(self, date) -> None:
+        """余った現金（cash_buffer を超える分）でETFを買う"""
+        price = self._etf_price(date)
+        excess = self.portfolio.cash - self.config.cash_buffer
+        if price and excess > 0:
+            self.etf_units += excess / (price * (1 + self.ETF_SLIPPAGE))
+            self.portfolio.cash -= excess
+
     def _process_day(self, date: pd.Timestamp) -> None:
+        # 0. ETFの分配金（税引後で現金に）
+        if self.etf_dividend is not None and self.etf_units > 0:
+            dist = self.etf_dividend.get(date, 0.0)
+            if dist > 0:
+                self.portfolio.cash += self.etf_units * dist * (1 - self.config.costs.tax_rate)
+
         # 1. 配当（権利は前日の保有株に付くので、当日の売買より先に計上）
         for code, dividend in self.dividends_by_date.get(date, {}).items():
             if self.portfolio.position_manager.get_position(code):
@@ -134,8 +174,14 @@ class MonthlyRightsEngine:
                                                yutai_value=float(row.get("yutai_value", 0.0) or 0.0),
                                                target_price=self._target_price(code, row["ex_date"]))
 
-        # 4. 時価評価
-        self.portfolio.mark_to_market(date, self.panel.valuation_prices(date))
+        # 4. 余った現金をETFへ
+        self._invest_idle_cash(date)
+
+        # 5. 時価評価（ETFの評価額も口座の総額に含める）
+        evaluation = self.portfolio.mark_to_market(date, self.panel.valuation_prices(date))
+        etf_value = self.etf_units * (self._etf_price(date) or 0.0)
+        evaluation["etf_value"] = etf_value
+        evaluation["total_value"] += etf_value
 
     def _target_price(self, code: str, ex_date: pd.Timestamp) -> Optional[float]:
         """窓埋めで売る場合の目標価格（権利落ち前日の終値）"""
@@ -159,6 +205,9 @@ class MonthlyRightsEngine:
              row: Optional[dict] = None) -> bool:
         fill = price * (1 + self.config.costs.slippage)
         commission = self._commission(fill * shares)
+        shortfall = fill * shares + commission - self.portfolio.cash
+        if shortfall > 0:
+            self._sell_etf_for(shortfall + 1, date)  # 端数で足りなくならないよう1円多めに
         dividend_info = None
         if row is not None:
             dividend_info = {"ex_dividend_date": row["ex_date"], "record_date": row["record_date"],
@@ -250,6 +299,7 @@ class MonthlyRightsEngine:
             "yutai_records": len(self.yutai_received),
             "yutai_records_valued": sum(1 for y in self.yutai_received if y["value"] > 0),
             "yutai_value": float(sum(y["value"] for y in self.yutai_received)),
+            "avg_etf_value": float(history["etf_value"].mean()) if "etf_value" in history else 0.0,
         }
 
 
