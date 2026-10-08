@@ -8,7 +8,7 @@ import pytest
 
 from src.backtest.rules_engine import ExecutionConfig, RulesConfig, RulesEngine
 from src.strategy.monthly_rights import MarketPanel
-from src.strategy.rules import Candidates, FactorStrategy, IndexTiming, PostExRebound, YearEndLosers
+from src.strategy.rules import Candidates, EventHold, FactorStrategy, IndexTiming, PostExRebound, YearEndLosers
 
 DATES = pd.bdate_range("2021-01-04", "2023-12-29")
 
@@ -133,6 +133,22 @@ def test_year_end_losers_enters_in_december_and_exits_end_of_january(data):
     assert t.iloc[0]["code"] == "DOWN"
     assert t.iloc[0]["date"] == pd.Timestamp("2022-12-27")   # 12/30 の 3 営業日前
     assert t.iloc[1]["date"] == pd.Timestamp("2023-01-31")
+
+
+def test_event_hold_buys_next_day_close_and_sells_after_hold_days(data):
+    panel = MarketPanel(data)
+    events = pd.DataFrame({"date": ["2022-06-01", "2022-06-01", "2022-06-04"], "code": ["UP", "UP", "THIN"]})
+    s = EventHold(Candidates(panel, min_turnover=1_000_000), events, hold_days=5, max_positions=2)
+    res = RulesEngine(config(start="2022-05-02", end="2022-07-29"), s, panel).run()
+    t = res["trades"]
+    assert t.iloc[0]["code"] == "UP" and t.iloc[0]["side"] == "BUY"
+    assert t.iloc[0]["date"] == pd.Timestamp("2022-06-02")        # 提出日の翌営業日
+    assert t.iloc[1]["side"] == "SELL" and t.iloc[1]["date"] == pd.Timestamp("2022-06-09")  # 5 営業日後
+    assert len(t) == 2                                              # 同日重複は 1 回、THIN は候補外
+    assert s.skipped and s.skipped[0]["code"] == "THIN"
+    r = EventHold(Candidates(panel, min_turnover=1_000_000), events, hold_days=5, max_positions=2, pick="random", seed=1)
+    res2 = RulesEngine(config(start="2022-05-02", end="2022-07-29"), r, panel).run()
+    assert res2["trades"].iloc[0]["date"] == pd.Timestamp("2022-06-02")
 
 
 def test_index_timing_holds_only_around_month_turn():

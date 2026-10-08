@@ -278,6 +278,69 @@ class YearEndLosers:
 
 
 @dataclass
+class EventHold:
+    """
+    イベント（例: 大量保有報告書の提出）の翌営業日の終値で買い、hold_days 営業日後の終値で売る。
+
+    events: 列 date（イベント日。提出日）と code。同じ日に同じ銘柄が複数あっても 1 回だけ買う。
+    候補条件は Candidates（売買代金・上場日数・異常値除外）に加え、1 単元 ≤ 1 銘柄の予算。
+    同時保有は max_positions まで、1 銘柄の金額は口座評価額 × weight ÷ max_positions。余りは 1306。
+    pick: "event"（イベント銘柄そのもの） / "random"（同じ日に同じ候補からランダムに同じ数だけ選ぶ。比較用）
+    """
+    candidates: Candidates
+    events: pd.DataFrame
+    name: str = "event_hold"
+    hold_days: int = 60
+    max_positions: int = 10
+    entry_lag: int = 1              # イベント日の何営業日後の終値で買うか
+    weight: float = 1.0
+    pick: str = "event"
+    seed: int = 0
+
+    def __post_init__(self):
+        cal = self.candidates.panel.calendar
+        ev = self.events.copy()
+        ev["date"] = pd.to_datetime(ev["date"])
+        # イベント日より後の最初の営業日 + (entry_lag - 1)
+        pos = cal.searchsorted(ev["date"].to_numpy(), side="right") + (self.entry_lag - 1)
+        ev["entry_idx"] = pos
+        ev = ev[ev["entry_idx"] < len(cal)]
+        self._by_idx = {int(i): list(dict.fromkeys(g["code"])) for i, g in ev.groupby("entry_idx")}
+        self.skipped: List[dict] = []
+
+    def orders(self, date, panel, holdings: Dict[str, Holding], equity: float) -> Optional[Orders]:
+        idx = panel.calendar.get_loc(date)
+        sells = [c for c, h in holdings.items() if idx - h.meta.get("entry_idx", idx) >= self.hold_days]
+        codes = self._by_idx.get(idx, [])
+        buys, meta = {}, {}
+        if codes:
+            f = self.candidates.frame(date)
+            yen = _lot_yen(equity, self.max_positions, self.weight)
+            if not f.empty:
+                f = f[f["unit_cost"] <= yen]
+            pool = [c for c in f.index if c not in holdings] if not f.empty else []
+            if self.pick == "random":
+                rng = random.Random(f"{self.seed}-{date:%Y%m%d}")
+                chosen = rng.sample(pool, min(len(codes), len(pool)))
+            else:
+                chosen = []
+                for c in codes:
+                    if c in holdings or c in buys:
+                        continue
+                    if c in pool:
+                        chosen.append(c)
+                    else:
+                        self.skipped.append({"date": date, "code": c, "reason": "候補条件外（流動性・上場日数・単元価格・データなし）"})
+            open_slots = self.max_positions - (len(holdings) - len(sells))
+            for c in chosen[:max(open_slots, 0)]:
+                buys[c] = yen
+                meta[c] = {"entry_idx": idx, "event_date": str(date.date())}
+        if not sells and not buys:
+            return None
+        return Orders(sells=sells, buys=buys, reason=self.name, meta=meta)
+
+
+@dataclass
 class IndexTiming:
     """
     1306 そのものを持つ期間を限る（月末月初だけ、など）。sweep_ticker を空にし、
